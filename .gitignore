@@ -1,7 +1,10 @@
 data3_SNRinfinity
 *.zip
 *.sif
+*.pickle
 deprecated
+.*/
 features
 miniconda3
 __pycache__
+!/.gitignore
