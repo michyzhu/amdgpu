@@ -1,189 +1,3 @@
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:1 --pty bash -i
-ls
-squeue -u myz
-scancel 10009
-squeue -u myz
-exit
-stop
-htop
-python3
-vim Moco_Test.py
-python3
-exit
-ls
-python3
-module load  python/3.8.9/gcc.7.3.1/rocm.4.2
-python3
-ls
-cat test.py
-python3 test.py
-python3
-rocm-smi
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:1 --pty bash -i
-srun --nodes=2 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:1 --pty bash -i
-squeue -u myz
-quit
-htop
-rocm-smi
-vim Moco_Test.py
-python3
-module load  python/3.8.9/gcc.7.3.1/rocm.4.2
-python3
-squeue -u myz
-scancel 10190
-python3
-module load  python/3.8.9/gcc.7.3.1/rocm.4.2
-python3
-module load  python/3.8.9/gcc.7.3.1/rocm.4.2
-python3
-vim test.py
-vim testid.py
-squeue -u myz
-scancel 10189
-vim Moco_Test.py
-srun --nodes=2 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:0 --pty bash -i
-squeue -u myz
-scancel 10189
-squeue -u myz
-srun --nodes=3 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:0 --pty bash -i
-squeue -u myz
-scancel 10189
-scancel 10190
-squeue -u myz
-srun --nodes=3 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-squeue -u myz
-srun --nodes=3 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:1 --pty bash -i
-squeue -u myz
-srun --nodes=3 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:1 --pty bash -i
-squeue -u myz
-scancel 10298
-squeue -u myz
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1 --gres gpu:8 --pty bash -i
-ls
-vim Moco_Test.py
-ls
-vim Moco_Test.py 
-module load  python/3.8.9/gcc.7.3.1/rocm.4.2
-python3
-ls
-vim Moco_Test.py 
-ls
-srun --nodes=3 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-ls
-squeue -u myz
-scancel 10300
-clear
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-clear
-ls
-echo $PATH
-ls
-squeue -u myz
-conda list
-vim .zshrc
-sourc ~/.zshrc
-vim ~/.zshrc
-rm ~/.zshrc.swp
-vim ~/.zshrc
-rm ~/.zshrc.swp
-bash
-scancel 10300
-conda --version
-source ~/envs/anaconda3/bin/activate
-conda deactivate
-conda activate
-vim ~/.bash_profile
-python3
-module load  python/3.8.9/gcc.7.3.1/rocm.4.2
-python3
-pip3 uninstall numpy
-pip3 install numpy
-pip3 install numpy==1.19.5
-module unload
-module avai
-cd /public/apps
-ls
-cd openmpi
-ls
-cd 4.1.0
-ls
-cd gcc.7.3.1
-ls
-cd rocm.4.2
-ls
-cd bin
-ls
-cd ..
-cd lib
-ls
-cd ..
-module load openmpi/4.1.0/gcc.7.3.1/rocm.4.2
-python3
-pip3 uninstall numpy
-conda create tf-gpu tensorflow-gpu numpy==1.19.5
-cd ~
-ls
-conda create tf-gpu tensorflow-gpu numpy==1.19.5
-conda list
-deactivate
-source envs/anaconda3/bin/activate
-exit
-vim ~./bash_profile
-vim ~/.bash_profile
-source envs/anaconda3/bin/activate
-conda --version
-vim ~/.bash_profile
-bash
-conda activate tf-gpu
-$
-conda activate tf-gpu
-conda init bash
-conda activate tf-gpu
-bash
-ls
-source envs/anaconda3/bin/activate 
-conda list
-conda create tf-gpu tensorflow-gpu numpy==1.19.5
-conda create tf-gpu tensorflow-gpu
-conda create tfgpu tensorflow-gpu
-conda env create -f tfgpu tensorflow-gpu
-conda create --name tf-gpu tensorflow-gpu numpy==1.19.5
-conda create --name tf-gpu tensorflow-gpu
-conda activate tf-gpu
-pip3 install numpy==1.19.5
-python3
-module load python/3.8.9/gcc.7.3.1/rocm.4.2
-numpy -V
-python3
-module unload
-python3
-module unload python/3.8.9/gcc.7.3.1/rocm.4.2 
-python3
-conda install tqdm matplotlib keras
-ls
-python3 Moco_Test.py 
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-ls
-squeue -u myz
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-conda activate tfgpu
-ls
-conda info --envs
-conda activate tf-gpu
-ls
-python3
-python3 Moco_Test.py 
-nvidia-smi
-conda install rocm-dkms
-conda search rocm
-conda install tensorflow-rocm
-rocm-smi
-conda install -c rocm tensorflow-rocm
-pip3 install tensorflow-rocm
-pip install tensorflow-rocm
-module load python/3.8.9/gcc.7.3.1/rocm.4.2
-python3
-pip3 install tensorflow-rocm
 python3
 vim ~/.bash_profile
 source ~/.bash_profile
@@ -998,3 +812,189 @@ cd loss
 ls
 cd ..
 logout
+clear
+cd SSL_MacroMolecule_Real
+ls
+vim Custom_CryoET_DataLoader.py 
+ls
+vim main_moco.py 
+vim Custom_CryoET_DataLoader.py 
+python3 Custom_CryoET_DataLoader.py 
+python3 main_moco.py "/shared/home/c_myz/data/data3_SNRinfinity" -gpu=0
+vim main_moco.py 
+cd ..
+ls
+singularity shell ./pytorch_latest.sif 
+module load singularity/3.7.2 
+srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
+git add .
+git status
+git add .gitignore
+rm .git/index.lock
+git add .gitignore
+git add .
+vim .keras
+cd .keras
+ls
+ls -a
+vim keras.json 
+cd ..
+cd .conda/
+ls
+cd ..
+git add Moco.py
+rm -f ./.git/index.lock
+git add Moco.py
+git add training
+git commit -am 'first commit'
+git config --global user.name "Michelle Zhu"
+git config --global user.email "myz@andrew.cmu.edu"
+git commit --amend --reset-author
+ls
+git push origin main
+git push origin master
+git branch -m main default
+git branch -m master main
+git push -u origin main
+git pull
+git pull remote main
+git pull main origin
+git pull -u origin main
+git add README.md
+git push -u origin main
+ls
+git add --all
+git add -v --all
+rm /home/myz/.git/index.lock
+git add -v --all
+cd .cache
+ls
+cd ..
+vim .gitignore
+git add -v --all
+git add .gitignore
+git add -v --all
+vim .gitignore
+git add .gitignore
+git add -v --all
+vim .gitignore
+git add -v --all
+vim .gitignore
+git status
+git add -v --all
+rm .git/index.lock
+git add -v --all
+cd data
+ls
+vim readme.txt
+cd ..
+vim .gitignore
+git add -v --all
+vim .gitignore
+git add -v --all
+rm .git/index.lock
+git add -v --all
+ls
+cd features
+ls
+cd ..
+cd training
+ls
+cd ..
+ls
+git commit -m 'hopefully all necessary files'
+git push
+vim .gitignore
+git git rm -r --cached
+git rm -r --cached
+git rm -r --cached data/sim_3targs_snr-500000_13.pickle
+git add --all
+git commit -m 'hopefully all files necessary'
+git push
+vim .gitignore
+git rm -r --cached data/sim_3targs_snr-500000_13.pickle
+git rm -r --cached .gitignore
+git add --all
+git commit -m 'hopefully all necessary files'
+git push
+git status
+git rm --cached data
+git rm --cached data/sim_3targs_snr-500000_13.pickle 
+git commit -m 'ok'
+git rm --cached data/sim_3targs_snr-500000_13.pickle .gitignore
+git rm --cached .gitignore
+git commit -am 'ok try again'
+vim .gitignore
+git status
+git push
+git status
+git rm --cached .gitignore
+git add --all
+git commit -m 'trying again'
+git status
+git reset --hard HEAD-4
+git reset --hard HEAD~4
+git status
+vim .gitignore
+ls
+vim .gitignore
+git status
+git add .gitignore
+git status
+git add -v --all
+vim .gitignore
+git add -v --all
+git commit -m 'trying'
+git push
+git add --all
+ls
+git add SSL_MacroMolecule_Real
+git status
+vim .gitignore
+cd SSL_MacroMolecule_Real
+ls
+cd moco/
+ls
+cd ..
+cd Encoder3D/
+ls
+cd ..
+ls
+cd training/
+ls
+cd features/
+ls
+cd ..
+ls
+cd SSL_MacroMolecule_Real
+ls
+cd ..
+unzip SSL_MacroMolecule_Real.zip
+ls
+cd SSL_MacroMolecule_Real
+ls
+ls
+cd data3_SNRinfinity
+ls
+cd ..
+cd SSL_MacroMolecule_Real
+ls
+python3 main_moco.py "/shared/home/myz/data3_SNRinfinity" -gpu=0
+python3 main_moco.py "/shared/home/myz/data3_SNRinfinity" --multiprocessing-distributed
+ls
+cd moco
+ls
+cd ..
+python3 main_moco.py "/shared/home/myz/data3_SNRinfinity" --multiprocessing-distributed
+vim main_moco.py 
+python3 main_moco.py "/shared/home/myz/data3_SNRinfinity" --multiprocessing-distributed
+vim main_moco.py 
+python3 main_moco.py "/shared/home/myz/data3_SNRinfinity" --multiprocessing-distributed
+vim main_moco.py 
+srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
+logout
+exit
+ls
+cd SSL_MacroMolecule_Real
+python3 main_moco.py "/shared/home/myz/data3_SNRinfinity" --multiprocessing-distributed
+exit
