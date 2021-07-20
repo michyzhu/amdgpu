@@ -17,8 +17,8 @@
 $main_moco_checkpoint_v2
 
 # Command Line History (newest to oldest):
-:q
 :wq
+:q
 :w
 :%s/main_moco_checkpoint/main_moco_checkpoint_v2/g
 :'<,'>q
@@ -120,22 +120,23 @@ $main_moco_checkpoint_v2
 	main_moco.py 
 
 # File marks:
-'0  1  0  ~/.viminfo
-'1  14  232  ~/README.md
-'2  12  46  ~/.gitignore
-'3  5  0  ~/.gitignore
-'4  102  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
-'5  23  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_DSRF3D_v2.py
-'6  19  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_SCNN.py
-'7  94  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
+'0  10  6  ~/.gitignore
+'1  1  0  ~/.viminfo
+'2  14  232  ~/README.md
+'3  13  46  ~/.gitignore
+'4  5  0  ~/.gitignore
+'5  102  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
+'6  23  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_DSRF3D_v2.py
+'7  19  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_SCNN.py
 '8  94  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
 '9  94  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
 
 # Jumplist (newest first):
+-'  10  6  ~/.gitignore
+-'  13  0  ~/.gitignore
 -'  1  0  ~/.viminfo
 -'  14  232  ~/README.md
 -'  1  0  ~/README.md
--'  12  46  ~/.gitignore
 -'  5  0  ~/.gitignore
 -'  1  0  ~/.gitignore
 -'  102  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
@@ -229,9 +230,25 @@ $main_moco_checkpoint_v2
 -'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_Rb
 -'  162  0  ~/SSL_MacroMolecule_Real/downstream.py
 -'  202  12  ~/SSL_MacroMolecule_Real/downstream.py
--'  27  0  ~/SSL_MacroMolecule_Real/moco/builder.py
 
 # History of marks within files (newest to oldest):
+
+> ~/.gitignore
+	"	10	6
+	^	10	7
+	.	10	6
+	+	1	17
+	+	8	11
+	+	6	4
+	+	5	10
+	+	16	8
+	+	17	10
+	+	9	10
+	+	10	6
+	+	11	22
+	+	13	46
+	+	11	8
+	+	10	6
 
 > ~/.viminfo
 	"	1	0
@@ -251,21 +268,6 @@ $main_moco_checkpoint_v2
 	+	12	221
 	+	14	1
 	+	13	89
-
-> ~/.gitignore
-	"	12	46
-	^	12	47
-	.	12	46
-	+	1	17
-	+	8	11
-	+	6	4
-	+	5	10
-	+	15	8
-	+	16	10
-	+	9	10
-	+	10	6
-	+	11	22
-	+	12	46
 
 > ~/cluster.py
 	"	1	0

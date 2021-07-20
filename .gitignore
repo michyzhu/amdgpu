@@ -7,7 +7,8 @@ data/
 Moco.py
 Moco_Test.py
 inf_10.tar
-inf_10
+inf_10/
+temps_10/
 SSL_MacroMolecule_Real/main_moco_checkpoint/
 SSL_MacroMolecule_Real/main_moco_checkpoint_v2/
 .*
