@@ -9,6 +9,14 @@ import shutil
 import time
 import warnings
 
+from sklearn.manifold import TSNE
+import seaborn as sns
+import numpy as np
+from matplotlib import pyplot as plt
+sns.set(rc={'figure.figsize':(11.7,8.27)})
+palette = sns.color_palette("bright", 5)
+
+
 import torch
 import torch.nn as nn
 import torch.nn.parallel
@@ -31,9 +39,10 @@ import Custom_CryoET_DataLoader
 from CustomTransforms import ToTensor, Random3DRotate
 
 import torchio as tio
-
+os.environ['OPENBLAS_NUM_THREADS'] = '1'
 model_names = ['RB3D', 'DSRF3D_v2']
 
+evalOnTest = True
 Encoders3D_dictionary = {'RB3D': Encoder3D.Model_RB3D.RB3D, 'DSRF3D_v2':Encoder3D.Model_DSRF3D_v2.DSRF3D_v2}
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
@@ -55,7 +64,7 @@ parser.add_argument('-b', '--batch-size', default=256, type=int,
                     help='mini-batch size (default: 256), this is the total '
                          'batch size of all GPUs on the current node when '
                          'using Data Parallel or Distributed Data Parallel')
-parser.add_argument('--lr', '--learning-rate', default=0.03, type=float,
+parser.add_argument('--lr', '--learning-rate', default=1e-4, type=float,
                     metavar='LR', help='initial learning rate', dest='lr')
 parser.add_argument('--schedule', default=[120, 160], nargs='*', type=int,
                     help='learning rate schedule (when to drop lr by 10x)')
@@ -89,11 +98,11 @@ parser.add_argument('--multiprocessing-distributed', action='store_true',
 # moco specific configs:
 parser.add_argument('--moco-dim', default=7, type=int,
                     help='feature dimension (default: 128)')
-parser.add_argument('--moco-k', default=100, type=int,
+parser.add_argument('--moco-k', default=128, type=int,
                     help='queue size; number of negative keys (default: 100)')
 parser.add_argument('--moco-m', default=0.999, type=float,
                     help='moco momentum of updating key encoder (default: 0.999)')
-parser.add_argument('--moco-t', default=0.07, type=float,
+parser.add_argument('--moco-t', default=0.2, type=float,
                     help='softmax temperature (default: 0.07)')
 
 # options for moco v2
@@ -160,8 +169,10 @@ def main_worker(gpu, ngpus_per_node, args):
         if args.multiprocessing_distributed:
             # For multiprocessing distributed training, rank needs to be the
             # global rank among all the processes
-            args.rank = args.rank * ngpus_per_node + gpu
-        dist.init_process_group(backend=args.dist_backend, init_method=args.dist_url,
+           args.rank = args.rank * ngpus_per_node + gpu
+    # os.environ['MASTER_ADDR'] = 'localhost'    
+    # os.environ['MASTER_PORT'] = '12355'        
+    dist.init_process_group(backend=args.dist_backend, init_method=args.dist_url,
                                 world_size=args.world_size, rank=args.rank)
     # create model
     print("=> creating model '{}'".format(args.arch))
@@ -170,6 +181,9 @@ def main_worker(gpu, ngpus_per_node, args):
         Encoders3D_dictionary[args.arch],
         args.moco_dim, args.moco_k, args.moco_m, args.moco_t, args.mlp)
     print(model)
+
+
+
 
     if args.distributed:
         # For multiprocessing distributed, DistributedDataParallel constructor
@@ -225,12 +239,12 @@ def main_worker(gpu, ngpus_per_node, args):
                   .format(args.resume, checkpoint['epoch']))
         else:
             print("=> no checkpoint found at '{}'".format(args.resume))
-
+    
     cudnn.benchmark = True
 
     # Data loading code
-    traindir = os.path.join(args.data, 'train/subtomogram_mrc')
-    traindir_json = os.path.join(args.data, 'train/json_label')
+    traindir = os.path.join(args.data, 'subtomogram_mrc')
+    traindir_json = os.path.join(args.data, 'json_label')
     # normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      # std=[0.229, 0.224, 0.225])
     if args.aug_plus:
@@ -261,7 +275,7 @@ def main_worker(gpu, ngpus_per_node, args):
             # tio.transforms.RandomSwap(num_iterations=5),
             # tio.transforms.ZNormalization()
         ]
-
+   
     train_dataset = Custom_CryoET_DataLoader.CryoETDatasetLoader(
         root_dir = traindir, json_dir = traindir_json,
         transform = moco.loader.TwoCropsTransform(transforms.Compose(augmentation)))
@@ -274,6 +288,7 @@ def main_worker(gpu, ngpus_per_node, args):
     train_loader = torch.utils.data.DataLoader(
         train_dataset, batch_size=args.batch_size, shuffle=train_sampler is None,
         num_workers=args.workers, pin_memory=True, sampler=train_sampler, drop_last=True)
+
 
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:
@@ -292,7 +307,6 @@ def main_worker(gpu, ngpus_per_node, args):
                 'optimizer' : optimizer.state_dict(),
             }, is_best=False, filename='main_moco_checkpoint/checkpoint_{:04d}.pth.tar'.format(epoch))
 
-
 def train(train_loader, model, criterion, optimizer, epoch, args):
     batch_time = AverageMeter('Time', ':6.3f')
     data_time = AverageMeter('Data', ':6.3f')
@@ -306,18 +320,18 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
 
     # switch to train mode
     model.train()
-
+    
     end = time.time()
     for i, (images, _) in enumerate(train_loader):
         # measure data loading time
         data_time.update(time.time() - end)
-
         if args.gpu is not None:
             images[0] = images[0].cuda(args.gpu, non_blocking=True)
             images[1] = images[1].cuda(args.gpu, non_blocking=True)
 
         # compute output
         output, target = model(im_q=images[0], im_k=images[1])
+         
         loss = criterion(output, target)
 
         # acc1/acc5 are (K+1)-way contrast classifier accuracy
@@ -404,11 +418,9 @@ def accuracy(output, target, topk=(1,)):
     with torch.no_grad():
         maxk = max(topk)
         batch_size = target.size(0)
-
         _, pred = output.topk(maxk, 1, True, True)
         pred = pred.t()
         correct = pred.eq(target.reshape(1, -1).expand_as(pred))
-
         res = []
         for k in topk:
             correct_k = correct[:k].reshape(-1).float().sum(0, keepdim=True)
@@ -417,6 +429,5 @@ def accuracy(output, target, topk=(1,)):
 
 
 if __name__ == '__main__':
-    print("starting")
     main()
 

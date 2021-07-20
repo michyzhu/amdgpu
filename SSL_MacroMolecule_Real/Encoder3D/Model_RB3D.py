@@ -63,9 +63,9 @@ class RB3D(nn.Module):
         # assert (num_classes == 7)
         # dimensions of the 3D image. Channels, Depth, Height, Width
         C = 1
-        D = 28
-        H = 28
-        W = 28
+        D = 32
+        H = 32
+        W = 32
 
         self.conv1 = nn.Conv3d(C, 32, kernel_size=3, stride=1, padding=1)
         self.maxpool = nn.MaxPool3d(kernel_size=2, stride=2, padding=0)
@@ -78,7 +78,7 @@ class RB3D(nn.Module):
         self.dropout = nn.Dropout(p=0.5)
         self.relu = nn.ReLU()
 
-        self.softmax = nn.Softmax(dim=-1)
+        #self.softmax = nn.Softmax(dim=-1)
 
     def forward(self, x):
 
@@ -86,7 +86,7 @@ class RB3D(nn.Module):
         x = self.relu(x)
         x = self.maxpool(x)
         x = self.bottleneck_layers(x)
-        x = x.view(-1, (28*28*28*32) // 8)
+        x = x.view(-1, (32*32*32*32) // 8)
 
         x = self.fc1(x)
         x = self.relu(x)

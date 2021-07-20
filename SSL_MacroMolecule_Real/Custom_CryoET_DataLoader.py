@@ -28,8 +28,10 @@ class CryoETDatasetLoader(Dataset):
         print(f'{len(self.total_imgs)}, vs {len(self.total_jsons)}')
         assert( len(self.total_imgs) == len(self.total_jsons) )
         # self.imgLabelPairs = data
-        self.labeled = 0
+        #self.labeled = 0
         self.label_to_target = {}
+        for i, mol in enumerate("2h12,6t3e,3gl1,1yg6,1bxn,1f1b,2byu,4d4r,2ldb,3hhb".split(",")):
+            self.label_to_target[mol] = i
         # self.label_to_target = {"31": 0, "33": 1, "35": 2, "43": 3, "69": 4, "72": 5, "73": 6}
 
     def __len__(self):
@@ -60,16 +62,15 @@ class CryoETDatasetLoader(Dataset):
         with open(path_json) as f:
             MRC_dict = json.load(f)
         
-        if(self.label_to_target.get(MRC_dict['name']) == None):
-            self.label_to_target[MRC_dict['name']] = self.labeled
-            self.labeled+=1
+        #if(self.label_to_target.get(MRC_dict['name']) == None):
+        #    self.label_to_target[MRC_dict['name']] = self.labeled
+        #    self.labeled+=1
         target = self.label_to_target[MRC_dict['name']]
 
         if self.transform is not None:
             transformed_MRC_img = self.transform(MRC_img)
         else:
             transformed_MRC_img = MRC_img
-        #print(target)
 
         return transformed_MRC_img, target
 

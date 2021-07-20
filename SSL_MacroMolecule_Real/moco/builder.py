@@ -8,7 +8,7 @@ class MoCo(nn.Module):
     Build a MoCo model with: a query encoder, a key encoder, and a queue
     https://arxiv.org/abs/1911.05722
     """
-    def __init__(self, base_encoder, dim=7, K=100, m=0.999, T=0.07, mlp=False):
+    def __init__(self, base_encoder, dim=7, K=128, m=0.999, T=0.07, mlp=False):
         """
         dim: feature dimension (default: 7 for Noble data)
         K: queue size; number of negative keys (default: 65536)
@@ -16,7 +16,6 @@ class MoCo(nn.Module):
         T: softmax temperature (default: 0.07)
         """
         super(MoCo, self).__init__()
-
         self.K = K
         self.m = m
         self.T = T
@@ -55,7 +54,6 @@ class MoCo(nn.Module):
         keys = concat_all_gather(keys)
 
         batch_size = keys.shape[0]
-
         ptr = int(self.queue_ptr)
         assert self.K % batch_size == 0  # for simplicity
 
@@ -124,7 +122,6 @@ class MoCo(nn.Module):
         # compute query features
         q = self.encoder_q(im_q)  # queries: NxC
         q = nn.functional.normalize(q, dim=1)
-
         # compute key features
         with torch.no_grad():  # no gradient to keys
             self._momentum_update_key_encoder()  # update the key encoder
@@ -134,7 +131,6 @@ class MoCo(nn.Module):
 
             k = self.encoder_k(im_k)  # keys: NxC
             k = nn.functional.normalize(k, dim=1)
-
             # undo shuffle
             k = self._batch_unshuffle_ddp(k, idx_unshuffle)
 

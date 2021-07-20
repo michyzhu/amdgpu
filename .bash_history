@@ -1,1000 +1,1000 @@
-python3
-vim ~/.bash_profile
-source ~/.bash_profile
-python3
-hostnamectl
-yum install -y yum-utils
-conda deactivate
-deactivate
 ls
-rm -rf envs
-ls
-cd envs
-ls
-cd ..
-mv envs/Anaconda3-2020.11-Linux-x86_64.sh .
-ls
-rm -rf envs
-ls
-cd envs
-ls
-cd anaconda
-cd anaconda3/
-sl
-ls
-rm -rf bin
-rm -rf conda-meta/
-rm -rf envs
-ls
-cd envs
-ls
-cd tf-gpu
-ls
-rm -rf lib
-rm -rf qml
-cd ..
-ls
-rm -rf envs
-ls
-cd ..
-ls
-cd ..
-rm -rf envs
-ls
-cd ls
-ls
-cd ..
-ls
-rm -rf ls
-ls
-exit
-ls
-exit
-ls
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-yum
-yum install -y yum-utils
-docker
-dockerd-rootless-setuptool.sh install
-sudo yum install -y yum-utils
-module singularity
-module load singularity
-ls
-singularity shell ubuntu.simg
-ls
-bash Miniconda3-py39_4.9.2-Linux-x86_64.sh 
-ls
-module load python/3.8.9/gcc.7.3.1/rocm.4.2
-conda create --name tf-gpu tensorflow-gpu
-source ~/.bash_profile
-conda create --name tf-gpu tensorflow-gpu
-exit
-conda create --name tf-gpu tensorflow-gpu
-vim ~/.bash_profile
-source ~/.bash_profile
-conda create --name tf-gpu tensorflow-gpu
-ls
-cd miniconda3
-ls
-cd ..
-ls
-vim ~/.bash_profile
-source ~/.bash_profile
-conda create --name tf-gpu tensorflow-gpu
-conda activate tf-gpu
-conda init bash
-source ~/.bash_profile
-conda activate tf-gpu
-python3
-module load python/3.8.9/gcc.7.3.1/rocm.4.2
-python3
-pip3 uninstall numpy
-conda deactivate
-module unload pyt
-conda deactivate
-module load python/3.8.9/gcc.7.3.1/rocm.4.2
-module unload python/3.8.9/gcc.7.3.1/rocm.4.2
-conda deactivate
-singularity pull docker://tensorflow/tensorflow:latest-gpu
-module load singularity
-singularity  docker://tensorflow/tensorflow:latest-gpu
-singularity pull docker://rocm/tensorflow:latest
-ls
-du -sh
-du -sh miniconda3/
-cd ..
-ls
-cd myz
-ls
-du -sh Anaconda3-2020.11-Linux-x86_64.sh 
-du -sh Miniconda3-py39_4.9.2-Linux-x86_64.sh 
-rm Anaconda3-2020.11-Linux-x86_64.sh 
-rm Miniconda3-py39_4.9.2-Linux-x86_64.sh 
-ls
-du -sh data/
-cd data
-ls
-cd ..
-ls
-du -sh training/
-du -sh __pycache__/
-du -sh
-du -sh .
-ls
-du -sh miniconda3/
-chflags hidden
-ls -a
-du -sh .singularity/
-cd .singularity/
-ls
-cd cache/
-ls
-cd ..
-singularity pull docker://rocm/tensorflow:latest
-singularity run --rocm tensorflow_latest.sif
-ls
-ls -a
-du -sh .cache
-du -sh .conda
-du -sh .local
-ls
-clear
-module load singularity
-ls
-curl -sSL https://get.docker.com/ | sh
-singularity pull docker://rocm/tensorflow:latest
-hostnamectl
-docker run --rm hello-world
-sudo yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
-echo $SINGULARITY_CACHEDIR
-ls
-du -sh
-echo $TMPDIR
-cd ..
-ls
-cd ..
-ls
-cd tmp
-ls
-cd ..
-ls
-cd home
-ls
-cd ..
-cd misc
-ls
-cd ..
-cd bin
-ls
-cd ..
-ls
-cd lib
-ls
-cd ..
-clear
-ls
-cd usr
-ls
-cd tmp
-ls
-cd yum-myz-JgeZhh/
-ls
-cd x86_64/
-ls
-cd 7
-ls
-cd ..
-ls
-cd ..
-ls
-cd home
-ls
-cd myz
-ls
-clear
-ls
-module load singularity
-singula docker://rocm/tensorflow:latest
-ls
-ls -a
-cd .singularity
-ls
-cd cache
-sl
-ls
-cd ..
-df 0h
-df -h
-ls
-cd ..
-ls
-mkdir space
-singularity info --env
-singularity cahce
-singularity cache
-vim ~/.bash_profile
-source ~/.bash_profile
-singularity pull docker://rocm/tensorflow:latest
-ls
-python3
-pip list
-conda
-python3 Moco_Test.py
-pip3 install matplotlib tqdm keras
-pip3 install matplotlib tqdm keras --user
-pip install matplotlib tqdm keras
-virtualenv enviroment_name -p python3
-vim ~/.bash_profile
-ls
-vim ~/.bash_profile
-ls
-quit
-exit
-logout
-module load singularity
-ls
-module load singularity
-module unload singularity
-module load singularity
-module load python/3.8.9/gcc.7.3.1/rocm.4.2
-module unload python/3.8.9/gcc.7.3.1/rocm.4.2
-module load singularity
-singularity
-ls
-htop
-singularity pull docker://rocm/tensorflow:latest
-ls
-ls -l tensorflow_latest.sif 
-ls
-cd space
-ls
-cd ..
-ls
-cd space
-ls -a
-cd .
-ls
-ls -a
-cd ..
-ls
-singularity run docker://rocm/tensorflow:latest
-ls
-./tensorflow_latest.sif 
-ls
-vim ~/.bash_profile
-source ~/.bash_profile
-./tensorflow_latest.sif 
-vim ~/.bash_profile
-source ~/.bash_profile
-vim /root
-cd /root
-ls
-cat /root//.bash_profile
-vim ~/.bash_profile
-ls
-./tensorflow_latest.sif 
-cd /root//.bash_profile
-ls
-conda
-cd miniconda3/
-ls
-cd ..
-vim ~/.bash_profile
-source ~/.bash_profile
-conda 
-ls
-python3
-conda install tqdm matplotlib
-python3
-pip3 install numpy==1.19.5
-python3 Moco_Test.py
-exit
-python3
-conda
-pip3 install tqdm
-pip3 install matplotlib
-python3
-python3 Moco_Test.py
-pip3 install pickle5
-python3 Moco_Test.py
-pip3 uninstall pickle
-vim Moco_Test.py
-python3 Moco_Test.py
-vim Moco_Test.py
-python3 Moco_Test.py
-vim Moco.py
-python3 Moco_Test.py
-vim Moco.py
-python3 Moco_Test.py
-ls
-braek
-break
-quit
-eˆxit
-exit
-ls
-./tensorflow_latest.sif 
-conda activate
-module load singularity
-./tensorflow_latest.sif 
-singularity shell tensorflow_latest.sif 
-ls
-module load singularity
-singularity shell tensorflow_latest.sif 
-singularity shell
-singularity shell tensorflow_latest.sif 
-exit
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-ls
-./tensorflow_latest.sif 
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-exit
-htop
-q
-quit
-logout
-exit
-clear
-ls
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-clear
-ls
-vim cluster.py
-logout
-vim Moco_Test.py
-clear
-ls
-mkdir deprecated
-mv Moco.py Moco_Test.py deprecated
-ls
-cd data
-ls
-cat readme.txt 
-ls
-cd ..
-vim Moco_Test.py
-squeue -u myz
-htop
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-ls
-clear
-ls
-vim cluster.py 
-clear
-ls
-cd data
-ls
-logout
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py 
-vim kmean.py
-pip3 install scikit-learn
-vim kmean.py
-vim cluster.py
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py 
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py 
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py 
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py 
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py 
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py 
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-ls
-vim cluster.py
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-ls
-vim cluster.py
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-vim cluster.py
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-ls
-clear
-ls
-cd inception_B=8_epochs=5
-ls
-cd ..
-python3 cluster.py inception_B=8_epochs=5/features.pickle
-singularity shell ./tensorflow_latest.sif 
-module load singularity/3.7.2 
-singularity shell ./tensorflow_latest.sif 
-clear
-ls
-mv sim_5targs_snr-0.95.pickle data
-ls
-mv sim_5targs_snr-500000.pickle data
-ls
-cd data
-ls
-cd ..
-ls
-vim cluster.py 
-clear
-ls
-cd data
-ls
-cd ..
-vim Moco_Test.py 
-python3 cluster.py inception_B\=32_epochs\=5
-vim cluster.py 
-python3 cluster.py inception_B\=32_epochs\=5
-vim cluster.py 
-python3 cluster.py inception_B\=32_epochs\=5
-vim cluster.py 
-python3 cluster.py inception_B\=32_epochs\=5
-vim cluster.py 
-python3 cluster.py inception_B\=32_epochs\=5
-vim cluster.py 
-python3 cluster.py inception_B\=32_epochs\=5
-vim cluster.py 
-python3 cluster.py inception_B\=32_epochs\=5
-vim cluster.py 
-python3 cluster.py inception_B\=32_epochs\=5
-module load singularity
-singularity shell ./tensorflow.sif
-ls
-singularity shell ./tensorflow_latest.sif
-python3 cluster.py inception_B\=32_epochs\=5
-cd inception_B\=32_epochs\=5
-ls
-cd ..
-ls
-python3 cluster.py inception_B\=32_epochs\=5/features.pickle 
-python3 cluster.py inception_B\=32_epochs\=10/features.pickle 
-python3 cluster.py inception_B\=64_epochs\=10/features.pickle 
-python3 cluster.py inception_B\=64_epochs\=5/features.pickle 
-ls
-rm 'B=32_1000per5classes_snr-0.9-inception_B=32-k=1024-C=128-epochs=10-m=0.999-tau=0.07'
-rm -r 'B=32_1000per5classes_snr-0.9-inception_B=32-k=1024-C=128-epochs=10-m=0.999-tau=0.07'
-rm -r 'B=32_1000per5classes_snr-0.9-inception_B=32-k=1024-C=128-epochs=5-m=0.999-tau=0.07'
-rm -r 'B=64_1000per5classes_snr-0.9-inception_B=32-k=1024-C=128-epochs=5-m=0.999-tau=0.07'
-rm -r 'B=64_1000per5classes_snr-0.9-inception_B=64-k=1024-C=128-epochs=5-m=0.999-tau=0.07'
-rm -r 'B=64_1000per5classes_snr-0.9-inception_B=64-k=1024-C=128-epochs=10-m=0.999-tau=0.07'
-ls
-rm -r 'B=8_1000per5classes_snr-0.9-inception_B=8-k=1024-C=128-epochs=5-m=0.999-tau=0.07'/
-ls
-python3 cluster.py inception_B\=8_epochs\=5
-cd inception_B\=5
-cd inception_B\=8
-cd inception_B\=8_epochs\=5/
-ls
-cd ..
-ls
-vim cluster.py 
-python3 cluster.py inception_B\=8_epochs\=5/features.pickle 
-vim cluster.py 
-python3 cluster.py inception_B\=8_epochs\=5/features.pickle 
-vim Moco_Test.py
-clear
-ls
-vim Moco_Test.py
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-module load singularity/3.7.2 
-ls
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-ls
-python3 cluster.py 'inception_B=32_epochs=5
-'
-python3 cluster.py 'inception_B=32_epochs=5'
-python3 cluster.py 'inception_B=32_epochs=5'/features.pickle
-vim cluster.py 
-python3 cluster.py 'inception_B=32_epochs=5'/features.pickle
-vim cluster.py 
-python3 cluster.py 'inception_B=32_epochs=5'/features.pickle
-vim cluster.py 
-python3 cluster.py 'inception_B=32_epochs=5'/features.pickle
-pip3 install seaborn
-python3 cluster.py 'inception_B=32_epochs=5'/features.pickle
-vim cluster.py 
-python3 cluster.py 'inception_B=32_epochs=5'/features.pickle
-python3
-ls
-vim cluster.py 
-python3 cluster.py 'inception_B=32_epochs=5'/features.pickle
-vim cluster.py 
-python3 cluster.py 'inception_B=32_epochs=5'/features.pickle
-vim cluster.py 
-python3 cluster.py 'inception_B=32_epochs=5'/features.pickle
-vim cluster.py 
-python3 cluster.py 'inception_B=32_epochs=5'/features.pickle
-vim cluster.py 
-python3 cluster.py 'inception_B=32_epochs=5'/features.pickle
-ls
-vim cluster.py 
-ls
-vim cluster.py 
-python3 cluster.py 
-module load singularity
-singularity shell ./tensorflow_latest.sif 
-logout
-clear
-ls
-rm hm.png
-rm fig.png 
-vim testid.py 
-clear
-ls
-rm testid.py 
-ls
-vim test.py 
-rm test.py 
-ls
-clear
-ls
-vim kmean.py 
-rm kmean.py 
-ls
-clear
-ls
-tar -xvf SSL_MacroMolecule_Real.zip 
-ls
-gzip  SSL_MacroMolecule_Real.zip 
-ls
-unzip SSL_MacroMolecule_Real.zip 
-gzip  SSL_MacroMolecule_Real.zip.gz
-unzip SSL_MacroMolecule_Real.zip.gz
-gunzip SSL_MacroMolecule_Real.zip.gz
-ls
-unzip SSL_MacroMolecule_Real.zip.gz
-unzip SSL_MacroMolecule_Real.zip
+vim Custom_CryoET_DataLoader.py 
 ls
 cd SSL_MacroMolecule_Real
 ls
-vim CustomTransforms.py 
+vim main_moco.py
 ls
-vim Moco_Test.py 
-python3 Custom_CryoET_DataLoader.py 
-pip3 install natsort mrcfile torchio
-python3 Custom_CryoET_DataLoader.py 
-module unload python/3.8.9/gcc.7.3.1
-module avai
-module load python/3.8.9/gcc.7.3.1/rocm.4.2
-python3 Custom_CryoET_DataLoader.py 
-module avai
-find / libbz2-dev
-module avai
-module load fftw/3.3.9/gcc.9.3.0
-module unload fftw/3.3.9/gcc.7.3.1
-module load fftw/3.3.9/gcc.9.3.0
-python3 Custom_CryoET_DataLoader.py 
+cd ..
+srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
 ls
 logout
-exit
+ls
+cd data3_SNRinfinity
+ls
+cd densitymap_mrc
+ls
+cd ..
+cd json_
+ls
+cd json_label/
+ls
+cat target2930.json
+cat target1.json
+cat target2.json
+cat target50.json
+cat target100.json
+cat target500.json
+cat target250.json
+cat target499.json
+cat target500.json
+cat target5000.json
+cat target4999.json
+ls
+cat target4999.json
+cat target4499.json
+cat target3499.json
+cat target2499.json
+cat target1499.json
+cat target499.json
+cat target500.json
+cat target1000.json
+cat target1500.json
+cat target2500.json
+cat target3500.json
+cat target4500.json
+ls
+cd ..
+ls
+cd densitymap_mrc
+ls
+cd ..
+ls
+cd subtomogram_mrc
+ls
+cd ..
+ls
+cd SSL_MacroMolecule_Real
+ls
+vim Custom_cr
+vim Custom_CryoET_DataLoader.py 
+ls
+vim main_moco
+vim main_moco.py
+cd ..
+ls
+cd data3_SNRinfinity
+ls
+cd densitymap_
+cd densitymap_mrc
+ls
+clear
+ls
+cd data3_SNRinfinity
+ls
+cd densitymap_mrc
+ls
+cd ..
+ls
+cd json_label
+ls
+cat target2793.json
+clear
+ls
+cd ..
+ls
+clear
+ls
+cd ..
+ls
+pwd
+ls
+cd data3_SNRinfinity
+ls
+cd subtomogram_mrc
+ls
+cd ..
+ls
+cd ..
+ls
+tar -xvf myzData10.tar
+ls
+ls data3_SNRinfinity
+mv json jsonpack packmap myzData10
+mkdir myzData10
+mv json jsonpack packmap myzData10
+ls
+cd myzData10
+ls
+cd ..
+mv tomo test map_single myzData10
+ls
+cd myzData10
+ls
+mv json json_label
+mv tomo/target subtomogram_mrc
+ls
+cd tomo
+ls
+cd target
+ls
+cd ..
+cd myzData10
+cd subtomogram_mrc/
+ls
+cd ..
+mv subtomogram_mrc/mrc subtomogram_mrc/
+ls
+cd subtomogram_mrc/
+ls
+cd ..
+rm -d tomo
+cd subtomogram_mrc/
+ls
+rm -d png
+cd mrc
+ls
+cd ..
+mv *.mrc .
+mv "*.mrc" .
+mv -r "*.mrc" .
+cd mrc
+mv *.mrc ../
+ls
+cd ..
+ls
+rm mrc
+rm -d mrc
+ls
+cd ..
+ls
+cd ..
+clear
+ls
+cd SSL_MacroMolecule_Real
+ls
+vim main_moco.py
+ls
+vim main_moco.py
+ls
+vim main_moco.py
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity"
+cd ..
+srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
+cd SSL_MacroMolecule_Real
+ls
+vim main_moco
+vim main_moco.py
+srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
+cd SSL_MacroMolecule_Real
+ls
+vim main_moco.py 
+ls
+cd main_moco_checkpoint/
+ls
+cd ~
+ls
+cd myzData10
+ls
+cd json
+cd json_label/
+ls
+cat target0.json
+cd ..
+ls
+cd subtomogram_mrc/
+ls
+pwd
+ls
+cd SSL_MacroMolecule_Real
+ls
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+htop
+singularity shell ./pytorch_latest.sif 
+cd SSL_MacroMolecule_Real
+ls
+vim main_moco
+vim main_moco.py
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+vim main_moco.py
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+cd ..
+ls
+squeue -u myz
+cd data3_SNRinfinity
+ls
+cd ..
+cd myzData10
+ls
+cd 4d4r
+ls
+pwd
+ls
+vim check.py
+ls
+cd ..
+ls
+cd data3_SNRinfinity
+ls
+cd densitymap_mrc
+ls
+cd ../json_label/
+ls
+cat target0.json
+ls
+cd ..
+ls
+cd ..
+ls
+tar -xvf inf_10.tar
+ls
+mv snrinf inf_10
+ls
+cd inf_10
+ls
+cd $VIM
+ls
+cd inf_10
+ls
+cd 1bxn
+cd ..
+ls
+vim conv.py
+cd 1bxn
+ls
+cat target0.json
+cd ..
+vim conv.py
+python3 conv.py
+vim conv.py
+python3 conv.py
+vim conv.py
+python3 conv.py
+ls
+rm "*.mrc"
+ls
+cd 1bxn
+ls
+cd ..
+python3
+vim conv.py
+python3 conv.py
+vim conv.py
+python3 conv.py
+cd 1yg6
+ls
+cd ..
+ls
+mv moltarget36.json target36.json
+mv moltomo3.mrc tomo3.mrc
+mv moltomo39.mrc tomo39.mrc
+mv moltomo5.mrc tomo5.mrc
+ls
+mv target36.json 1yg6
+mv tomo3.mrc 1yg6
+mv tomo39.mrc 1yg6
+mv tomo5.mrc 1yg6
+ls
+cd 1yg6
+ls
+cd ..
+python3 conv.py
+vim conv.py
+python3 conv.py
+ls
+cd 1bxn
+ls
+cd ..
+vim conv.py
+python3 conv.py
+cd 1yg6
+ls
+cd ..
+ls
+find . -name "*.mrc" -exec mv -i {} -t subtomogram_mrc \;
+mkdir subtomogram_mrc
+find . -name "*.mrc" -exec mv -i {} -t subtomogram_mrc \;
+ls
+cd 1bxn
+ls
+cd ..
+mkdir json_label
+find . -name "*.json" -exec mv -i {} -t json_label \;
+ls
+cd 1bxn
+ls
+cd ..
+find . -name "1*" -type f -delete
+ls
+rm -d 1bxn 1f1b 1yg6 2byu
+ls
+rm -d 2h12  2ldb  3gl1  4d4r/6t3e
+rm -d 2h12  2ldb  3gl1  4d4r 6t3e
+ls
+cd ..
+ls
+cd SSL_MacroMolecule_Real
+cd ..
+ls
+cd snrinf
+ls
+cd inf_10
+ls
+cd ..
+squeue -u myz
+ls
+singularity shell ./pytorch_latest.sif 
+cd SSL_MacroMolecule_Real
+ls
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+cd ..
+singularity shell ./pytorch_latest.sif 
+clear
+ls
+vim check.py
+ls
+cd data3_SNRinfinity
+ls
+cd densitymap_mrc/
+ls
+pwd
+cd ..
+ls
+rm -d myzData10
+rm -r myzData10
+tar -xvf myzData10.tar 
+ls
+mv test myzData10
+ls
+cd myzData10
+kls
+ls
+cd infinite/
+ls
+cd ..
+rm -d infinite/
+ls
+cd ..
 ls
 cd SSL_MacroMolecule_Real
 ls
 vim Custom_CryoET_DataLoader.py 
-vim main_moco.py 
-vim main_lincls.py 
-vim CustomTransforms.py 
+cd ..
+ls
+cd myzData10
+ls
+mkdir json_label
+mkdir subtomogram_mrc
+ls
+cd 4d4r
+ls
+cd ..
+ls
+mmv
+rename
+ls
+cd 1bxn
+rename -n 's/target/1bxntarget/' *
+rename 's/target/1bxntarget/' *
+ls
+rename 's/target/1bxntarget/' *
+ls
+mkdir test
+cd test
+ls
+vim abcd.txt
+ls
+rename 's/abc/xyz/' *
+rename "s/abc/xyz/" *
+rename 's/abc/xyz/' *
+rename . 's/abc/xyz/' *
+rename 's/abc/xyz/' .
+rename 's/abc/xyz/' . .
+rename 's/abc/xyz/' . *
+ls
+rename 's/abc/xyz/' \*.txt
+rename(1)
+rename
+rename -h
+rename abc xyz \*.txt
+ls
+rename abc xyz *
+ls
+cd ..
+rename target 1bxntarget *
+ls
+rm -d test
+rm -r test
+rename target 1bxntarget * && rename tomo 1bxntomo *
+ls
+cd ..
+ls
+cd 1f1b
+rename target 1f1btarget * && rename tomo 1f1btomo *
+cd ../1yg6
+rename target 1yg6target * && rename tomo 1yg6tomo *
+cd ../2byu
+rename target 2byutarget * && rename tomo 2byutomo *
+cd ../2h12 && rename target 2h12target * && rename tomo 2h12tomo *
+cd ../2ldb && rename target 2ldbtarget * && rename tomo 2ldbtomo *
+cd ../3gl1 && rename target 3gl1target * && rename tomo 3gl1tomo *
+cd ../4d4r && rename target 4d4rtarget * && rename tomo 4d4rtomo *
+cd ../6t3e && rename target 6t3etarget * && rename tomo 6t3etomo *
+cd ..
+ls
+find . -name "*target*.json" -exec mv -i {} -t json_label \;
+ls
+cd json_label/
+ls
+python3
+ls
+cd ..
+find . -name "*tomo*.mrc" -exec mv -i {} -t subtomogram_mrc \;
+ls
+cd subtomogram_mrc/
+sl
+ls
+cd ..
+cd SSL_MacroMolecule_Real
+ls
+vim main_moco.py
+cd ..
+module load singularity/3.7.2 
+singularity shell ./pytorch_latest.sif 
+srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
+ls
+cd SSL_MacroMolecule_Real
+ls
+vim main_moco.py
+srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
+ls
+vim main_moco.py
+srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
+clear
+ls
+cd data3_SNRinfinity
+ls
+cd ..
+cd SSL_MacroMolecule_Real
+ls
+vim main_moco.py
+vim Custom_CryoET_DataLoader.py 
+cd ../myzData10
+ls
+htop
+srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
+squeue -u myz
+rocm-smi
+scancel 23382
+squeue -u myz
+scancel 23383
+cd ../SSL_MacroMolecule_Real
+ls
+vim main_moco.py
+vim Custom_CryoET_DataLoader.py 
+cd ..
+module load singularity/3.7.2 
+srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
+squeue -u myz
+ls
+mv inf_10/conv.py .
+ls
+rm inf_10.tar
+mv myzData10.tar
+rm temps10.tar
+rm myzData10.tar
+ls
+tar -xvf temps10.tar
+ls
+rm temps10.tar
+mv temps temps10
+cd temps10
+ls
+cd ..
+vim conv.py
+python3 conv.py
+vim conv.py
+python3 conv.py
+ls
+cd temps10
+ls
+cd 1bxn
+ls
+cd ..
+mkdir subtomogram_mrc
+find . -name "*.mrc" -exec mv -i {} -t subtomogram_mrc \;
+mkdir json_label
+find . -name "*.json" -exec mv -i {} -t json_label \;
+ls
+cd json_label
+ls
+python3
+cd ../subtomogram_mrc/
+python3
+ls
+cd ..
+ls
+cd ..
+ls
+cd inf_10
+ls
+cd subtomogram_mrc
+ls
+python3
+ls
+cd ..
+rm -r .
+rm -r ./
+ls
+rm -r json_label
+rm -r subtomogram_mrc
+cd ..
+rm -d inf_10
+ls
+tar -xvf inf_10.tar
+ls
+mv snrinf inf_10
+cd inf_10
+ls
+cd ..
+vim conv.py 
+python3 conv.py
+cd inf_`
+'
+
+cd inf_10
+ls
+cd 1bxn
+ls
+cd ..
+mkdir subtomogram_mrc
+find . -name "*.json" -exec mv -i {} -t json_label \;
+mkdir json_label
+find . -name "*.json" -exec mv -i {} -t json_label \;
+find . -name "*.mrc" -exec mv -i {} -t subtomogram_mrc \;
+ls
+cd subtomogram_mrc
+ls
+python3
+cd ..
+ls
+rm -d 1bxn  1f1b  1yg6  2byu  2h12  2ldb  3gl1  4d4r  6t3e
+ls
+cd ..
+cd temps10/
+ls
+rm -d 1bxn  1f1b  1yg6  2byu  2h12  2ldb  3gl1  4d4r  6t3e
+cd ..
+l;s
+ls
+cd SSL_MacroMolecule_Real
+ls
+squeue -u myz
+ls
+vim main_moco.py
+cd SSL_MacroMolecule_Real
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+ls
 cd moco
 ls
 vim builder.py 
-vim loader.py 
-cd ,,
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
 cd ..
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10002' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10001' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+ls
+pwd
+ls
+vim Custom_CryoET_DataLoader.py 
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10001' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+vim Custom_CryoET_DataLoader.py 
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10001' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+cd moco
+ls
+ vim builder.py
+cd ..
+vim Custom_CryoET_DataLoader.py 
+cd moco
+vim loader.py 
+cd ..
+vim Custom_CryoET_DataLoader.py 
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10001' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10002' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+netstat -nltp
+fuser 
+lsof
+lsof -i:10003
+npx
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10005' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10001' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+singularity shell ./tensorflow_latest.sif 
+singularity shell ./pytorch_latest.sif 
+ls
+cd SSL_MacroMolecule_Real
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10001' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+ls
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10001' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10002' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10001' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+ls
+cd ..
+ls
+cd temps10
+ls
+cd ..
+cd SSL_MacroMolecule_Real
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+cd ../temps10/
+ls
+cd json_label
+ls
+cd ../subtomogram_mrc/
+ls
+cd ..
+ls
+cd inf
+cd inf_10
+ls
+cd subtomogram_mrc/
+ls
+cd ..
+ls
+cd temps10
+ls
+cd json_label/
+ls
+cd ..
+mkdir json_packing
+mv json_label/*target*.json json_packing
+ls
+cd json_
+cd json_packing/
+ls
+cd ..
+ls
+mv json_label json_pack
+mv json_packing json_label
+ls
+cd json_label
+ls
+cd ..
+mkdir tomo_pack
+ls
+mv subtomogram_mrc/*packing*.mrc tomo_pack
+ls
+cd subtomogram_mrc/
+ls
+cd ..
+mv subtomogram_mrc/*map*.mrc tomo_pack
+cd subtomogram_mrc/
+ls
+cd ..
+cd 3hhb
+ls
+cd ..
+rm -d 3hhb
+cd json_label
+ls
+cd ..
+mv json_label/3hhb*.mrc .
+mv json_label/3hhb* .
+ls
+cd json_label
+ls
+cd ..
+ls
+cd ..
+ls
+cd SSL_MacroMolecule_Real
+ls
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+clear
+cd SSL_MacroMolecule_Real
+vim main_moco
+vim main_moco.py
+vim Custom_CryoET_DataLoader.py 
+vim main_moco.py
+vim Custom_CryoET_DataLoader.py 
+vim main_moco.py
+vim Custom_CryoET_DataLoader.py 
+vim main_moco.py
+vim downstream.py 
+ls
+vim Custom_CryoET_DataLoader.py 
+cd ..
+ls
+tar -xvf 3hhbinf.tar 
+ls
+rm 3hhbinf.tar
+cd 3hhb
+ls
+cd ..
+ls
+mv 3hhb/target*.json inf_10/json_label
+cd 3hhb
+ls
+cd ..
+cd inf_10
+ls
+cd json_label/
+ls
+cd ..
+vim conv.py
+ls
+cd ..
+vim conv.py 
+python3 conv.py 
+vim conv.py 
+python3 conv.py 
+vim conv.py 
+python3 conv.py 
+ls
+cd inf_10
+ls
+cd subtomogram_mrc/
+ls
+cd ..
+vim conv.py 
+python3 conv.py 
+vim conv.py 
+python3 conv.py 
+vim conv.py 
+python3 conv.py 
+ls
+mv inf_10 f10
+tar -xvf inf_10.tar
+ls
+cd snrinf
+ls
+cd ..
+vim conv.py 
+python3 conv.py
+ls
+cd snrinf
+ls
+cd 1bxn
+ls
+cd ..
+mv snrinf/*/*target*.json f1f0/json_label
+mv snrinf/*/*target*.json f10/json_label
+cd f10/json_label/
+ls
+rm target*.json
+ls
+python3
+cd ..
+cd subtomogram_mrc/
+ls
+python3
+cd ..
+ls
+cd ..
+ls
+cd 3hhb
+ls
+rm map*
+ls
+rm packing*
+ls
+cd ..
+ls
+cd snrinf
+ls
+cd ..
+cd f10
+ls
+cd json_label/
+ls
+cd ..
+ls
+tar -xvf 3hhbinf.tar 
+ls
+cd 3hhb
+ls
+rm map*
+rm packing*
+ls
+cd ..
+vim conv.py 
+python3 conv.py
+cd 3hhb
+ls
+cd ..
+mv 3hhb/*.json snrinf/json_label
+mv 3hhb/*.json f10/json_label
+mv 3hhb/*.mrc f10/subtomogram_mrc/
+cd 3hhb
+ls
+cd ..
+cd f10
+ls
+cd subtomogram_mrc/
+ls
+python3
+cd ../json_label/
+python3
+ls
+cd ..
+ls
+cd ..
+ls
+mv f10 inf_10
+rm -r 3hhb
+rm 3hhbinf.tar 
+rm -r snrinf
+ls
+rm -r myzData10/
+ls
+tar cvf inf10myz.tar inf_10
+ls
+cd SSL_MacroMolecule_Real
+clear
+ls
+cd ..
+ls
+cd temps10
+ls
+mv 3hhb* json_label
+ls
+cd json_label
+ls
+cd ..
+cd subtomogram_mrc/
+ls
+cd ..
+ls
+cd ..
+ls
+tar xvf 3hhb.tar 
+ls
+vim conv.py 
+python3 conv.py 
+cd 3hhb
+ls
+cd ..
+mv 3hhb/3hhbtomo*.mrc temps10/subtomogram_mrc/
+cd temps10
+ls
+cd subtomogram_mrc/
+ls
+python3
+cd ..
+ls
+rm 3hhb.tar
+rm -r 3hhb
+ls
+rm inf10myz.tar 
+ls
+cd SSL_MacroMolecule_Real
+ls
+clear
+ls
+vim downstream.py 
+ls
+cd SSL_MacroMolecule_Real
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+ls
+cd moco
+ls
+vim builder.py 
+cd ..
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+ls
+cd moco
+ls
+vim builder.py 
+ls
+cd ..
+ls
+cd ENc
+cd Encoder3D/n
 cd Encoder3D/
 ls
-vim Model_DSRF3D_v2.py 
+vim Model_RB3D.py
+cd ../moco
+vim builder.py 
+cd ..
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 main_moco.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10002' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 downstream.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10002' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+cd ..
+ls
+cd inf_10
+ls
+cd json_label
+ls
+cd ..
+cd subtomogram_mrc/
+ls
+cd ../json_label/
+la
+ls
+cd ..
+ls
+cd ..
+ls
+cd inf_10
+cd subtomogram_mrc/
+ls
+cd ..
+ls
+cd ..
+ls
+cd SSL_MacroMolecule_Real
+clear
+ls
+cd moco
+ls
+vim builder.py 
+cd ../Encoder3D/
+ls
+vim Model_RB3D.py 
+cd ../moco
+vim builder.py 
+cd ..
+ls
+cd ..
+srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
+ls
+cd SSL_MacroMolecule_Real
+python3 downstream.py   --lr 0.03   --batch-size=16 --dist-url 'tcp://localhost:10002' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 downstream.py   --lr 0.03   --batch-size=16 --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+ls
+singularity shell ./pytorch_latest.sif 
+cd SSL_MacroMolecule_Real
+ls
+python3 downstream.py   --lr 0.03   --batch-size=16 --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 main_moco_v2.py   -a RB3D   --lr 0.03   --batch-size=16 --moco-k=128   --dist-url 'tcp://localhost:10002' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --aug-plus
+ls
+python3 downstream.py   --lr 0.03   --batch-size=16 --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+ls
+cd ..
+ls
+cd SSL_MacroMolecule_Real
+ls
+cd ..
+cd data3_SNRinfinity
+ls
+cd densitymap_mrc
+ls
+cd ..
+ls
+cd ..
+ls
+cd SSL_MacroMolecule_Real
+ls
+python3 downstream.py   --lr 0.03   --batch-size=16 --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+ls
+cd Encoder3D/
+ls
+vim Model_RB3D.py 
+vim down
+ls
+cd ..
+vim downstream.py 
+cd moco
+ls
+vim builder.py 
+cd ../Encoder3D/
+ls
+vim Model_RB3D.py 
+cd ..
+ls
+python3 downstream.py   --lr 0.03   --batch-size=16 --dist-url 'tcp://localhost:10003' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+python3 downstream.py   --lr 0.03   --batch-size=16 --dist-url 'tcp://localhost:10001' --multiprocessing-distributed --world-size 1 --rank 0  "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+ls
+cd Encoder3D/
+ls
 vim Model_RB3D.py 
 vim Model_SCNN.py 
-cd ..
-vim Custom_CryoET_DataLoader.py 
-cd Encoder3D
+vim Model_DSRF3D_v2.py 
 ls
 cd ..
 ls
-cd SSL_MacroMolecule_Real
-ls
-cd main_moco.py
-vim main_moco.py 
-cd Custom_CryoET_DataLoader.py 
-vim Custom_CryoET_DataLoader.py 
-ls
-cd moco
-ls
-vim builder.py 
-vim loader.py 
-vim builder.py 
-cd ..
-ls
-vim main_moco.py 
-ls
-vim Custom_CryoET_DataLoader.py 
-cd Encoder3D/
-lscd .
-cd ..
-cd moco
-ls
-vim builder.py 
-cd ..
-ls
-cd Custom_CryoET_DataLoader.py 
-vim Custom_CryoET_DataLoader.py 
-ls
-cd ..
-ls
-cd ..
-ls
-cd ..
-ls
-cd tmp
-ls
-cd ..
-ls
-cd tmp
-ls
-rm SSL_MacroMolecule_Real.zip 
-ls
-cd ..
-ls
-cd home
-ls
-cd myz
-ls
-cd SSL_MacroMolecule_Real
-ls
-cd Custom_CryoET_DataLoader.py 
-vim Custom_CryoET_DataLoader.py 
-ls
-vim Custom_CryoET_DataLoader.py 
-cd ..
-ls
-cd SSL_MacroMolecule_Real
-ls
-cd ..
-ls
-mv SSL_Macromolecule_Real data3_SNRinfinity.zip
-ls
-unzip data3_SNRinfinity.zip 
-ls
-cd data3_SNRinfinity
-ls
-cd ..
-cd SSL_MacroMolecule_Real
-ls
-vim Custom_CryoET_DataLoader.py 
-python3 Custom_CryoET_DataLoader.py 
-vim Custom_CryoET_DataLoader.py 
-python3 Custom_CryoET_DataLoader.py 
-vim Custom_CryoET_DataLoader.py 
-python3 Custom_CryoET_DataLoader.py 
-vim Custom_CryoET_DataLoader.py 
-python3 Custom_CryoET_DataLoader.py 
-vim Custom_CryoET_DataLoader.py 
-python3 Custom_CryoET_DataLoader.py 
-vim Custom_CryoET_DataLoader.py 
-python3 Custom_CryoET_DataLoader.py 
-vim Custom_CryoET_DataLoader.py 
-vim ~/vimrc
-vim ~/.vimrc
-find / vimrc
-find /home/myz .vimrc
-find /home/myz -n .vimrc
-find /home/myz .vimrc -n
-cd $HOME
-echo $VIM
-cd $VIM
-echo $VIMRUNTIME
-vim $HOME/.vimrc
-source $HOME/.vimrc
-vim $HOME/.vimrc
-source $HOME/.vimrc
-vim something
-rm something 
-ls
-cd SSL_MacroMolecule_Real
-ls
-vim Custom_CryoET_DataLoader.py 
-python3 Custom_CryoET_DataLoader.py 
-vim Custom_CryoET_DataLoader.py 
-python3 Custom_CryoET_DataLoader.py 
-pip3 install torch
-ls
-python3 Custom_CryoET_DataLoader.py 
-pip3 install torchvision
-python3 Custom_CryoET_DataLoader.py 
-pip3 install natsort
-pip3 install torchvision
-python3 Custom_CryoET_DataLoader.py 
-vim Custom_CryoET_DataLoader.py 
-pip3 install mrcfile
-python3 Custom_CryoET_DataLoader.py 
-pip3 install torchio
-python3 -m pip3 install scikit-build
-python3 -m pip install scikit-build
-pip3 install torchio
-python3 Custom_CryoET_DataLoader.py 
-cmake
-module load python/3.8.9/gcc.7.3.1
-module load python/3.8.9/gcc.7.3.2
-python3 Custom_CryoET_DataLoader.py 
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-ls
-cd ..
-ls
-python3 main_moco.py "/shared/home/c_myz/data/data3_SNRinfinity" -gpu=0
-cd SSL_MacroMolecule_Real
-vim main_moco.py
-python3
-python3 main_moco.py "/shared/home/c_myz/data/data3_SNRinfinity" --multiprocessing-distributed
-python3 main_moco.py "/shared/home/c_myz/data/data3_SNRinfinity" --world-size=2
-ls
-cd ..
-ls
-cd data
-ls
-cd ..
-ls
-cd SSL_MacroMolecule_Real
-ls
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=2
-vim main_moco.py
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=2 --rank=1
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=2 --rank=2
-vim main_moco.py
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=2 --rank=0
-vim main_moco.py
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=2 --rank=0
-htop
-logout
-exit
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=2 --rank=1
-cd SSL_MacroMolecule_Real
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=2 --rank=1
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=2 --rank=0
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=4 --rank=0
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=8 --rank=0
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=3 --rank=0
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=1 --rank=0
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=2 --rank=0
-python3 main_moco.py "/shared/home/c_myz/data3_SNRinfinity" --world-size=2 --rank=1
-vim main_moco.py
-logout
-exit
-singularity shell ./pytorch_latest.sif 
-htop
-singularity shell ./pytorch_latest.sif 
-ls
-cd data
-ls
-cd ..
-ls
-cd space
-ls -a
-cd ..
-rm -d space
-ls
-tree
-git init
-git remote add origin https://github.com/michyzhu/amdgpu.git
-git push origin master
-git push origin main
-git push =u origin main
-git push -u origin main
-ls
-vim .gitignore
-git add .
-vim .gitignore
-git add .
-logout
-exit
-ls
-cd data
-ls
-cd ..
-mkdir features
-ls
-mv inception_B* features
-ls
-cd training
-ls
-cd features
-ls
-cd ..
-cd loss
-cd ..
-cd loss
-ls
-cd ..
-logout
-clear
-cd SSL_MacroMolecule_Real
-ls
-vim Custom_CryoET_DataLoader.py 
-ls
-vim main_moco.py 
-vim Custom_CryoET_DataLoader.py 
-python3 Custom_CryoET_DataLoader.py 
-python3 main_moco.py "/shared/home/c_myz/data/data3_SNRinfinity" -gpu=0
-vim main_moco.py 
-cd ..
-ls
-singularity shell ./pytorch_latest.sif 
-module load singularity/3.7.2 
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-git add .
-git status
-git add .gitignore
-rm .git/index.lock
-git add .gitignore
-git add .
-vim .keras
-cd .keras
-ls
-ls -a
-vim keras.json 
-cd ..
-cd .conda/
-ls
-cd ..
-git add Moco.py
-rm -f ./.git/index.lock
-git add Moco.py
-git add training
-git commit -am 'first commit'
-git config --global user.name "Michelle Zhu"
-git config --global user.email "myz@andrew.cmu.edu"
-git commit --amend --reset-author
-ls
-git push origin main
-git push origin master
-git branch -m main default
-git branch -m master main
-git push -u origin main
-git pull
-git pull remote main
-git pull main origin
-git pull -u origin main
-git add README.md
-git push -u origin main
-ls
-git add --all
-git add -v --all
-rm /home/myz/.git/index.lock
-git add -v --all
-cd .cache
-ls
-cd ..
-vim .gitignore
-git add -v --all
-git add .gitignore
-git add -v --all
-vim .gitignore
-git add .gitignore
-git add -v --all
-vim .gitignore
-git add -v --all
-vim .gitignore
-git status
-git add -v --all
-rm .git/index.lock
-git add -v --all
-cd data
-ls
-vim readme.txt
-cd ..
-vim .gitignore
-git add -v --all
-vim .gitignore
-git add -v --all
-rm .git/index.lock
-git add -v --all
-ls
-cd features
-ls
-cd ..
-cd training
-ls
-cd ..
-ls
-git commit -m 'hopefully all necessary files'
-git push
-vim .gitignore
-git git rm -r --cached
-git rm -r --cached
-git rm -r --cached data/sim_3targs_snr-500000_13.pickle
-git add --all
-git commit -m 'hopefully all files necessary'
-git push
-vim .gitignore
-git rm -r --cached data/sim_3targs_snr-500000_13.pickle
-git rm -r --cached .gitignore
-git add --all
-git commit -m 'hopefully all necessary files'
-git push
-git status
-git rm --cached data
-git rm --cached data/sim_3targs_snr-500000_13.pickle 
-git commit -m 'ok'
-git rm --cached data/sim_3targs_snr-500000_13.pickle .gitignore
-git rm --cached .gitignore
-git commit -am 'ok try again'
-vim .gitignore
-git status
-git push
-git status
-git rm --cached .gitignore
-git add --all
-git commit -m 'trying again'
-git status
-git reset --hard HEAD-4
-git reset --hard HEAD~4
-git status
-vim .gitignore
-ls
-vim .gitignore
-git status
-git add .gitignore
-git status
-git add -v --all
-vim .gitignore
-git add -v --all
-git commit -m 'trying'
-git push
-git add --all
-ls
-git add SSL_MacroMolecule_Real
-git status
-vim .gitignore
-cd SSL_MacroMolecule_Real
-ls
-cd moco/
-ls
-cd ..
 cd Encoder3D/
 ls
+vim Model_RB3D.py 
 cd ..
-ls
-cd training/
-ls
-cd features/
-ls
-cd ..
-ls
-cd SSL_MacroMolecule_Real
-ls
-cd ..
-unzip SSL_MacroMolecule_Real.zip
-ls
-cd SSL_MacroMolecule_Real
-ls
-ls
-cd data3_SNRinfinity
-ls
-cd ..
-cd SSL_MacroMolecule_Real
-ls
-python3 main_moco.py "/shared/home/myz/data3_SNRinfinity" -gpu=0
-python3 main_moco.py "/shared/home/myz/data3_SNRinfinity" --multiprocessing-distributed
-ls
-cd moco
-ls
-cd ..
-python3 main_moco.py "/shared/home/myz/data3_SNRinfinity" --multiprocessing-distributed
-vim main_moco.py 
-python3 main_moco.py "/shared/home/myz/data3_SNRinfinity" --multiprocessing-distributed
-vim main_moco.py 
-python3 main_moco.py "/shared/home/myz/data3_SNRinfinity" --multiprocessing-distributed
-vim main_moco.py 
-srun --nodes=1 --ntasks-per-node=20 --cpus-per-task=1  --gres gpu:8 --pty bash -i
-logout
-exit
-ls
-cd SSL_MacroMolecule_Real
-python3 main_moco.py "/shared/home/myz/data3_SNRinfinity" --multiprocessing-distributed
-exit
