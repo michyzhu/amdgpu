@@ -18,6 +18,7 @@ $main_moco_checkpoint_v2
 
 # Command Line History (newest to oldest):
 :wq
+:q!wq
 :q
 :w
 :%s/main_moco_checkpoint/main_moco_checkpoint_v2/g
@@ -120,8 +121,8 @@ $main_moco_checkpoint_v2
 	main_moco.py 
 
 # File marks:
-'0  10  6  ~/.gitignore
-'1  1  0  ~/.viminfo
+'0  1  0  ~/.viminfo
+'1  10  6  ~/.gitignore
 '2  14  232  ~/README.md
 '3  13  46  ~/.gitignore
 '4  5  0  ~/.gitignore
@@ -132,9 +133,9 @@ $main_moco_checkpoint_v2
 '9  94  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
 
 # Jumplist (newest first):
+-'  1  0  ~/.viminfo
 -'  10  6  ~/.gitignore
 -'  13  0  ~/.gitignore
--'  1  0  ~/.viminfo
 -'  14  232  ~/README.md
 -'  1  0  ~/README.md
 -'  5  0  ~/.gitignore
@@ -229,9 +230,11 @@ $main_moco_checkpoint_v2
 -'  27  0  ~/SSL_MacroMolecule_Real/moco/builder.py
 -'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_Rb
 -'  162  0  ~/SSL_MacroMolecule_Real/downstream.py
--'  202  12  ~/SSL_MacroMolecule_Real/downstream.py
 
 # History of marks within files (newest to oldest):
+
+> ~/.viminfo
+	"	1	0
 
 > ~/.gitignore
 	"	10	6
@@ -249,9 +252,6 @@ $main_moco_checkpoint_v2
 	+	13	46
 	+	11	8
 	+	10	6
-
-> ~/.viminfo
-	"	1	0
 
 > ~/README.md
 	"	14	232
