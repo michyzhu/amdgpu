@@ -10,6 +10,7 @@ import time
 import warnings
 
 from sklearn.manifold import TSNE
+from sklearn.cluster import KMeans
 import seaborn as sns
 import numpy as np
 from matplotlib import pyplot as plt
@@ -267,10 +268,13 @@ def main_worker(gpu, ngpus_per_node, args):
     else:
         # MoCo v1's aug: the same as InstDisc https://arxiv.org/abs/1805.01978
         augmentation = [
-            #Random3DRotate(),
-            ToTensor(),
-            transforms.RandomResizedCrop(32, scale=(0.5, 1.), ratio=(1.,1.)),
-            transforms.RandomAffine(degrees=45, translate=(0.1, 0.1), scale=(0.9, 1.1))
+            tio.transforms.RandomFlip(flip_probability=0.6),
+            tio.transforms.RandomAffine(degrees=45,translation=0.1),
+ 
+            #ToTensor(),
+            #transforms.RandomResizedCrop(32, scale=(0.5, 1.), ratio=(1.,1.)),
+            #transforms.RandomAffine(degrees=45, translate=(0.1, 0.1), scale=(0.9, 1.1))
+            
             #ToTensor()
             # tio.transforms.RandomFlip(flip_probability=0.5, axes=(0,1,2)),
             #tio.transforms.RandomFlip(flip_probability=0.5),
@@ -317,8 +321,19 @@ activation = {}
 def get_activation(name):
     def hook(model, inp, out):
         activation[name] = out#out.detach()
-        print(out[0].shape)
+        # print(out[0].shape) # check the size of our feature, which should just be 1024
     return hook
+
+def getTopTwoCats(d):
+    m = (-1,0);
+    n = (-1,0);
+    for cluster in d:
+        if(d[cluster] >= m[1]):
+            n = m
+            m = (cluster, d[cluster])
+        elif(d[cluster] >= n[1]):
+            n = (cluster, d[cluster])
+    return m,n
 
 def cluster(train_loader, temp_loader, model, criterion, optimizer, epoch, args):
     batch_time = AverageMeter('Time', ':6.3f')
@@ -371,6 +386,23 @@ def cluster(train_loader, temp_loader, model, criterion, optimizer, epoch, args)
 
         if i % args.print_freq == 0:
             progress.display(i)
+
+    # kmeans clustering
+    kmeans = KMeans(10)
+    myData = torch.stack(myData).cpu().detach().numpy()
+    print(myData.shape)
+    clusters = kmeans.fit_predict(myData)
+    clusterCounts = {}
+    for i in range(10):
+        clusterCounts[i] = {}
+    for i, c in enumerate(clusters):
+        print(f'A: {y[i]}, C: {c}')
+        clusterCounts[y[i].item()][c.item()] = clusterCounts[y[i].item()].get(c.item(),0) + 1
+    for c in clusterCounts:
+        ((top,topC),(sec,secC)) = getTopTwoCats(clusterCounts[c])
+        print(f'{c}: {top}: {topC/50.0}, {sec}:{secC/50.0}')
+        #print(f'{c}: {clusterCounts[c][c]/50.0}, {clusterCounts[c]}')
+    
     temps = []
     tempLabels = []
     for i, (images, label) in enumerate(temp_loader):
@@ -386,32 +418,11 @@ def cluster(train_loader, temp_loader, model, criterion, optimizer, epoch, args)
         ft = activation['fc2']
         temps.append(ft[0])
         tempLabels.append(label[0])
-        #temps.append(output[1])
-        #tempLabels.append(label[1])
-        
-        #loss = criterion(output, target)
-
-        # acc1/acc5 are (K+1)-way contrast classifier accuracy
-        # measure accuracy and record loss
-        #acc1, acc5 = accuracy(output, target, topk=(1, 9))
-        #losses.update(loss.item(), images[0].size(0))
-        #top1.update(acc1[0], images[0].size(0))
-        #top5.update(acc5[0], images[0].size(0))
-
-        # measure elapsed time
-        #batch_time.update(time.time() - end)
-        #end = time.time()
-
-        #if i % args.print_freq == 0:
-        #    progress.display(i)
- 
 
     # TSNE visualization
     tsne = TSNE()
-    myData = torch.stack(myData).cpu().detach().numpy()
+    #myData = torch.stack(myData).cpu().detach().numpy()
     y = torch.stack(y).cpu().detach().numpy()
-    #myData = myData.numpy()
-    #print(f'shape: {myData.shape}')
     X_embedded = tsne.fit_transform(myData)
     sns_plot = sns.scatterplot(X_embedded[:,0], X_embedded[:,1], hue=y, legend='full')
     plt.savefig('output.png') 
