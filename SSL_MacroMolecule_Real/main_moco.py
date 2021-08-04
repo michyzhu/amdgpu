@@ -9,14 +9,6 @@ import shutil
 import time
 import warnings
 
-from sklearn.manifold import TSNE
-import seaborn as sns
-import numpy as np
-from matplotlib import pyplot as plt
-sns.set(rc={'figure.figsize':(11.7,8.27)})
-palette = sns.color_palette("bright", 5)
-
-
 import torch
 import torch.nn as nn
 import torch.nn.parallel
@@ -36,35 +28,30 @@ import moco.builder
 import Encoder3D.Model_RB3D
 import Encoder3D.Model_DSRF3D_v2
 import Custom_CryoET_DataLoader
-from CustomTransforms import ToTensor, Random3DRotate
+from CustomTransforms import ToTensor, Normalize3D
 
 import torchio as tio
-os.environ['OPENBLAS_NUM_THREADS'] = '1'
+
 model_names = ['RB3D', 'DSRF3D_v2']
 
-evalOnTest = True
-Encoders3D_dictionary = {'RB3D': Encoder3D.Model_RB3D.RB3D, 'DSRF3D_v2':Encoder3D.Model_DSRF3D_v2.DSRF3D_v2}
+Encoders3D_dictionary = {'RB3D': Encoder3D.Model_RB3D.RB3D, 'DSRF3D_v2': Encoder3D.Model_DSRF3D_v2.DSRF3D_v2}
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 parser.add_argument('data', metavar='DIR',
                     help='path to dataset')
-parser.add_argument('-a', '--arch', metavar='ARCH', default='RB3D',
-                    choices=model_names,
-                    help='model architecture: ' +
-                        ' | '.join(model_names) +
-                        ' (default: RB3D)')
+parser.add_argument('-a', '--arch', metavar='ARCH', default='RB3D', choices=model_names,
+                    help='model architecture: ' + ' | '.join(model_names) + ' (default: RB3D)')
 parser.add_argument('-j', '--workers', default=32, type=int, metavar='N',
                     help='number of data loading workers (default: 32)')
 parser.add_argument('--epochs', default=200, type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('--start-epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
-parser.add_argument('-b', '--batch-size', default=256, type=int,
-                    metavar='N',
+parser.add_argument('-b', '--batch-size', default=256, type=int, metavar='N',
                     help='mini-batch size (default: 256), this is the total '
                          'batch size of all GPUs on the current node when '
                          'using Data Parallel or Distributed Data Parallel')
-parser.add_argument('--lr', '--learning-rate', default=1e-4, type=float,
+parser.add_argument('--lr', '--learning-rate', default=0.03, type=float,
                     metavar='LR', help='initial learning rate', dest='lr')
 parser.add_argument('--schedule', default=[120, 160], nargs='*', type=int,
                     help='learning rate schedule (when to drop lr by 10x)')
@@ -96,13 +83,13 @@ parser.add_argument('--multiprocessing-distributed', action='store_true',
                          'multi node data parallel training')
 
 # moco specific configs:
-parser.add_argument('--moco-dim', default=7, type=int,
+parser.add_argument('--moco-dim', default=128, type=int,
                     help='feature dimension (default: 128)')
-parser.add_argument('--moco-k', default=128, type=int,
+parser.add_argument('--moco-k', default=100, type=int,
                     help='queue size; number of negative keys (default: 100)')
 parser.add_argument('--moco-m', default=0.999, type=float,
                     help='moco momentum of updating key encoder (default: 0.999)')
-parser.add_argument('--moco-t', default=0.2, type=float,
+parser.add_argument('--moco-t', default=0.07, type=float,
                     help='softmax temperature (default: 0.07)')
 
 # options for moco v2
@@ -111,7 +98,7 @@ parser.add_argument('--mlp', action='store_true',
 parser.add_argument('--aug-plus', action='store_true',
                     help='use moco v2 data augmentation')
 parser.add_argument('--cos', action='store_true',
-                    help='use cosine lr schedule')
+                    help='use cosidistne lr schedule')
 
 
 def main():
@@ -143,7 +130,7 @@ def main():
         args.world_size = ngpus_per_node * args.world_size
         # Use torch.multiprocessing.spawn to launch distributed processes: the
         # main_worker process function
-        print(f'gpuspernode{ngpus_per_node}')        
+        print(f'gpuspernode{ngpus_per_node}')
         mp.spawn(main_worker, nprocs=ngpus_per_node, args=(ngpus_per_node, args))
     else:
         # Simply call main_worker function
@@ -158,6 +145,7 @@ def main_worker(gpu, ngpus_per_node, args):
     if args.multiprocessing_distributed and args.gpu != 0:
         def print_pass(*args):
             pass
+
         builtins.print = print_pass
 
     if args.gpu is not None:
@@ -169,10 +157,8 @@ def main_worker(gpu, ngpus_per_node, args):
         if args.multiprocessing_distributed:
             # For multiprocessing distributed training, rank needs to be the
             # global rank among all the processes
-           args.rank = args.rank * ngpus_per_node + gpu
-    # os.environ['MASTER_ADDR'] = 'localhost'    
-    # os.environ['MASTER_PORT'] = '12355'        
-    dist.init_process_group(backend=args.dist_backend, init_method=args.dist_url,
+            args.rank = args.rank * ngpus_per_node + gpu
+        dist.init_process_group(backend=args.dist_backend, init_method=args.dist_url,
                                 world_size=args.world_size, rank=args.rank)
     # create model
     print("=> creating model '{}'".format(args.arch))
@@ -181,9 +167,6 @@ def main_worker(gpu, ngpus_per_node, args):
         Encoders3D_dictionary[args.arch],
         args.moco_dim, args.moco_k, args.moco_m, args.moco_t, args.mlp)
     print(model)
-
-
-
 
     if args.distributed:
         # For multiprocessing distributed, DistributedDataParallel constructor
@@ -239,48 +222,50 @@ def main_worker(gpu, ngpus_per_node, args):
                   .format(args.resume, checkpoint['epoch']))
         else:
             print("=> no checkpoint found at '{}'".format(args.resume))
-    
+
     cudnn.benchmark = True
 
     # Data loading code
-    traindir = os.path.join(args.data, 'subtomogram_mrc')
-    traindir_json = os.path.join(args.data, 'json_label')
-    # normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                     # std=[0.229, 0.224, 0.225])
+    traindir = os.path.join(args.data, 'train/subtomogram_mrc')
+    traindir_json = os.path.join(args.data, 'train/json_label')
+    normalize = Normalize3D(mean=[0.05964008], std=[13.57436941])
     if args.aug_plus:
         # MoCo v2's aug: similar to SimCLR https://arxiv.org/abs/2002.05709
         augmentation = [
+            tio.transforms.RandomAffine(degrees=15, scales=(0.8, 1.2), isotropic=True),
+            tio.transforms.RandomElasticDeformation(max_displacement=2),
             tio.transforms.RandomFlip(flip_probability=0.6),
-            #tio.transforms.RandomGamma(log_gamma=(-0.3, 0.3), p=0.7),
-            #tio.transforms.RandomBlur(p=0.5)
-            
-            
-            #tio.transforms.RandomGamma()
-            tio.transforms.RandomAffine(degrees=45,translation=0.1),
+            # tio.transforms.RandomGamma(log_gamma=(-0.3, 0.3), p=0.7),
+            tio.transforms.RandomNoise(),
+            # tio.transforms.RandomBlur(p=0.2),
+            tio.transforms.RandomSwap(patch_size=5, num_iterations=10),
+            ToTensor(),
+            normalize,
             # tio.transforms.RandomSwap(num_iterations=5),
             # tio.transforms.ZNormalization()
         ]
     else:
         # MoCo v1's aug: the same as InstDisc https://arxiv.org/abs/1805.01978
         augmentation = [
-            #Random3DRotate(),
+            # Random3DRotate(),
             ToTensor(),
-            transforms.RandomResizedCrop(32, scale=(0.5, 1.), ratio=(1.,1.)),
-            transforms.RandomAffine(degrees=45, translate=(0.1, 0.1), scale=(0.9, 1.1))
-            #ToTensor()
+            transforms.RandomResizedCrop(32, scale=(0.5, 1.), ratio=(1., 1.)),
+            transforms.RandomAffine(degrees=45, translate=(0.1, 0.1), scale=(0.9, 1.1)),
+            # ToTensor(),
+            # normalize,
             # tio.transforms.RandomFlip(flip_probability=0.5, axes=(0,1,2)),
-            #tio.transforms.RandomFlip(flip_probability=0.5),
+            # tio.transforms.RandomFlip(flip_probability=0.5),
             # tio.transforms.RandomBlur(p=0.5)
-            #tio.transforms.RandomNoise()
-            #tio.transforms.RandomGamma()
+            # tio.transforms.RandomNoise()
+            # tio.transforms.RandomGamma()
             # tio.transforms.RandomAffine(),
             # tio.transforms.RandomSwap(num_iterations=5),
             # tio.transforms.ZNormalization()
         ]
-   
+
     train_dataset = Custom_CryoET_DataLoader.CryoETDatasetLoader(
-        root_dir = traindir, json_dir = traindir_json,
-        transform = moco.loader.TwoCropsTransform(transforms.Compose(augmentation)))
+        root_dir=traindir, json_dir=traindir_json,
+        transform=moco.loader.TwoCropsTransform(transforms.Compose(augmentation)))
 
     if args.distributed:
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
@@ -288,9 +273,8 @@ def main_worker(gpu, ngpus_per_node, args):
         train_sampler = None
 
     train_loader = torch.utils.data.DataLoader(
-        train_dataset, batch_size=args.batch_size, shuffle=train_sampler is None,
+        train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None),
         num_workers=args.workers, pin_memory=True, sampler=train_sampler, drop_last=True)
-
 
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:
@@ -300,14 +284,23 @@ def main_worker(gpu, ngpus_per_node, args):
         # train for one epoch
         train(train_loader, model, criterion, optimizer, epoch, args)
 
-        if not args.multiprocessing_distributed or (args.multiprocessing_distributed
-                and args.rank % ngpus_per_node == 0):
+        if epoch % 50 == 0 and (not args.multiprocessing_distributed or
+                                 (args.multiprocessing_distributed
+                                  and args.rank % ngpus_per_node == 0)):
+            # save_checkpoint({
+            #     'epoch': epoch + 1,
+            #     'arch': args.arch,
+            #     'state_dict': model.state_dict(),
+            #     'optimizer': optimizer.state_dict(),
+            # }, is_best=True, filename='main_moco_checkpoint/checkpoint_{:04d}.pth.tar'.format(epoch))
             save_checkpoint({
                 'epoch': epoch + 1,
                 'arch': args.arch,
                 'state_dict': model.state_dict(),
-                'optimizer' : optimizer.state_dict(),
-            }, is_best=False, filename='main_moco_checkpoint/checkpoint_{:04d}.pth.tar'.format(epoch))
+                'optimizer': optimizer.state_dict(),
+            }, is_best=False, filename='main_moco_checkpoint/arch-{}_epochs{}_bs{}_lr{}_moco-k{}_moco-dim{}.pth.tar'.format(
+                args.arch, args.epochs, args.batch_size, args.lr, args.moco_k, args.moco_dim))
+
 
 def train(train_loader, model, criterion, optimizer, epoch, args):
     batch_time = AverageMeter('Time', ':6.3f')
@@ -322,18 +315,18 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
 
     # switch to train mode
     model.train()
-    
+
     end = time.time()
     for i, (images, _) in enumerate(train_loader):
         # measure data loading time
         data_time.update(time.time() - end)
+
         if args.gpu is not None:
             images[0] = images[0].cuda(args.gpu, non_blocking=True)
             images[1] = images[1].cuda(args.gpu, non_blocking=True)
 
         # compute output
         output, target = model(im_q=images[0], im_k=images[1])
-         
         loss = criterion(output, target)
 
         # acc1/acc5 are (K+1)-way contrast classifier accuracy
@@ -356,7 +349,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
             progress.display(i)
 
 
-def save_checkpoint(state, is_best, filename='main_moco_checkpoint/checkpoint.pth.tar'):
+def save_checkpoint(state, is_best, filename='main_moco_checkpoint/model_best.pth.tar'):
     torch.save(state, filename)
     if is_best:
         shutil.copyfile(filename, 'main_moco_checkpoint/model_best.pth.tar')
@@ -420,9 +413,11 @@ def accuracy(output, target, topk=(1,)):
     with torch.no_grad():
         maxk = max(topk)
         batch_size = target.size(0)
+
         _, pred = output.topk(maxk, 1, True, True)
         pred = pred.t()
         correct = pred.eq(target.reshape(1, -1).expand_as(pred))
+
         res = []
         for k in topk:
             correct_k = correct[:k].reshape(-1).float().sum(0, keepdim=True)
@@ -431,5 +426,5 @@ def accuracy(output, target, topk=(1,)):
 
 
 if __name__ == '__main__':
+    print("starting")
     main()
-

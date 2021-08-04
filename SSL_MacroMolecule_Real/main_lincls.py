@@ -25,12 +25,13 @@ import torchvision.models as models
 import Encoder3D.Model_RB3D
 import Encoder3D.Model_DSRF3D_v2
 import Custom_CryoET_DataLoader
+from CustomTransforms import ToTensor, Normalize3D
 
 import torchio as tio
 
 model_names = ['RB3D', 'DSRF3D_v2']
 
-Encoders3D_dictionary = {'RB3D': Encoder3D.Model_RB3D.RB3D, 'DSRF3D_v2':Encoder3D.Model_DSRF3D_v2.DSRF3D_v2}
+Encoders3D_dictionary = {'RB3D': Encoder3D.Model_RB3D.RB3D, 'DSRF3D_v2': Encoder3D.Model_DSRF3D_v2.DSRF3D_v2}
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 parser.add_argument('data', metavar='DIR',
@@ -38,8 +39,8 @@ parser.add_argument('data', metavar='DIR',
 parser.add_argument('-a', '--arch', metavar='ARCH', default='RB3D',
                     choices=model_names,
                     help='model architecture: ' +
-                        ' | '.join(model_names) +
-                        ' (default: RB3D)')
+                         ' | '.join(model_names) +
+                         ' (default: RB3D)')
 parser.add_argument('-j', '--workers', default=32, type=int, metavar='N',
                     help='number of data loading workers (default: 32)')
 parser.add_argument('--epochs', default=100, type=int, metavar='N',
@@ -135,6 +136,7 @@ def main_worker(gpu, ngpus_per_node, args):
     if args.multiprocessing_distributed and args.gpu != 0:
         def print_pass(*args):
             pass
+
         builtins.print = print_pass
 
     if args.gpu is not None:
@@ -151,21 +153,16 @@ def main_worker(gpu, ngpus_per_node, args):
                                 world_size=args.world_size, rank=args.rank)
     # create model
     print("=> creating model '{}'".format(args.arch))
-    model = Encoders3D_dictionary[args.arch]()
+    model = Encoders3D_dictionary[args.arch](num_classes=10)
 
+    # freeze all layers but the last fc -> which is fc
     for name, param in model.named_parameters():
-        param.requires_grad = True
-
-    # freeze all layers but the last fc -> which is fc3
-    #for name, param in model.named_parameters():
-    #    if name not in ['fc3.weight', 'fc3.bias']:
-    #        param.requires_grad = False
+        if name not in ['fc.weight', 'fc.bias']:
+            param.requires_grad = False
 
     # init the fc layer
-    #model.fc3.weight.data.normal_(mean=0.0, std=0.01)
-    #model.fc3.bias.data.zero_()
-
-    model.fc3.reset_parameters()
+    model.fc.weight.data.normal_(mean=0.0, std=0.01)
+    model.fc.bias.data.zero_()
 
     # load from pre-trained, before DistributedDataParallel constructor
     if args.pretrained:
@@ -177,7 +174,7 @@ def main_worker(gpu, ngpus_per_node, args):
             state_dict = checkpoint['state_dict']
             for k in list(state_dict.keys()):
                 # retain only encoder_q up to before the embedding layer
-                if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc3'):
+                if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc'):
                     # remove prefix
                     state_dict[k[len("module.encoder_q."):]] = state_dict[k]
                 # delete renamed or unused k
@@ -185,7 +182,7 @@ def main_worker(gpu, ngpus_per_node, args):
 
             args.start_epoch = 0
             msg = model.load_state_dict(state_dict, strict=False)
-            assert set(msg.missing_keys) == {"fc3.weight", "fc3.bias"}
+            assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
 
             print("=> loaded pre-trained model '{}'".format(args.pretrained))
         else:
@@ -225,12 +222,12 @@ def main_worker(gpu, ngpus_per_node, args):
 
     # optimize only the linear classifier
     parameters = list(filter(lambda p: p.requires_grad, model.parameters()))
-    #print(len(parameters))
-    #assert len(parameters) == 2  # fc3.weight, fc3.bias
+    assert len(parameters) == 2  # fc.weight, fc.bias
     optimizer = torch.optim.SGD(parameters, args.lr,
-                                 momentum=args.momentum,
-                                 weight_decay=args.weight_decay)
-    #optimizer = torch.optim.AdamW(parameters, args.lr, weight_decay=args.weight_decay)
+                                momentum=args.momentum,
+                                weight_decay=args.weight_decay)
+    # optimizer = torch.optim.AdamW(parameters, args.lr, weight_decay=args.weight_decay)
+
     # optionally resume from a checkpoint
     if args.resume:
         if os.path.isfile(args.resume):
@@ -262,15 +259,14 @@ def main_worker(gpu, ngpus_per_node, args):
     valdir = os.path.join(args.data, 'val/subtomogram_mrc')
     valdir_json = os.path.join(args.data, 'val/json_label')
 
-    testdir = os.path.join(args.data, 'test/subtomogram_mrc')
-    test_json = os.path.join(args.data, 'test/json_label')
-
-    # normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
-    #                                  std=[0.229, 0.224, 0.225])
-
+    train_normalize = Normalize3D(mean=[0.05964008], std=[13.57436941])
+    val_normalize = Normalize3D(mean=[0.04725085], std=[13.48426468])
     train_dataset = Custom_CryoET_DataLoader.CryoETDatasetLoader(
-        root_dir = traindir, json_dir = traindir_json,
-        transform = None)
+        root_dir=traindir, json_dir=traindir_json,
+        transform=transforms.Compose([ToTensor(), train_normalize]))
+    val_dataset = Custom_CryoET_DataLoader.CryoETDatasetLoader(
+        root_dir=valdir, json_dir=valdir_json,
+        transform=transforms.Compose([ToTensor(), val_normalize]))
 
     if args.distributed:
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
@@ -282,18 +278,11 @@ def main_worker(gpu, ngpus_per_node, args):
         num_workers=args.workers, pin_memory=True, sampler=train_sampler)
 
     val_loader = torch.utils.data.DataLoader(
-        Custom_CryoET_DataLoader.CryoETDatasetLoader(root_dir = valdir, json_dir = valdir_json, transform = None),
-        batch_size=args.batch_size, shuffle=True,
-        num_workers=args.workers, pin_memory=True)
-
-    test_loader = torch.utils.data.DataLoader(
-        Custom_CryoET_DataLoader.CryoETDatasetLoader(root_dir = testdir, json_dir = test_json, transform = None),
-        batch_size=args.batch_size, shuffle=True,
+        val_dataset, batch_size=args.batch_size, shuffle=False,
         num_workers=args.workers, pin_memory=True)
 
     if args.evaluate:
         validate(val_loader, model, criterion, args)
-        validate(test_loader, model, criterion, args)
         return
 
     for epoch in range(args.start_epoch, args.epochs):
@@ -312,16 +301,16 @@ def main_worker(gpu, ngpus_per_node, args):
         best_acc1 = max(acc1, best_acc1)
 
         if not args.multiprocessing_distributed or (args.multiprocessing_distributed
-                and args.rank % ngpus_per_node == 0):
+                                                    and args.rank % ngpus_per_node == 0):
             save_checkpoint({
                 'epoch': epoch + 1,
                 'arch': args.arch,
                 'state_dict': model.state_dict(),
                 'best_acc1': best_acc1,
-                'optimizer' : optimizer.state_dict(),
+                'optimizer': optimizer.state_dict(),
             }, is_best)
-            #if epoch == args.start_epoch:
-            #    sanity_check(model.state_dict(), args.pretrained)
+            if epoch == args.start_epoch:
+                sanity_check(model.state_dict(), args.pretrained)
 
 
 def train(train_loader, model, criterion, optimizer, epoch, args):
@@ -335,7 +324,14 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         [batch_time, data_time, losses, top1, top5],
         prefix="Epoch: [{}]".format(epoch))
 
-    model.train()
+    """
+    Switch to eval mode:
+    Under the protocol of linear classification on frozen features/models,
+    it is not legitimate to change any part of the pre-trained model.
+    BatchNorm in train mode may revise running mean/std (even if it receives
+    no gradient), which are part of the model parameters too.
+    """
+    model.eval()
 
     end = time.time()
     for i, (images, target) in enumerate(train_loader):
@@ -429,8 +425,8 @@ def sanity_check(state_dict, pretrained_weights):
     state_dict_pre = checkpoint['state_dict']
 
     for k in list(state_dict.keys()):
-        # only ignore fc3 layer
-        if 'fc3.weight' in k or 'fc3.bias' in k:
+        # only ignore fc layer
+        if 'fc.weight' in k or 'fc.bias' in k:
             continue
 
         # name in pretrained model
@@ -445,6 +441,7 @@ def sanity_check(state_dict, pretrained_weights):
 
 class AverageMeter(object):
     """Computes and stores the average and current value"""
+
     def __init__(self, name, fmt=':f'):
         self.name = name
         self.fmt = fmt
@@ -494,6 +491,7 @@ def adjust_learning_rate(optimizer, epoch, args):
             lr *= 0.1 if epoch >= milestone else 1.
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
+
 
 def accuracy(output, target, topk=(1,)):
     """Computes the accuracy over the k top predictions for the specified values of k"""
