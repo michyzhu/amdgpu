@@ -1,9 +1,8 @@
 import os
 import json
 num = 0
-folder = 'snrinf/'#'inf_10/subtomogram_mrc'
-mol = "3hhb"
-folder = mol
+folder = 'binary/2h12'#'inf_10/subtomogram_mrc'
+mol = '2h12'
 for f in os.listdir(folder):
     #if(f[4:8] != "targ"):
     os.rename(f'{folder}/{f}', f'{folder}/{mol}{f}')

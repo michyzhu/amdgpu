@@ -1,3 +1,6 @@
 the command to run code (for validation)
 
 python3 downstream.py --batch-size=16 --dist-url 'tcp://localhost:10001' --multiprocessing-distributed --world-size 1 --rank 0 "/home/myz/data3_SNRinfinity" --resume=main_moco_checkpoint/checkpoint_0199.pth.tar
+
+
+python3 main_moco.py --batch-size=16 --dist-url 'tcp://localhost:10001' --multiprocessing-distributed --world-size 1 --rank 0 "/home/myz/data3_SNRinfinity" --aug-plus --resume=main_moco_checkpoint/checkpoint_0160.pth.tar

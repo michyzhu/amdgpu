@@ -1,0 +1,33 @@
+[DEBUG][2021-08-02 23:03:34]	TFboard files will be stored in sessions/20210802-230334/tfboard if applicable
+[DEBUG][2021-08-02 23:03:34]	Provided arguments will be stored in sessions/20210802-230334/config.yaml
+[INFO][2021-08-02 23:03:34]	Start to declare training variable
+[INFO][2021-08-02 23:03:34]	Session will be ran in device: [cuda]
+[INFO][2021-08-02 23:03:34]	Start to prepare data
+[INFO][2021-08-02 23:03:34]	otrainset-------------
+[INFO][2021-08-02 23:03:35]	5000
+[INFO][2021-08-02 23:03:35]	ptrainset-------------
+[INFO][2021-08-02 23:03:35]	5000
+[INFO][2021-08-02 23:03:35]	testset-------------
+[INFO][2021-08-02 23:03:35]	5000
+[INFO][2021-08-02 23:03:35]	Start to build model
+[DEBUG][2021-08-02 23:03:35]	Backbone [resnet34] is declared with cin [1] and cout [1000] [with] sobel
+[DEBUG][2021-08-02 23:03:35]	Backbone will be created wit the following heads: [20, 5]
+[DEBUG][2021-08-02 23:03:35]	Number of trainable parameters is [112]
+[DEBUG][2021-08-02 23:03:35]	Number of frozen parameters is [2]
+[DEBUG][2021-08-02 23:03:35]	Name of frozen parameters are: dict_keys(['sobel.0.weight', 'sobel.0.bias'])
+[DEBUG][2021-08-02 23:03:35]	Going to use [Adam] optimizer for training with betas (0.9, 0.999), eps 0.000000, weight decay 0.000000 without amsgrad
+[DEBUG][2021-08-02 23:03:35]	Going to use [fixed] learning policy for optimization with base learning rate [0.00001]
+[INFO][2021-08-02 23:03:35]	Data parallel will be used for acceleration purpose
+[INFO][2021-08-02 23:03:35]	Start to train at 0 epoch with learning rate 0.000010
+[INFO][2021-08-02 23:03:35]	cfg.net_heads
+[INFO][2021-08-02 23:03:35]	[20, 5]
+[INFO][2021-08-02 23:03:35]	hidx, head
+[INFO][2021-08-02 23:03:35]	0
+[INFO][2021-08-02 23:03:35]	20
+[INFO][2021-08-02 23:03:35]	hidx, head
+[INFO][2021-08-02 23:03:35]	1
+[INFO][2021-08-02 23:03:35]	5
+[INFO][2021-08-02 23:03:35]	train_head-------------
+[INFO][2021-08-02 23:03:35]	5000
+[INFO][2021-08-02 23:03:35]	5000
+[INFO][2021-08-02 23:03:48]	Batch: [ 0/79] Head: [0/2] Epoch: [  0/350] Progress: [0:00:12/0:16:18] Time: 12.392 (12.392) Data: 2.718 (2.718) Loss: 3.1573 (3.1573)

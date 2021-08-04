@@ -1,0 +1,44 @@
+[DEBUG][2021-08-02 22:52:12]	TFboard files will be stored in sessions/20210802-225212/tfboard if applicable
+[DEBUG][2021-08-02 22:52:12]	Provided arguments will be stored in sessions/20210802-225212/config.yaml
+[INFO][2021-08-02 22:52:12]	Start to declare training variable
+[INFO][2021-08-02 22:52:12]	Session will be ran in device: [cuda]
+[INFO][2021-08-02 22:52:12]	Start to prepare data
+[INFO][2021-08-02 22:52:12]	otrainset-------------
+[INFO][2021-08-02 22:52:12]	5000
+[INFO][2021-08-02 22:52:12]	ptrainset-------------
+[INFO][2021-08-02 22:52:13]	5000
+[INFO][2021-08-02 22:52:13]	testset-------------
+[INFO][2021-08-02 22:52:13]	5000
+[INFO][2021-08-02 22:52:13]	Start to build model
+[DEBUG][2021-08-02 22:52:13]	Backbone [resnet34] is declared with cin [1] and cout [1000] [with] sobel
+[DEBUG][2021-08-02 22:52:13]	Backbone will be created wit the following heads: [20, 5]
+[DEBUG][2021-08-02 22:52:13]	Number of trainable parameters is [112]
+[DEBUG][2021-08-02 22:52:13]	Number of frozen parameters is [2]
+[DEBUG][2021-08-02 22:52:13]	Name of frozen parameters are: dict_keys(['sobel.0.weight', 'sobel.0.bias'])
+[DEBUG][2021-08-02 22:52:13]	Going to use [Adam] optimizer for training with betas (0.9, 0.999), eps 0.000000, weight decay 0.000000 without amsgrad
+[DEBUG][2021-08-02 22:52:13]	Going to use [fixed] learning policy for optimization with base learning rate [0.00001]
+[INFO][2021-08-02 22:52:13]	Data parallel will be used for acceleration purpose
+[INFO][2021-08-02 22:52:13]	Start to train at 0 epoch with learning rate 0.000010
+[INFO][2021-08-02 22:52:13]	cfg.net_heads
+[INFO][2021-08-02 22:52:13]	[20, 5]
+[INFO][2021-08-02 22:52:13]	hidx, head
+[INFO][2021-08-02 22:52:13]	0
+[INFO][2021-08-02 22:52:13]	20
+[INFO][2021-08-02 22:52:13]	hidx, head
+[INFO][2021-08-02 22:52:13]	1
+[INFO][2021-08-02 22:52:13]	5
+[INFO][2021-08-02 22:52:13]	train_head-------------
+[INFO][2021-08-02 22:52:13]	5000
+[INFO][2021-08-02 22:52:13]	5000
+[INFO][2021-08-02 22:52:26]	Batch: [ 0/79] Head: [0/2] Epoch: [  0/350] Progress: [0:00:12/0:16:37] Time: 12.631 (12.631) Data: 2.762 (2.762) Loss: 3.2369 (3.2369)
+[INFO][2021-08-02 22:54:23]	Batch: [50/79] Head: [0/2] Epoch: [  0/350] Progress: [0:02:09/0:03:20] Time: 2.407 (2.543) Data: 0.001 (0.055) Loss: 2.9243 (2.9673)
+[INFO][2021-08-02 22:55:26]	train_head-------------
+[INFO][2021-08-02 22:55:26]	5000
+[INFO][2021-08-02 22:55:26]	5000
+[INFO][2021-08-02 22:55:31]	Batch: [ 0/79] Head: [1/2] Epoch: [  0/350] Progress: [0:00:05/0:06:45] Time: 5.136 (5.136) Data: 2.834 (2.834) Loss: 1.9546 (1.9546)
+[INFO][2021-08-02 22:57:29]	Batch: [50/79] Head: [1/2] Epoch: [  0/350] Progress: [0:02:02/0:03:09] Time: 2.351 (2.402) Data: 0.001 (0.057) Loss: 1.2962 (1.4094)
+[INFO][2021-08-02 22:58:32]	Start to evaluate after 0 epoch of training
+[INFO][2021-08-02 22:58:32]	len(loader.dataset)
+[INFO][2021-08-02 22:58:32]	5000
+[INFO][2021-08-02 22:58:42]	num_classes
+[INFO][2021-08-02 22:58:42]	2

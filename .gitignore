@@ -2,6 +2,10 @@ data3_SNRinfinity
 *.zip
 *.sif
 *.pickle
+*.ckpt
+*.mrc
+*.json
+*.tar
 deprecated/
 data/
 Moco.py

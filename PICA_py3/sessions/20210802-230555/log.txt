@@ -1,0 +1,32 @@
+[DEBUG][2021-08-02 23:05:55]	TFboard files will be stored in sessions/20210802-230555/tfboard if applicable
+[DEBUG][2021-08-02 23:05:55]	Provided arguments will be stored in sessions/20210802-230555/config.yaml
+[INFO][2021-08-02 23:05:55]	Start to declare training variable
+[INFO][2021-08-02 23:05:55]	Session will be ran in device: [cuda]
+[INFO][2021-08-02 23:05:55]	Start to prepare data
+[INFO][2021-08-02 23:05:55]	otrainset-------------
+[INFO][2021-08-02 23:05:55]	5000
+[INFO][2021-08-02 23:05:55]	ptrainset-------------
+[INFO][2021-08-02 23:05:55]	5000
+[INFO][2021-08-02 23:05:55]	testset-------------
+[INFO][2021-08-02 23:05:55]	5000
+[INFO][2021-08-02 23:05:55]	Start to build model
+[DEBUG][2021-08-02 23:05:55]	Backbone [resnet34] is declared with cin [1] and cout [1000] [with] sobel
+[DEBUG][2021-08-02 23:05:55]	Backbone will be created wit the following heads: [20, 5]
+[DEBUG][2021-08-02 23:05:55]	Number of trainable parameters is [112]
+[DEBUG][2021-08-02 23:05:55]	Number of frozen parameters is [2]
+[DEBUG][2021-08-02 23:05:55]	Name of frozen parameters are: dict_keys(['sobel.0.weight', 'sobel.0.bias'])
+[DEBUG][2021-08-02 23:05:56]	Going to use [Adam] optimizer for training with betas (0.9, 0.999), eps 0.000000, weight decay 0.000000 without amsgrad
+[DEBUG][2021-08-02 23:05:56]	Going to use [fixed] learning policy for optimization with base learning rate [0.00001]
+[INFO][2021-08-02 23:05:56]	Data parallel will be used for acceleration purpose
+[INFO][2021-08-02 23:05:56]	Start to train at 0 epoch with learning rate 0.000010
+[INFO][2021-08-02 23:05:56]	cfg.net_heads
+[INFO][2021-08-02 23:05:56]	[20, 5]
+[INFO][2021-08-02 23:05:56]	hidx, head
+[INFO][2021-08-02 23:05:56]	0
+[INFO][2021-08-02 23:05:56]	20
+[INFO][2021-08-02 23:05:56]	hidx, head
+[INFO][2021-08-02 23:05:56]	1
+[INFO][2021-08-02 23:05:56]	5
+[INFO][2021-08-02 23:05:56]	train_head-------------
+[INFO][2021-08-02 23:05:56]	5000
+[INFO][2021-08-02 23:05:56]	5000

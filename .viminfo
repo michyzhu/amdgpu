@@ -8,23 +8,26 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/fc2
+~MSle0~/resume
 
 # Last Substitute Search Pattern:
-~MSle0&main_moco_checkpoint
+~MSle0&self
 
 # Last Substitute String:
-$main_moco_checkpoint_v2
+$
 
 # Command Line History (newest to oldest):
 :wq
-:q!wq
 :q
-:w
-:%s/main_moco_checkpoint/main_moco_checkpoint_v2/g
 :'<,'>q
-:Q
+:w
 :q!
+:%s/self//g
+:%s/7/num_classes/c
+:'<,'>`
+:q!wq
+:%s/main_moco_checkpoint/main_moco_checkpoint_v2/g
+:Q
 :qqq
 :WQq
 :'<,'>wq
@@ -35,56 +38,56 @@ $main_moco_checkpoint_v2
 :%s/data/templates/c
 
 # Search String History (newest to oldest):
-?/fc2
-?/tio
-? main_moco_checkpoint
-?/main_moco_checkpoint
-?/temps10
-?/activation
-?/cluster
-?/print
-?/CryoETDataset
-?/myData
-?/sns
-?/pred
-? \<batch_size\>
-?/traindir
-?/train_dir
-?/tomo
-?/vs
-?/evalOnTest
-?/densitymap
-?/!
-?/bool
-?/eval
-?/evalontest
-?/testdir
-?/isEval
-?/train_sampler
-?/train(
-?/model(
-?/model(data)
-?/top
-?/model.train()
-?/checkpoint
 ?/resume
-?/temperat
-?/q
-?/moco_k
-?/Moco(
-?/main_worker(
-?/main()
-?/main
-?/os.env
-?/init_proc
-?/all_gather
-?/world_size
-?/args.dist_url
-?/init_method
-?/28
-?/train/sub
-?/init_pro
-?/init_process
+?/checkpoints
+? @$
+?/save_checkpoint
+?/checkpoint
+?/args.resume
+?/count_matri
+?/newdata
+?/stl
+?/count_matrix
+?/count_matrix[
+?/cfg.resume
+?/cfg
+?/load_checkpoint
+?/evaluate(
+?/logits
+?/[1]
+?/predicts
+?/poch
+?/get(
+?/networks
+?/net
+?/train(
+?/.dataset
+?/OOGA
+?/oogabooga
+?/test_loader
+?/print(
+?/DataLoader
+?/length of loader
+?/loader
+?/newh
+?/int_classes
+?/isinstance
+?/natsort
+?/traindir
+??traindir
+?/train_dir
+?/NewDataSet
+?/ataset
+?/NewDatset
+? self
+?/testdir
+?/num_classes
+?/32
+?/cluster(
+?/train_loader
+?/print(myData.shape
+?/train_sampler
+?/net(
 
 # Expression History (newest to oldest):
 
@@ -94,625 +97,444 @@ $main_moco_checkpoint_v2
 
 # Registers:
 "0	CHAR	0
-	model.register_forward_hook(get_activation('fc2')) 
-	
-"1	LINE	0
-	cluster.py
+	a
+""1	LINE	0
+	20210804-010315/checkpoints/best.ckpt
 "2	LINE	0
-	        print("ftshape:", ft[0].shape)
+	        datapath = '/home/myz/binary'
 "3	LINE	0
-	        print("ftshape:",ft.shape)
+	        #for i, mol in enumerate("2h12,6t3e,3gl1,1yg6,1bxn,1f1b,2byu,4d4r,2ldb,3hhb".split(",")):
 "4	CHAR	0
-	model.register_forward_hook(get_activation('fc2')) 
-	
-"5	CHAR	0
-	model = torch.nn.parallel.DistributedDataParallel(model)
-	
-"6	CHAR	0
-	model.register_forward_hook(get_activation('fc2')) 
-	
+	.split(",")
+	c
+"5	LINE	0
+	        datapath = '/home/myz/inf_10'
+"6	LINE	0
+	            predicts[start:end] = logits.max(1)[1].cpu().numpy()
 "7	LINE	0
-	
+	    print(len(test_loader.dataset))
 "8	LINE	0
-	
+	    print("OOGABOOGA")
 "9	LINE	0
-	
-""-	CHAR	0
-	main_moco.py 
+	    #print(f'len(testset): {len(testset)}')
+"-	CHAR	0
+	/20210804-010315/checkpoints/best.ckpt"
 
 # File marks:
-'0  1  0  ~/.viminfo
-'1  10  6  ~/.gitignore
-'2  14  232  ~/README.md
-'3  13  46  ~/.gitignore
-'4  5  0  ~/.gitignore
-'5  102  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
-'6  23  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_DSRF3D_v2.py
-'7  19  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_SCNN.py
-'8  94  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
-'9  94  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
+'0  8  0  ~/.gitignore
+'1  7  5  ~/.gitignore
+'2  5  5  ~/.gitignore
+'3  1  0  ~/PICA_py3/.gitignore
+'4  22  0  ~/PICA_py3/vis.py
+'5  1  0  ~/PICA_py3/main.py
+'6  1  0  ~/PICA_py3/vis.py
+'7  24  8  ~/PICA_py3/configs/base.yaml
+'8  84  9  ~/PICA_py3/main.py
+'9  24  44  ~/PICA_py3/configs/base.yaml
 
 # Jumplist (newest first):
--'  1  0  ~/.viminfo
--'  10  6  ~/.gitignore
--'  13  0  ~/.gitignore
--'  14  232  ~/README.md
--'  1  0  ~/README.md
+-'  8  0  ~/.gitignore
+-'  7  0  ~/.gitignore
 -'  5  0  ~/.gitignore
 -'  1  0  ~/.gitignore
--'  102  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
--'  23  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_DSRF3D_v2.py
--'  23  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_DSRF3D_v2.py
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_DSRF3D_v2.py
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_DSRF3D_v2.py
--'  19  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_SCNN.py
--'  19  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_SCNN.py
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_SCNN.py
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_SCNN.py
--'  94  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
--'  94  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
--'  162  0  ~/SSL_MacroMolecule_Real/downstream.py
--'  202  12  ~/SSL_MacroMolecule_Real/downstream.py
--'  78  7  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
--'  27  0  ~/SSL_MacroMolecule_Real/moco/builder.py
--'  27  0  ~/SSL_MacroMolecule_Real/moco/builder.py
--'  1  0  ~/SSL_MacroMolecule_Real/moco/builder.py
--'  1  0  ~/SSL_MacroMolecule_Real/moco/builder.py
--'  1  0  ~/SSL_MacroMolecule_Real/downstream.py
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/down
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/down
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/down
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/down
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/down
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/down
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/down
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/down
--'  3  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_SCNN.py
--'  92  8  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
--'  65  8  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
--'  197  31  ~/SSL_MacroMolecule_Real/downstream.py
--'  388  25  ~/SSL_MacroMolecule_Real/downstream.py
--'  353  25  ~/SSL_MacroMolecule_Real/downstream.py
--'  340  4  ~/SSL_MacroMolecule_Real/downstream.py
--'  34  0  ~/SSL_MacroMolecule_Real/moco/builder.py
--'  381  12  ~/SSL_MacroMolecule_Real/downstream.py
--'  145  25  ~/SSL_MacroMolecule_Real/main_moco.py
--'  65  25  ~/SSL_MacroMolecule_Real/main_moco.py
--'  248  23  ~/SSL_MacroMolecule_Real/downstream.py
--'  129  0  ~/SSL_MacroMolecule_Real/downstream.py
--'  111  8  ~/SSL_MacroMolecule_Real/main_moco_v2.py
--'  360  8  ~/SSL_MacroMolecule_Real/main_moco_v2.py
--'  308  40  ~/SSL_MacroMolecule_Real/main_moco_v2.py
--'  165  0  ~/SSL_MacroMolecule_Real/main_moco_v2.py
--'  1  0  ~/SSL_MacroMolecule_Real/main_moco_v2.py
--'  203  24  ~/SSL_MacroMolecule_Real/downstream.py
--'  199  8  ~/SSL_MacroMolecule_Real/downstream.py
--'  200  0  ~/SSL_MacroMolecule_Real/downstream.py
--'  249  4  ~/SSL_MacroMolecule_Real/downstream.py
--'  372  8  ~/SSL_MacroMolecule_Real/downstream.py
--'  1  0  ~/SSL_MacroMolecule_Real/main_moco.py
--'  249  37  ~/SSL_MacroMolecule_Real/main_moco.py
--'  310  0  ~/SSL_MacroMolecule_Real/main_moco.py
--'  1  0  ~/SSL_MacroMolecule_Real/main_moco
--'  15  0  ~/SSL_MacroMolecule_Real/moco/builder.py
--'  91  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
--'  26  12  ~/SSL_MacroMolecule_Real/moco/builder.py
--'  100  0  ~/SSL_MacroMolecule_Real/moco/builder.py
--'  135  0  ~/SSL_MacroMolecule_Real/moco/builder.py
--'  137  0  ~/SSL_MacroMolecule_Real/moco/builder.py
--'  134  36  ~/SSL_MacroMolecule_Real/moco/builder.py
--'  31  8  ~/SSL_MacroMolecule_Real/Custom_CryoET_DataLoader.py
--'  45  8  ~/SSL_MacroMolecule_Real/Custom_CryoET_DataLoader.py
--'  73  0  ~/SSL_MacroMolecule_Real/Custom_CryoET_DataLoader.py
--'  340  17  ~/SSL_MacroMolecule_Real/main_moco.py
--'  241  12  ~/SSL_MacroMolecule_Real/main_moco.py
--'  238  12  ~/SSL_MacroMolecule_Real/main_moco.py
--'  228  12  ~/SSL_MacroMolecule_Real/main_moco.py
--'  183  4  ~/SSL_MacroMolecule_Real/main_moco.py
--'  179  4  ~/SSL_MacroMolecule_Real/main_moco.py
--'  178  4  ~/SSL_MacroMolecule_Real/main_moco.py
--'  164  8  ~/SSL_MacroMolecule_Real/main_moco.py
--'  161  25  ~/SSL_MacroMolecule_Real/main_moco.py
--'  159  12  ~/SSL_MacroMolecule_Real/main_moco.py
--'  157  15  ~/SSL_MacroMolecule_Real/main_moco.py
--'  154  4  ~/SSL_MacroMolecule_Real/main_moco.py
--'  146  8  ~/SSL_MacroMolecule_Real/main_moco.py
--'  77  39  ~/SSL_MacroMolecule_Real/main_moco.py
--'  76  29  ~/SSL_MacroMolecule_Real/main_moco.py
--'  389  9  ~/SSL_MacroMolecule_Real/main_moco.py
--'  387  9  ~/SSL_MacroMolecule_Real/main_moco.py
--'  385  9  ~/SSL_MacroMolecule_Real/main_moco.py
--'  383  9  ~/SSL_MacroMolecule_Real/main_moco.py
--'  162  0  ~/SSL_MacroMolecule_Real/downstream.py
--'  202  12  ~/SSL_MacroMolecule_Real/downstream.py
--'  27  0  ~/SSL_MacroMolecule_Real/moco/builder.py
--'  1  0  ~/SSL_MacroMolecule_Real/Encoder3D/Model_Rb
--'  162  0  ~/SSL_MacroMolecule_Real/downstream.py
+-'  1  0  ~/PICA_py3/.gitignore
+-'  22  0  ~/PICA_py3/vis.py
+-'  1  0  ~/PICA_py3/vis.py
+-'  1  0  ~/PICA_py3/main.py
+-'  84  4  ~/PICA_py3/main.py
+-'  24  8  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  24  44  ~/PICA_py3/configs/base.yaml
+-'  24  44  ~/PICA_py3/configs/base.yaml
+-'  14  0  ~/PICA_py3/configs/base.yaml
+-'  14  0  ~/PICA_py3/configs/base.yaml
+-'  14  0  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  24  55  ~/PICA_py3/configs/base.yaml
+-'  24  55  ~/PICA_py3/configs/base.yaml
+-'  24  55  ~/PICA_py3/configs/base.yaml
+-'  24  55  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  31  60  ~/PICA_py3/configs/base.yaml
+-'  31  60  ~/PICA_py3/configs/base.yaml
+-'  31  60  ~/PICA_py3/configs/base.yaml
+-'  31  60  ~/PICA_py3/configs/base.yaml
+-'  31  60  ~/PICA_py3/configs/base.yaml
+-'  31  60  ~/PICA_py3/configs/base.yaml
+-'  31  60  ~/PICA_py3/configs/base.yaml
+-'  31  60  ~/PICA_py3/configs/base.yaml
+-'  31  60  ~/PICA_py3/configs/base.yaml
+-'  31  60  ~/PICA_py3/configs/base.yaml
+-'  31  60  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  24  18  ~/PICA_py3/configs/base.yaml
+-'  24  18  ~/PICA_py3/configs/base.yaml
+-'  24  18  ~/PICA_py3/configs/base.yaml
+-'  24  18  ~/PICA_py3/configs/base.yaml
+-'  24  18  ~/PICA_py3/configs/base.yaml
+-'  24  18  ~/PICA_py3/configs/base.yaml
+-'  24  18  ~/PICA_py3/configs/base.yaml
+-'  24  18  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  1  0  ~/PICA_py3/configs/new_dataset.yaml
+-'  24  8  ~/PICA_py3/configs/base.yaml
+-'  1  0  ~/PICA_py3/configs/base.yaml
+-'  24  44  ~/PICA_py3/configs/base.yaml
+-'  24  44  ~/PICA_py3/configs/base.yaml
+-'  14  0  ~/PICA_py3/configs/base.yaml
 
 # History of marks within files (newest to oldest):
 
-> ~/.viminfo
-	"	1	0
-
 > ~/.gitignore
-	"	10	6
-	^	10	7
-	.	10	6
-	+	1	17
-	+	8	11
-	+	6	4
-	+	5	10
-	+	16	8
-	+	17	10
-	+	9	10
-	+	10	6
-	+	11	22
-	+	13	46
-	+	11	8
-	+	10	6
+	"	8	0
+	^	8	5
+	.	8	4
+	+	5	5
+	+	6	5
+	+	7	5
+	+	8	4
 
-> ~/README.md
-	"	14	232
-	^	13	90
-	.	13	89
-	+	2	50
-	+	6	180
-	+	6	29
-	+	12	176
-	+	12	32
-	+	10	68
-	+	12	0
-	+	10	72
-	+	12	221
-	+	14	1
-	+	13	89
-
-> ~/cluster.py
+> ~/PICA_py3/.gitignore
 	"	1	0
 
-> ~/check.py
+> ~/PICA_py3/vis.py
+	"	22	0
+	.	1	0
+	+	1	0
+
+> ~/PICA_py3/main.py
 	"	1	0
-	^	7	57
-	.	7	56
-	+	9	17
-	+	7	3
-	+	6	53
-	+	7	59
-	+	6	66
-	+	9	24
-	+	2	8
-	+	6	44
-	+	7	32
-	+	6	1
-	+	6	37
-	+	7	25
-	+	6	63
-	+	7	51
-	+	3	48
-	+	6	36
-	+	7	43
-	+	3	9
+	^	84	5
+	.	84	4
+	+	225	3
+	+	224	33
+	+	76	0
+	+	74	3
+	+	74	0
+	+	76	4
+	+	76	3
+	+	76	0
+	+	243	0
+	+	245	40
+	+	242	12
+	+	87	7
+	+	86	31
+	+	85	3
+	+	84	64
+	+	238	11
+	+	237	29
+	+	247	18
+	+	84	4
+
+> ~/PICA_py3/configs/base.yaml
+	*	1628105416	0
+	"	24	8
+	^	24	9
+	.	24	9
+	+	24	18
+	+	31	23
+	+	24	9
+
+> ~/PICA_py3/configs/new_dataset.yaml
+	*	1628105283	0
+	"	1	0
+	^	10	0
+	.	9	5
+	+	9	4
+	+	8	5
+	+	9	5
+
+> ~/.bashrc
+	*	1628104942	0
+	"	2	38
+	^	2	39
+	.	2	38
+	+	1	30
+	+	2	38
+
+> ~/.bash_profile
+	*	1628104855	0
+	"	1	0
+
+> ~/PICA_py3/sessions/get.py
+	*	1628104759	0
+	"	6	18
+	^	6	19
+	.	6	18
+	+	5	24
+	+	6	35
+	+	7	47
+	+	6	18
+
+> ~/PICA_py3/sessions/20210803-222418/checkpoint/get.py
+	*	1628104585	0
+	"	6	45
+	^	6	46
+	.	6	45
+	+	4	28
+	+	2	0
+	+	3	25
+	+	4	4
+	+	5	3
 	+	4	16
-	+	3	24
-	+	5	22
-	+	6	38
-	+	9	28
-	+	10	0
-	+	6	51
-	+	6	19
-	+	6	0
-	+	7	0
-	+	8	0
-	+	9	0
-	+	6	0
-	+	7	0
-	+	8	0
-	+	9	0
-	+	6	33
-	+	7	56
+	+	2	9
+	+	4	20
+	+	5	41
+	+	6	45
 
-> ~/SSL_MacroMolecule_Real/Encoder3D/Model_RB3D.py
-	*	1626741898	0
-	"	102	0
-	^	78	8
-	.	78	8
-	+	66	13
-	+	67	13
-	+	68	13
-	+	89	32
-	+	66	13
-	+	67	13
-	+	68	13
-	+	89	31
-	+	78	8
+> ~/PICA_py3/lib/datasets/new_dataset.py
+	*	1628038946	0
+	"	140	8
+	^	151	41
+	.	140	0
+	+	20	0
+	+	53	0
+	+	35	0
+	+	51	40
+	+	40	7
+	+	39	20
+	+	35	8
+	+	83	7
+	+	79	7
+	+	78	41
+	+	54	0
+	+	69	0
+	+	65	0
+	+	70	8
+	+	71	8
+	+	72	8
+	+	73	8
+	+	80	0
+	+	74	8
 	+	79	8
-	+	81	8
-	+	79	8
-	+	78	8
+	+	74	52
+	+	76	26
+	+	53	27
+	+	49	8
+	+	50	55
+	+	53	0
+	+	48	0
+	+	34	8
+	+	33	8
+	+	32	8
+	+	31	8
+	+	30	8
+	+	28	8
+	+	27	8
+	+	25	8
+	+	21	8
+	+	22	8
+	+	23	8
+	+	19	8
+	+	76	57
+	+	38	59
+	+	39	53
+	+	36	35
+	+	4	8
+	+	42	0
+	+	7	5
+	+	9	13
+	+	7	10
+	+	76	54
+	+	154	28
+	+	36	8
+	+	37	7
+	+	38	7
+	+	38	35
+	+	49	8
+	+	50	12
+	+	49	33
+	+	48	58
+	+	49	62
+	+	15	28
+	+	38	0
+	+	16	41
+	+	18	0
+	+	17	0
+	+	49	39
+	+	151	40
+	+	140	0
 
-> ~/SSL_MacroMolecule_Real/Encoder3D/Model_DSRF3D_v2.py
-	*	1626741564	0
-	"	23	0
-
-> ~/SSL_MacroMolecule_Real/Encoder3D/Model_SCNN.py
-	*	1626741535	0
-	"	19	0
-
-> ~/SSL_MacroMolecule_Real/Encoder3D/Model_Rb
+> ~/PICA_py3/configs/m
 	"	1	0
 
-> ~/SSL_MacroMolecule_Real/downstream.py
-	"	162	0
-	^	420	21
-	.	420	20
-	+	387	52
-	+	354	48
-	+	249	31
-	+	317	0
-	+	315	0
-	+	314	0
-	+	315	0
-	+	314	4
-	+	336	14
-	+	185	0
-	+	184	0
-	+	337	4
-	+	207	16
-	+	207	59
-	+	207	8
-	+	208	0
-	+	203	12
-	+	203	24
-	+	205	0
-	+	203	16
-	+	200	0
-	+	199	0
-	+	203	12
-	+	204	0
-	+	197	12
-	+	198	11
-	+	203	0
-	+	197	27
-	+	354	33
-	+	387	8
-	+	354	25
-	+	356	23
-	+	354	0
-	+	387	22
-	+	387	34
-	+	356	23
-	+	387	0
-	+	420	20
-
-> ~/SSL_MacroMolecule_Real/moco/builder.py
-	*	1626741100	0
-	"	27	0
-	.	134	0
-	+	166	22
-	+	166	43
-	+	166	4
-	+	167	4
-	+	166	4
-	+	167	4
-	+	166	0
-	+	19	45
-	+	57	38
-	+	19	22
-	+	11	49
-	+	57	0
-	+	19	0
-	+	125	32
-	+	134	36
-	+	125	0
-	+	134	0
-
-> ~/SSL_MacroMolecule_Real/Encoder3D/down
-	*	1626741005	0
-	"	1	0
+> ~/PICA_py3/configs/stl10.yaml
+	*	1628029296	0
+	"	9	0
 
 > ~/SSL_MacroMolecule_Real/main_moco.py
-	"	145	25
-	.	248	0
-	+	310	21
-	+	310	78
-	+	19	0
-	+	17	41
+	*	1628026769	0
+	"	225	31
+	^	259	66
+	.	259	65
 	+	14	36
-	+	310	94
-	+	310	4
-	+	310	0
-	+	310	5
-	+	310	38
-	+	310	4
-	+	310	4
-	+	310	33
-	+	310	3
-	+	310	0
-	+	310	8
-	+	310	3
-	+	310	18
-	+	310	0
-	+	310	0
-	+	310	30
+	+	312	94
+	+	312	4
+	+	312	0
+	+	312	5
+	+	312	38
+	+	312	4
+	+	312	33
+	+	312	3
+	+	312	0
+	+	312	8
+	+	312	3
+	+	312	18
+	+	312	0
+	+	312	30
 	+	14	17
-	+	310	27
-	+	310	21
-	+	310	7
-	+	310	20
-	+	310	12
-	+	310	7
-	+	310	24
-	+	310	0
-	+	310	34
-	+	310	14
-	+	310	4
-	+	310	26
-	+	310	53
-	+	310	0
-	+	310	0
-	+	310	31
-	+	310	34
-	+	310	24
-	+	310	3
-	+	310	52
-	+	310	31
-	+	310	0
-	+	310	0
-	+	310	0
-	+	310	0
-	+	310	0
-	+	310	0
-	+	310	41
-	+	310	55
-	+	310	4
-	+	310	4
-	+	310	22
-	+	310	3
-	+	310	35
-	+	310	48
-	+	310	28
-	+	310	48
-	+	310	28
+	+	312	27
+	+	312	21
+	+	312	7
+	+	312	20
+	+	312	12
+	+	312	7
+	+	312	24
+	+	312	0
+	+	312	34
+	+	312	14
+	+	312	4
+	+	312	26
+	+	312	53
+	+	312	0
+	+	312	31
+	+	312	34
+	+	312	24
+	+	312	3
+	+	312	52
+	+	312	31
+	+	312	0
+	+	312	41
+	+	312	55
+	+	312	4
+	+	312	22
+	+	312	3
+	+	312	35
+	+	312	48
+	+	312	28
+	+	312	48
+	+	312	28
 	+	17	38
-	+	310	85
-	+	310	7
-	+	310	0
-	+	292	3
-	+	292	0
-	+	310	8
-	+	310	0
-	+	310	0
-	+	310	48
-	+	310	7
-	+	310	19
-	+	310	0
-	+	310	27
-	+	310	0
-	+	310	8
-	+	301	38
-	+	310	44
-	+	310	0
-	+	310	0
-	+	310	12
-	+	310	3
-	+	310	18
-	+	311	0
-	+	310	63
-	+	323	0
-	+	322	4
-	+	345	8
-	+	346	4
-	+	347	0
-	+	421	0
-	+	422	0
+	+	312	85
+	+	312	7
+	+	312	0
+	+	294	3
+	+	294	0
+	+	312	8
+	+	312	0
+	+	312	48
+	+	312	7
+	+	312	19
+	+	312	0
+	+	312	27
+	+	312	0
+	+	312	8
+	+	303	38
+	+	312	44
+	+	312	0
+	+	312	12
+	+	312	3
+	+	312	18
+	+	313	0
+	+	312	63
+	+	325	0
+	+	324	4
+	+	347	8
+	+	348	4
+	+	349	0
 	+	423	0
 	+	424	0
-	+	292	0
-	+	293	0
-	+	299	68
+	+	425	0
+	+	426	0
+	+	294	0
+	+	295	0
+	+	301	68
 	+	249	0
 	+	248	40
 	+	248	0
+	+	258	11
+	+	254	12
+	+	255	12
+	+	259	65
 
-> ~/SSL_MacroMolecule_Real/main_moco_v2.py
-	"	111	8
-	.	308	0
-	+	308	0
-
-> ~/conv.py
-	"	9	4
-	^	9	49
-	.	9	48
-	+	5	27
+> ~/PICA_py3/u.py
+	"	5	4
+	^	5	13
+	.	6	0
+	+	6	27
+	+	3	0
+	+	1	13
+	+	3	59
 	+	5	0
-	+	4	15
-	+	5	27
-	+	11	32
-	+	12	31
-	+	13	45
-	+	12	29
-	+	11	30
-	+	4	15
-	+	8	0
-	+	7	33
-	+	8	3
-	+	5	11
-	+	10	5
-	+	8	90
-	+	10	0
-	+	11	0
-	+	12	0
-	+	13	0
-	+	4	31
-	+	7	26
-	+	8	14
-	+	4	27
-	+	9	3
-	+	8	4
-	+	9	46
-	+	4	31
-	+	7	0
-	+	8	0
-	+	9	0
-	+	10	0
-	+	11	0
-	+	12	0
-	+	13	0
-	+	4	16
-	+	5	0
-	+	4	16
-	+	10	0
-	+	11	0
-	+	12	0
-	+	13	0
-	+	9	0
-	+	8	0
-	+	7	0
-	+	5	0
-	+	7	22
-	+	6	12
-	+	7	25
-	+	9	48
-
-> ~/inf_10/conv.py
-	"	1	0
-	^	7	27
-	.	7	26
-	+	4	28
-	+	5	4
-	+	3	6
-	+	5	29
-	+	7	25
-	+	7	41
-	+	7	26
-	+	7	28
-	+	6	3
-	+	5	10
-	+	7	40
-	+	7	26
-	+	6	31
-	+	6	11
+	+	3	54
+	+	5	12
 	+	6	0
-	+	7	0
-	+	7	26
-	+	7	33
-	+	7	25
-	+	7	26
 
-> ~/SSL_MacroMolecule_Real/Custom_CryoET_DataLoader.py
-	"	33	81
-	^	33	82
-	.	33	81
-	+	19	1
-	+	20	5
-	+	20	28
-	+	20	60
-	+	24	8
-	+	25	8
-	+	25	41
-	+	25	94
-	+	28	8
-	+	41	2
-	+	42	2
-	+	43	1
-	+	45	8
-	+	46	15
-	+	46	8
-	+	48	8
-	+	49	8
-	+	50	8
-	+	51	11
-	+	46	15
-	+	43	6
-	+	44	7
-	+	36	49
-	+	38	0
-	+	29	7
-	+	25	86
-	+	25	40
-	+	43	9
-	+	93	0
-	+	95	0
-	+	96	0
-	+	97	0
-	+	98	0
-	+	98	43
-	+	99	0
-	+	98	0
-	+	100	0
-	+	102	0
-	+	104	0
-	+	105	0
-	+	108	0
-	+	110	0
-	+	112	0
-	+	114	0
-	+	115	4
-	+	116	4
-	+	117	4
-	+	118	4
-	+	119	4
-	+	120	4
-	+	121	3
-	+	122	4
-	+	123	4
-	+	124	4
-	+	82	0
-	+	83	0
-	+	85	0
-	+	86	0
-	+	88	0
-	+	89	0
-	+	90	0
-	+	91	0
-	+	102	112
-	+	22	8
-	+	21	8
-	+	27	7
-	+	26	7
-	+	35	0
-	+	32	7
-	+	29	7
-	+	38	1
-	+	37	7
-	+	46	0
-	+	47	7
-	+	48	11
-	+	49	11
-	+	50	15
-	+	31	0
-	+	30	7
-	+	32	7
-	+	67	0
-	+	92	2
-	+	125	2
-	+	1	0
-	+	74	0
-	+	45	0
-	+	32	44
-	+	32	47
-	+	32	39
-	+	32	47
-	+	32	40
-	+	35	0
-	+	35	0
-	+	33	91
-	+	34	40
-	+	65	8
-	+	66	8
-	+	67	8
-	+	31	8
-	+	33	81
+> ~/t.txt
+	"	1	16
+	^	1	17
+	.	1	16
+	+	1	16
 
-> ~/SSL_MacroMolecule_Real/main_moco
+> ~/PICA_py3/sessions/20210802-231758/log.txt
+	"	113	31
+
+> ~/PICA_py3/lib/core/__init__.py
+	*	1627946222	0
 	"	1	0
 
-> ~/SSL_MacroMolecule_Real/moco/loader.py
-	*	1626720958	0
-	"	13	0
+> ~/PICA_py3/lib/core/config.py
+	*	1627946217	0
+	"	121	0
 
-> ~/myzData10/4d4r/check.py
-	*	1626542011	0
-	"	1	0
+> ~/PICA_py3/lib/networks/__init__.py
+	*	1627946199	0
+	"	52	0

@@ -39,12 +39,8 @@ class CryoETDatasetLoader(Dataset):
 	#return len(self.imgLabelPairs)
 
     def __getitem__(self, idx):
-	# img = self.imgLabelPairs[idx]['v']        
-	# label = self.imgLabelPairs[idx]['id']	
-        # MRC_img = MRC_img.astype(np.float32).transpose((2,1,0)).reshape((1,28,28,28))
         path_img = os.path.join(self.root_dir, self.total_imgs[idx])
         path_json = os.path.join(self.json_dir, self.total_jsons[idx])
-
         with mrcfile.open(path_img, mode='r+', permissive=True) as mrc:
             MRC_img = mrc.data
             if(MRC_img is None):
@@ -66,7 +62,6 @@ class CryoETDatasetLoader(Dataset):
         #    self.label_to_target[MRC_dict['name']] = self.labeled
         #    self.labeled+=1
         target = self.label_to_target[MRC_dict['name']]
-
         if self.transform is not None:
             transformed_MRC_img = self.transform(MRC_img)
         else:

@@ -31,6 +31,8 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import torchvision.models as models
 
+from torch.utils.data import TensorDataset, DataLoader
+
 import moco.loader
 import moco.builder
 
@@ -182,7 +184,8 @@ def main_worker(gpu, ngpus_per_node, args):
         Encoders3D_dictionary[args.arch],
         args.moco_dim, args.moco_k, args.moco_m, args.moco_t, args.mlp)
     print(model)
-
+    net = moco.builder.Net()
+    print(net)
     if args.distributed:
         # For multiprocessing distributed, DistributedDataParallel constructor
         # should always set the single device scope, otherwise,
@@ -195,7 +198,7 @@ def main_worker(gpu, ngpus_per_node, args):
             # ourselves based on the total number of GPUs we have
             args.batch_size = int(args.batch_size / ngpus_per_node)
             args.workers = int((args.workers + ngpus_per_node - 1) / ngpus_per_node)
-            model.encoder_k.fc2.register_forward_hook(get_activation('fc2')) 
+            model.encoder_q.fc2.register_forward_hook(get_activation('fc2')) 
             model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu])
         else:
             model.cuda()
@@ -244,7 +247,7 @@ def main_worker(gpu, ngpus_per_node, args):
     # Data loading code
     traindir = os.path.join(args.data, 'subtomogram_mrc')
     traindir_json = os.path.join(args.data, 'json_label')
-    dataTest = "/home/myz/inf_10"    
+    dataTest = "/home/myz/data3_SNRinfinity"    
     testdir = os.path.join(dataTest, 'subtomogram_mrc')
     testdir_json = os.path.join(dataTest, 'json_label')
     dataTemp = "/home/myz/temps_10"    
@@ -290,14 +293,14 @@ def main_worker(gpu, ngpus_per_node, args):
         root_dir = traindir, json_dir = traindir_json,
         transform = moco.loader.TwoCropsTransform(transforms.Compose(augmentation)))
 
-    if args.distributed:
-        train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
-    else:
-        train_sampler = None
+    #if args.distributed:
+    #    train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
+    #else:
+    #    train_sampler = None
 
     train_loader = torch.utils.data.DataLoader(
-        train_dataset, batch_size=args.batch_size, shuffle=train_sampler is None,
-        num_workers=args.workers, pin_memory=True, sampler=train_sampler, drop_last=True)
+        train_dataset, batch_size=args.batch_size,
+        num_workers=args.workers, pin_memory=True,  drop_last=True)
 
 
     test_dataset = Custom_CryoET_DataLoader.CryoETDatasetLoader(
@@ -307,6 +310,7 @@ def main_worker(gpu, ngpus_per_node, args):
         test_dataset, batch_size=args.batch_size, 
         num_workers=args.workers, pin_memory=True, drop_last=True)
     
+       
     temp_dataset = Custom_CryoET_DataLoader.CryoETDatasetLoader(
         root_dir = tempdir, json_dir = tempdir_json,
         transform = moco.loader.TwoCropsTransform(transforms.Compose(augmentation)))
@@ -315,7 +319,7 @@ def main_worker(gpu, ngpus_per_node, args):
         num_workers=args.workers, pin_memory=True, drop_last=True)
 
 
-    cluster(test_loader, temp_loader, model, criterion, optimizer, 200, args)
+    cluster(train_loader, test_loader, temp_loader, model, net, criterion, optimizer, 200, args)
 
 activation = {}
 def get_activation(name):
@@ -335,7 +339,49 @@ def getTopTwoCats(d):
             n = (cluster, d[cluster])
     return m,n
 
-def cluster(train_loader, temp_loader, model, criterion, optimizer, epoch, args):
+def tsne(myData, y):
+    tsne = TSNE()
+    X_embedded = tsne.fit_transform(myData)
+    sns_plot = sns.scatterplot(X_embedded[:,0], X_embedded[:,1], hue=y, legend='full')
+    plt.savefig('output.png') 
+
+def linear(net, myData, y):
+    y = y - 1
+    dataset = TensorDataset(torch.Tensor(myData), torch.LongTensor(y))
+    loader = DataLoader(
+        dataset,
+        batch_size=2
+    )
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+    for epoch in range(20):  # loop over the dataset multiple times
+
+        running_loss = 0.0
+        for i, data in enumerate(loader):
+            # get the inputs; data is a list of [inputs, labels]
+            inputs, labels = data
+
+            # zero the parameter gradients
+            optimizer.zero_grad()
+
+            # forward + backward + optimize
+            outputs = net(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            # print statistics
+            running_loss += loss.item()
+            if i % 5 == 4:    # print every 2000 mini-batches
+                print('[%d, %5d] loss: %.3f' %
+                      (epoch + 1, i + 1, running_loss / 2000))
+                running_loss = 0.0
+
+    print('Finished Training')
+
+ 
+def cluster(train_loader,test_loader, temp_loader, model, net, criterion, optimizer, epoch, args):
+    num_classes = 2
     batch_time = AverageMeter('Time', ':6.3f')
     data_time = AverageMeter('Data', ':6.3f')
     losses = AverageMeter('Loss', ':.4e')
@@ -348,13 +394,13 @@ def cluster(train_loader, temp_loader, model, criterion, optimizer, epoch, args)
 
     # switch to train mode
     model.eval()
-    print(model) 
     #model.register_forward_hook(get_activation('fc2')) 
     
     end = time.time()
     myData = []
     y = []
-    for i, (images, label) in enumerate(train_loader):
+    print('startin')
+    for i, (images, label) in enumerate(test_loader):
         # measure data loading time
         data_time.update(time.time() - end)
 
@@ -363,34 +409,43 @@ def cluster(train_loader, temp_loader, model, criterion, optimizer, epoch, args)
             images[1] = images[1].cuda(args.gpu, non_blocking=True)
 
         # compute output
+        #print(f'images[0]: {images[0].shape}, 1: {images[1].shape}')
         output, target = model(im_q=images[0], im_k=images[1])
-        #print(output)
         ft = activation['fc2']
+        
         myData.append(ft[0])
         y.append(label[0])
         myData.append(ft[1])
         y.append(label[1])
         
-        loss = criterion(output, target)
+        #loss = criterion(output, target)
 
         # acc1/acc5 are (K+1)-way contrast classifier accuracy
         # measure accuracy and record loss
-        acc1, acc5 = accuracy(output, target, topk=(1, 9))
-        losses.update(loss.item(), images[0].size(0))
-        top1.update(acc1[0], images[0].size(0))
-        top5.update(acc5[0], images[0].size(0))
+        #acc1, acc5 = accuracy(output, target, topk=(1, 5))
+        #losses.update(loss.item(), images[0].size(0))
+        #top1.update(acc1[0], images[0].size(0))
+        #top5.update(acc5[0], images[0].size(0))
 
         # measure elapsed time
-        batch_time.update(time.time() - end)
-        end = time.time()
+        #batch_time.update(time.time() - end)
+        #end = time.time()
 
-        if i % args.print_freq == 0:
-            progress.display(i)
+        #if i % args.print_freq == 0:
+        #    progress.display(i)
 
-    # kmeans clustering
-    kmeans = KMeans(10)
     myData = torch.stack(myData).cpu().detach().numpy()
     print(myData.shape)
+    y = torch.stack(y).cpu().detach().numpy()
+
+
+    #linear(net, myData,y)
+
+    # TSNE visualization
+    tsne(myData, y)
+    
+    # kmeans clustering
+    kmeans = KMeans(num_classes)
     clusters = kmeans.fit_predict(myData)
     clusterCounts = {}
     for i in range(10):
@@ -418,14 +473,6 @@ def cluster(train_loader, temp_loader, model, criterion, optimizer, epoch, args)
         ft = activation['fc2']
         temps.append(ft[0])
         tempLabels.append(label[0])
-
-    # TSNE visualization
-    tsne = TSNE()
-    #myData = torch.stack(myData).cpu().detach().numpy()
-    y = torch.stack(y).cpu().detach().numpy()
-    X_embedded = tsne.fit_transform(myData)
-    sns_plot = sns.scatterplot(X_embedded[:,0], X_embedded[:,1], hue=y, legend='full')
-    plt.savefig('output.png') 
     clusters = {}
     temps = torch.stack(temps).cpu().detach().numpy()
     for i in range(10):
