@@ -3,6 +3,7 @@ from PIL import ImageFilter
 import random
 import torchvision.transforms as transforms
 
+
 class TwoCropsTransform:
     """Take two random crops of one image as the query and key."""
 
@@ -26,6 +27,7 @@ class GaussianBlur(object):
         x = x.filter(ImageFilter.GaussianBlur(radius=sigma))
         return x
 
+
 class CustomJitter(object):
     """Applying Custom Jitter"""
 
@@ -33,6 +35,6 @@ class CustomJitter(object):
         self.brightness = brightness
 
     def __call__(self, x):
-        random_brightness = random.uniform(1-self.brightness,1+self.brightness)
-        x = transforms.functional.adjust_brightness(x, brightness_factor = random_brightness)
+        random_brightness = random.uniform(1 - self.brightness, 1 + self.brightness)
+        x = transforms.functional.adjust_brightness(x, brightness_factor=random_brightness)
         return x

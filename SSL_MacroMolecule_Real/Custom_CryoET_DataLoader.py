@@ -10,14 +10,28 @@ import mrcfile
 import json
 import random
 
+import data_config
+
+
 # random.seed(1)
 # torch.manual_seed(1)
 
+def mapping_types(num_classes):
+    if num_classes == 10:
+        labels = data_config.class_10
+    elif num_classes == 50:
+        labels = data_config.class_50
+    elif num_classes == 100:
+        labels = data_config.class_100
+    else:
+        raise ValueError("num_classes only support (10, 50, 100)")
+
+    label_to_target = {label: idx for idx, label in enumerate(labels)}
+    return label_to_target
+
+
 class CryoETDatasetLoader(Dataset):
     def __init__(self, root_dir, json_dir, transform=None):
-	#pickle_name,
-	#final = pickley(currPath)	
-    	#data = final['data']
         self.root_dir = root_dir
         self.json_dir = json_dir
         self.transform = transform
@@ -26,53 +40,44 @@ class CryoETDatasetLoader(Dataset):
         self.total_imgs = natsort.natsorted(all_imgs)
         self.total_jsons = natsort.natsorted(all_jsons)
         print(f'{len(self.total_imgs)}, vs {len(self.total_jsons)}')
-        assert( len(self.total_imgs) == len(self.total_jsons) )
-        # self.imgLabelPairs = data
-        #self.labeled = 0
-        self.label_to_target = {}
-        for i, mol in enumerate("2h12,6t3e,3gl1,1yg6,1bxn,1f1b,2byu,4d4r,2ldb,3hhb".split(",")):
-            self.label_to_target[mol] = i
-        # self.label_to_target = {"31": 0, "33": 1, "35": 2, "43": 3, "69": 4, "72": 5, "73": 6}
+        assert (len(self.total_imgs) == len(self.total_jsons))
+        num_classes = 10
+        # {"1bxn": 0, "1f1b": 1, "1yg6": 2, "2byu": 3, "2h12": 4, "2ldb": 5, "3gl1": 6, ...}
+        self.label_to_target = mapping_types(num_classes)
 
     def __len__(self):
-        return len(self.total_jsons)        
-	#return len(self.imgLabelPairs)
+        return len(self.total_jsons)
 
     def __getitem__(self, idx):
+        # mrc_img = mrc_img.astype(np.float32).transpose((2,1,0)).reshape((1,28,28,28))
         path_img = os.path.join(self.root_dir, self.total_imgs[idx])
         path_json = os.path.join(self.json_dir, self.total_jsons[idx])
+
         with mrcfile.open(path_img, mode='r+', permissive=True) as mrc:
-            MRC_img = mrc.data
-            if(MRC_img is None):
+            mrc_img = mrc.data
+            if mrc_img is None:
                 print(path_img)
             try:
-                MRC_img = MRC_img.astype(np.float32).transpose((2,1,0)).reshape((1,32,32,32)) 
+                mrc_img = mrc_img.astype(np.float32).transpose((2, 1, 0)).reshape((1, 32, 32, 32))
             except:
-                print(MRC_img.shape)
+                print(mrc_img.shape)
                 print(path_img)
 
-        # mean = 0.06968536 
+        # mean = 0.06968536
         # std = 0.12198435
-        # MRC_img = (MRC_img - mean) / std
-       
+        # mrc_img = (mrc_img - mean) / std
+
         with open(path_json) as f:
-            MRC_dict = json.load(f)
-        
-        #if(self.label_to_target.get(MRC_dict['name']) == None):
-        #    self.label_to_target[MRC_dict['name']] = self.labeled
-        #    self.labeled+=1
-        target = self.label_to_target[MRC_dict['name']]
+            mrc_json = json.load(f)
+
+        target = self.label_to_target[mrc_json['name']]
+
         if self.transform is not None:
-            transformed_MRC_img = self.transform(MRC_img)
+            transformed_mrc_img = self.transform(mrc_img)
         else:
-            transformed_MRC_img = MRC_img
+            transformed_mrc_img = mrc_img
 
-        return transformed_MRC_img, target
-
-
-
-#Checking -> Wokring fine
-
+        return transformed_mrc_img, target
 
 
 class TwoCropsTransform:
@@ -85,6 +90,8 @@ class TwoCropsTransform:
         q = self.base_transform(x)
         k = self.base_transform(x)
         return [q, k]
+
+
 '''
 import torchio as tio
 
