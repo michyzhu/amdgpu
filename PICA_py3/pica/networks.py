@@ -8,6 +8,7 @@ import torch
 from lib import Config as cfg
 from lib.networks import DefaultModel, Flatten, register
 from lib.utils.loggers import STDLogger as logger
+import time
 
 __all__ = ['ResNet34', 'YOPO']
 
@@ -116,11 +117,15 @@ class ResNet34(DefaultModel):
                     nn.BatchNorm3d(64, track_running_stats=True),
                     nn.CELU(alpha=0.075, inplace=True),
                     nn.MaxPool3d(kernel_size=2, stride=2, padding=1))
-
         self.layer2 = self._make_layer(BasicBlock, 64, 3, num_group)
         self.layer3 = self._make_layer(BasicBlock, 128, 4, num_group, stride=2)
         self.layer4 = self._make_layer(BasicBlock, 256, 6, num_group, stride=2)
         self.layer5 = self._make_layer(BasicBlock, 512, 3, num_group, stride=2)
+        
+        #self.layer2 = self._make_layer(BasicBlock, 64, 1, num_group)
+        #self.layer3 = self._make_layer(BasicBlock, 128, 2, num_group, stride=2)
+        #self.layer4 = self._make_layer(BasicBlock, 256, 3, num_group, stride=2)
+        #self.layer5 = self._make_layer(BasicBlock, 512, 1, num_group, stride=2)
         self.avgpool = nn.Sequential(nn.AvgPool3d(pool_size, stride=1), Flatten())
         heads = [nn.Sequential(nn.Linear(512 * BasicBlock.expansion, head),
                                nn.Softmax(dim=1)) for head in net_heads]
@@ -159,6 +164,7 @@ class ResNet34(DefaultModel):
         return x
 
     def forward(self, x):
+        prev = time.time()
         if self.sobel is not None:
             x = self.sobel(x)
         x = self.layer1(x)
@@ -167,7 +173,8 @@ class ResNet34(DefaultModel):
         x = self.layer4(x)
         x = self.layer5(x)
         x = self.avgpool(x)
-        return list(map(lambda head:head(x), self.heads))
+        res= list(map(lambda head:head(x), self.heads))
+        return res
 
 class ResNext50(DefaultModel):
 

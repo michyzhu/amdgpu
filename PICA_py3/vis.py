@@ -12,6 +12,13 @@ import numpy as np
 from scipy.optimize import linear_sum_assignment
 from sklearn.metrics import normalized_mutual_info_score as NMI
 from sklearn.metrics import adjusted_rand_score as ARI
+from sklearn.manifold import TSNE
+
+import seaborn as sns
+from matplotlib import pyplot as plt
+sns.set(rc={'figure.figsize':(11.7,8.27)})
+sns.set_palette(["#9b59b6","#3498db"])
+palette = sns.color_palette()#("bright", 5)
 
 import torch
 import torch.nn as nn
@@ -46,6 +53,19 @@ def require_args():
     cfg.add_argument('--pica-lamda', default=2.0, type=float,
                         help='weight of negative entropy regularisation')
 
+activation = {}
+def get_activation(name):
+    def hook(model, inp, out):
+        activation[name] = out#out.detach()
+        #print(out[0].shape) # check the size of our feature, which should just be 1024
+    return hook
+
+def tsne(myData, y):
+    tsne = TSNE()
+    X_embedded = tsne.fit_transform(myData)
+    sns_plot = sns.scatterplot(X_embedded[:,0], X_embedded[:,1], hue=y, legend='full')
+    plt.savefig('output.png')
+
 def main():
 
     logger.info('Start to declare training variable')
@@ -71,11 +91,18 @@ def main():
     testset = NewDataSet_test()
     logger.info(len(testset))
     # declare data loaders for testset only
-    test_loader = DataLoader(testset, batch_size=cfg.batch_size, shuffle=False, 
+    test_loader = DataLoader(testset, batch_size=1, shuffle=False, 
                                 num_workers=cfg.num_workers)
     logger.info('Start to build model')
     net = networks.get()
     torchsummary.summary(net.cuda(), input_size=(1, 32, 32, 32))
+    print(net)
+    
+
+    # register hook
+    net.heads[0][0].register_forward_hook(get_activation('fc'))
+
+
     criterion = PUILoss(cfg.pica_lamda)
     optimizer = optimizers.get(params=[val for _, val in net.trainable_parameters().items()])
     lr_handler = lr_policy.get()
@@ -109,111 +136,14 @@ def main():
     # start training
     lr = cfg.base_lr
     epoch = start_epoch
-    while lr > 0 and epoch < cfg.max_epochs:
 
-        lr = lr_handler.update(epoch, optimizer)
-        writer.add_scalar('Train/Learing_Rate', lr, epoch)
-
-        logger.info('Start to train at %d epoch with learning rate %.6f' % (epoch, lr))
-        train(epoch, net, otrainset, ptrainset, optimizer, criterion, writer)
-
-        logger.info('Start to evaluate after %d epoch of training' % epoch)
-        acc, nmi, ari = evaluate(net, test_loader)
-        logger.info('Evaluation results at epoch %d are: '
-            'ACC: %.3f, NMI: %.3f, ARI: %.3f' % (epoch, acc, nmi, ari))
-        writer.add_scalar('Evaluate/ACC', acc, epoch)
-        writer.add_scalar('Evaluate/NMI', nmi, epoch)
-        writer.add_scalar('Evaluate/ARI', ari, epoch)
-
-        epoch += 1
-
-        if cfg.debug:
-            continue
-
-        # save checkpoint
-        is_best = acc > best_acc
-        best_acc = max(best_acc, acc)
-        save_checkpoint({'net' : net.state_dict(), 
-                'optimizer' : optimizer.state_dict(),
-                'acc' : acc,
-                'epoch' : epoch}, is_best=is_best)
-
-    logger.info('Done')
-
-def train(epoch, net, otrainset, ptrainset, optimizer, criterion, writer):
-    """alternate the training of different heads
-    """
-    logger.info('cfg.net_heads')
-    logger.info(cfg.net_heads)
-    for hidx, head in enumerate(cfg.net_heads):
-        logger.info('hidx, head')
-        logger.info(hidx)
-        logger.info(head)
-    for hidx, head in enumerate(cfg.net_heads):
-        train_head(epoch, net, hidx, head, otrainset[min(len(otrainset) - 1, hidx)], 
-            ptrainset[min(len(ptrainset) - 1, hidx)], optimizer, criterion, writer)
-
-def train_head(epoch, net, hidx, head, otrainset, ptrainset, optimizer, criterion, writer):
-    """trains one head for an epoch
-    """
-    logger.info('train_head-------------')
-    logger.info(len(otrainset))
-    logger.info(len(ptrainset))
-    # declare dataloader
-    random_sampler = RandomSampler(otrainset)
-    batch_sampler = RepeatSampler(random_sampler, cfg.batch_size, nrepeat=cfg.data_nrepeat)
-    ploader = DataLoader(ptrainset, batch_sampler=batch_sampler, 
-                        num_workers=cfg.num_workers, pin_memory=True)
-    oloader = DataLoader(otrainset, sampler=random_sampler, 
-                        batch_size=cfg.batch_size, num_workers=cfg.num_workers, 
-                        pin_memory=True)
-    
-    # set network mode
-    net.train()
-
-    # tracking variable
-    end = time.time()
-    train_loss = AverageMeter('Loss', ':.4f')
-    data_time = AverageMeter('Data', ':.3f')
-    batch_time = AverageMeter('Time', ':.3f')
-    progress = TimeProgressMeter(batch_time, data_time, train_loss, 
-            Batch=len(oloader), Head=len(cfg.net_heads), Epoch=cfg.max_epochs)
-
-    for batch_idx, (obatch, pbatch) in enumerate(zip(oloader, ploader)):
-        # record data loading time
-        data_time.update(time.time() - end)
-
-        # move data to target device
-        (oinputs, ol), (pinputs, pl) = (obatch, pbatch)
-        oinputs, pinputs = (oinputs.to(cfg.device, non_blocking=True), 
-                            pinputs.to(cfg.device, non_blocking=True))
-        #oinputs = Variable(oinputs, requires_grad=True)
-        #pinputs = Variable(pinputs, requires_grad=True)
-
-        # forward
-        ologits, plogits = net(oinputs)[hidx], net(pinputs)[hidx]
-        #ologits = Variable(ologits, requires_grad=True)
-        #plogits = Variable(plogits, requires_grad=True)
-
-        loss = criterion(ologits.repeat(cfg.data_nrepeat, 1), plogits)
-        # print(ologits.repeat(cfg.data_nrepeat, 1))
-        # print(loss)
-
-        # backward
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-
-        train_loss.update(loss.item(), oinputs.size(0))
-        batch_time.update(time.time() - end)
-        end = time.time()
-
-        writer.add_scalar('Train/Loss/Head-%d' % head, train_loss.val, epoch * len(oloader) + batch_idx)
-
-        if batch_idx % cfg.display_freq != 0:
-            continue
-
-        logger.info(progress.show(Batch=batch_idx, Epoch=epoch, Head=hidx))
+    logger.info('Start to evaluate after %d epoch of training' % epoch)
+    acc, nmi, ari = evaluate(net, test_loader)
+    logger.info('Evaluation results at epoch %d are: '
+        'ACC: %.3f, NMI: %.3f, ARI: %.3f' % (epoch, acc, nmi, ari))
+    writer.add_scalar('Evaluate/ACC', acc, epoch)
+    writer.add_scalar('Evaluate/NMI', nmi, epoch)
+    writer.add_scalar('Evaluate/ARI', ari, epoch)
 
 def evaluate(net, loader):
     """evaluates on provided data
@@ -225,26 +155,30 @@ def evaluate(net, loader):
     logger.info('len(loader.dataset)')
     logger.info(len(loader.dataset))
     labels = np.zeros(len(loader.dataset), dtype=np.int32)
+  
+    myData = []
     with torch.no_grad():
         for batch_idx, (inputs, targets) in enumerate(loader):
-
             logger.progress('processing %d/%d batch' % (batch_idx, len(loader)))
             inputs = inputs.to(cfg.device, non_blocking=True)
             # assuming the last head is the main one
             # output dimension of the last head 
             # should be consistent with the ground-truth
+            
             logits = net(inputs)[-1]
-            print(logits.shape)
+            ft = activation['fc']
+            myData.append(ft.cpu().detach())
             start = batch_idx * loader.batch_size
             end = start + loader.batch_size
             end = min(end, len(loader.dataset))
             labels[start:end] = targets.cpu().numpy()
             predicts[start:end] = logits.max(1)[1].cpu().numpy()
+    myData = torch.cat(myData).numpy()
+    tsne(myData, labels) 
 
-
-    print(f'predicts: {predicts}, labels: {labels}')
+    #print(f'predicts: {predicts}, labels: {labels}')
     # compute accuracy
-    num_classes = labels.max().item() + 1
+    num_classes = 6 #labels.max().item() + 1
     logger.info('num_classes')
     logger.info(num_classes)
     count_matrix = np.zeros((num_classes, num_classes), dtype=np.int32)

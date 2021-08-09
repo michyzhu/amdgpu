@@ -1,0 +1,424 @@
+[2K/home/myz/PICA_py3/lib/core/config.py:98: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  configs = yaml.load(open(file, 'r'))
+[32m[DEBUG][2021-08-06 01:23:13]	Current session name is [20210806-012313][0m
+[2K[32m[DEBUG][2021-08-06 01:23:13]	Session will be ran with following arguments:
++----+----------------------+-------------------------+----------------+
+| #  | Key                  | Value                   | Default        |
++----+----------------------+-------------------------+----------------+
+| 0  | base_lr              | 1e-05                   | 1e-5           |
+| 1  | batch_size           | 64                      | --             |
+| 2  | brief                | False                   | --             |
+| 3  | cfgs                 | ['configs/base.yaml'... | None           |
+| 4  | data_nrepeat         | 3                       | --             |
+| 5  | data_root            | None                    | --             |
+| 6  | dataset              | None                    | --             |
+| 7  | debug                | False                   | --             |
+| 8  | display_freq         | 50                      | --             |
+| 9  | gpus                 | 0,1                     |                |
+| 10 | log_file             | True                    | --             |
+| 11 | log_tfb              | True                    | --             |
+| 12 | lr_policy            | fixed                   | --             |
+| 13 | max_epochs           | 350                     | --             |
+| 14 | net_avgpool_size     | 3                       | --             |
+| 15 | net_cin              | 1                       | --             |
+| 16 | net_cout             | 1000                    | --             |
+| 17 | net_freeze           | []                      | --             |
+| 18 | net_heads            | [9, 6]                  | --             |
+| 19 | net_sobel            | True                    | --             |
+| 20 | network              | resnet34                | --             |
+| 21 | num_workers          | 2                       | --             |
+| 22 | optim_amsgrad        | False                   | --             |
+| 23 | optim_beta           | (0.9, 0.999)            | --             |
+| 24 | optim_eps            | 1e-08                   | --             |
+| 25 | optim_weight_decay   | 0.0                     | --             |
+| 26 | optimizer            | adam                    | --             |
+| 27 | pica_lamda           | 2.0                     | --             |
+| 28 | restart              | False                   | --             |
+| 29 | resume               | None                    | --             |
+| 30 | seed                 | None                    | --             |
+| 31 | session              | 20210806-012313         | --             |
+| 32 | session_root         | sessions                | --             |
+| 33 | tfm_colorjitter      | None                    | --             |
+| 34 | tfm_means            | None                    | --             |
+| 35 | tfm_random_grayscale | 0                       | --             |
+| 36 | tfm_random_hflip     | 0                       | --             |
+| 37 | tfm_ratio            | (0.75, 1.33333333333... | (3./4., 4./3.) |
+| 38 | tfm_resize           | 40                      | --             |
+| 39 | tfm_scale            | None                    | --             |
+| 40 | tfm_size             | (32, 32)                | --             |
+| 41 | tfm_stds             | None                    | --             |
+| 42 | transform            | default                 | --             |
++----+----------------------+-------------------------+----------------+[0m
+[2K[32m[DEBUG][2021-08-06 01:23:13]	Random seed will not be fixed[0m
+[2K[32m[DEBUG][2021-08-06 01:23:13]	Visible gpu devices are: [0,1][0m
+[2K[32m[DEBUG][2021-08-06 01:23:13]	Checkpoint files will be stored in sessions/20210806-012313/checkpoint[0m
+[2K[32m[DEBUG][2021-08-06 01:23:13]	Log files will be stored in sessions/20210806-012313/log.txt[0m
+[32m[DEBUG][2021-08-06 01:23:13]	Log will be stored in sessions/20210806-012313/log.txt[0m
+[2K[32m[DEBUG][2021-08-06 01:23:13]	TFboard files will be stored in sessions/20210806-012313/tfboard if applicable[0m
+[2K[32m[DEBUG][2021-08-06 01:23:13]	Provided arguments will be stored in sessions/20210806-012313/config.yaml[0m
+[2K[INFO][2021-08-06 01:23:13]	Start to declare training variable
+[2K[INFO][2021-08-06 01:23:13]	Session will be ran in device: [cuda]
+[2K[INFO][2021-08-06 01:23:13]	Start to prepare data
+[2K[INFO][2021-08-06 01:23:13]	otrainset-------------
+5000, vs 5000
+[2K[INFO][2021-08-06 01:23:14]	5000
+[2K[INFO][2021-08-06 01:23:14]	ptrainset-------------
+5000, vs 5000
+[2K[INFO][2021-08-06 01:23:14]	5000
+[2K[INFO][2021-08-06 01:23:14]	testset-------------
+5000, vs 5000
+[2K[INFO][2021-08-06 01:23:14]	5000
+[2K[INFO][2021-08-06 01:23:14]	Start to build model
+[2K[32m[DEBUG][2021-08-06 01:23:14]	Backbone [resnet34] is declared with cin [1] and cout [1000] [with] sobel[0m
+[2K[32m[DEBUG][2021-08-06 01:23:14]	Backbone will be created wit the following heads: [9, 6][0m
+[2K[32m[DEBUG][2021-08-06 01:23:14]	Number of trainable parameters is [112][0m
+[2K[32m[DEBUG][2021-08-06 01:23:14]	Number of frozen parameters is [2][0m
+[2K[32m[DEBUG][2021-08-06 01:23:14]	Name of frozen parameters are: dict_keys(['sobel.0.weight', 'sobel.0.bias'])[0m
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+├─Sequential: 1-1                        --
+|    └─Conv3d: 2-1                       (56)
+├─Sequential: 1-2                        --
+|    └─Conv3d: 2-2                       3,456
+|    └─BatchNorm3d: 2-3                  128
+|    └─CELU: 2-4                         --
+|    └─MaxPool3d: 2-5                    --
+├─Sequential: 1-3                        --
+|    └─BasicBlock: 2-6                   --
+|    |    └─Conv3d: 3-1                  110,592
+|    |    └─BatchNorm3d: 3-2             128
+|    |    └─CELU: 3-3                    --
+|    |    └─Conv3d: 3-4                  3,456
+|    |    └─BatchNorm3d: 3-5             128
+|    └─BasicBlock: 2-7                   --
+|    |    └─Conv3d: 3-6                  110,592
+|    |    └─BatchNorm3d: 3-7             128
+|    |    └─CELU: 3-8                    --
+|    |    └─Conv3d: 3-9                  3,456
+|    |    └─BatchNorm3d: 3-10            128
+|    └─BasicBlock: 2-8                   --
+|    |    └─Conv3d: 3-11                 110,592
+|    |    └─BatchNorm3d: 3-12            128
+|    |    └─CELU: 3-13                   --
+|    |    └─Conv3d: 3-14                 3,456
+|    |    └─BatchNorm3d: 3-15            128
+├─Sequential: 1-4                        --
+|    └─BasicBlock: 2-9                   --
+|    |    └─Conv3d: 3-16                 221,184
+|    |    └─BatchNorm3d: 3-17            256
+|    |    └─CELU: 3-18                   --
+|    |    └─Conv3d: 3-19                 13,824
+|    |    └─BatchNorm3d: 3-20            256
+|    |    └─Sequential: 3-21             8,448
+|    └─BasicBlock: 2-10                  --
+|    |    └─Conv3d: 3-22                 442,368
+|    |    └─BatchNorm3d: 3-23            256
+|    |    └─CELU: 3-24                   --
+|    |    └─Conv3d: 3-25                 13,824
+|    |    └─BatchNorm3d: 3-26            256
+|    └─BasicBlock: 2-11                  --
+|    |    └─Conv3d: 3-27                 442,368
+|    |    └─BatchNorm3d: 3-28            256
+|    |    └─CELU: 3-29                   --
+|    |    └─Conv3d: 3-30                 13,824
+|    |    └─BatchNorm3d: 3-31            256
+|    └─BasicBlock: 2-12                  --
+|    |    └─Conv3d: 3-32                 442,368
+|    |    └─BatchNorm3d: 3-33            256
+|    |    └─CELU: 3-34                   --
+|    |    └─Conv3d: 3-35                 13,824
+|    |    └─BatchNorm3d: 3-36            256
+├─Sequential: 1-5                        --
+|    └─BasicBlock: 2-13                  --
+|    |    └─Conv3d: 3-37                 884,736
+|    |    └─BatchNorm3d: 3-38            512
+|    |    └─CELU: 3-39                   --
+|    |    └─Conv3d: 3-40                 55,296
+|    |    └─BatchNorm3d: 3-41            512
+|    |    └─Sequential: 3-42             33,280
+|    └─BasicBlock: 2-14                  --
+|    |    └─Conv3d: 3-43                 1,769,472
+|    |    └─BatchNorm3d: 3-44            512
+|    |    └─CELU: 3-45                   --
+|    |    └─Conv3d: 3-46                 55,296
+|    |    └─BatchNorm3d: 3-47            512
+|    └─BasicBlock: 2-15                  --
+|    |    └─Conv3d: 3-48                 1,769,472
+|    |    └─BatchNorm3d: 3-49            512
+|    |    └─CELU: 3-50                   --
+|    |    └─Conv3d: 3-51                 55,296
+|    |    └─BatchNorm3d: 3-52            512
+|    └─BasicBlock: 2-16                  --
+|    |    └─Conv3d: 3-53                 1,769,472
+|    |    └─BatchNorm3d: 3-54            512
+|    |    └─CELU: 3-55                   --
+|    |    └─Conv3d: 3-56                 55,296
+|    |    └─BatchNorm3d: 3-57            512
+|    └─BasicBlock: 2-17                  --
+|    |    └─Conv3d: 3-58                 1,769,472
+|    |    └─BatchNorm3d: 3-59            512
+|    |    └─CELU: 3-60                   --
+|    |    └─Conv3d: 3-61                 55,296
+|    |    └─BatchNorm3d: 3-62            512
+|    └─BasicBlock: 2-18                  --
+|    |    └─Conv3d: 3-63                 1,769,472
+|    |    └─BatchNorm3d: 3-64            512
+|    |    └─CELU: 3-65                   --
+|    |    └─Conv3d: 3-66                 55,296
+|    |    └─BatchNorm3d: 3-67            512
+├─Sequential: 1-6                        --
+|    └─BasicBlock: 2-19                  --
+|    |    └─Conv3d: 3-68                 3,538,944
+|    |    └─BatchNorm3d: 3-69            1,024
+|    |    └─CELU: 3-70                   --
+|    |    └─Conv3d: 3-71                 221,184
+|    |    └─BatchNorm3d: 3-72            1,024
+|    |    └─Sequential: 3-73             132,096
+|    └─BasicBlock: 2-20                  --
+|    |    └─Conv3d: 3-74                 7,077,888
+|    |    └─BatchNorm3d: 3-75            1,024
+|    |    └─CELU: 3-76                   --
+|    |    └─Conv3d: 3-77                 221,184
+|    |    └─BatchNorm3d: 3-78            1,024
+|    └─BasicBlock: 2-21                  --
+|    |    └─Conv3d: 3-79                 7,077,888
+|    |    └─BatchNorm3d: 3-80            1,024
+|    |    └─CELU: 3-81                   --
+|    |    └─Conv3d: 3-82                 221,184
+|    |    └─BatchNorm3d: 3-83            1,024
+├─Sequential: 1-7                        --
+|    └─AvgPool3d: 2-22                   --
+|    └─Flatten: 2-23                     --
+├─ModuleList: 1-8                        --
+|    └─Sequential: 2-24                  --
+|    |    └─Linear: 3-84                 4,617
+|    |    └─Softmax: 3-85                --
+|    └─Sequential: 2-25                  --
+|    |    └─Linear: 3-86                 3,078
+|    |    └─Softmax: 3-87                --
+=================================================================
+Total params: 30,568,135
+Trainable params: 30,568,079
+Non-trainable params: 56
+=================================================================
+[2K[32m[DEBUG][2021-08-06 01:23:14]	Going to use [Adam] optimizer for training with betas (0.9, 0.999), eps 0.000000, weight decay 0.000000 without amsgrad[0m
+[2K[32m[DEBUG][2021-08-06 01:23:14]	Going to use [fixed] learning policy for optimization with base learning rate [0.00001][0m
+[2K[INFO][2021-08-06 01:23:14]	Data parallel will be used for acceleration purpose
+[2K[INFO][2021-08-06 01:23:14]	Start to train at 0 epoch with learning rate 0.000010
+[2K[INFO][2021-08-06 01:23:14]	cfg.net_heads
+[2K[INFO][2021-08-06 01:23:14]	[9, 6]
+[2K[INFO][2021-08-06 01:23:14]	hidx, head
+[2K[INFO][2021-08-06 01:23:14]	0
+[2K[INFO][2021-08-06 01:23:14]	9
+[2K[INFO][2021-08-06 01:23:14]	hidx, head
+[2K[INFO][2021-08-06 01:23:14]	1
+[2K[INFO][2021-08-06 01:23:14]	6
+[2K[INFO][2021-08-06 01:23:14]	train_head-------------
+[2K[INFO][2021-08-06 01:23:14]	5000
+[2K[INFO][2021-08-06 01:23:14]	5000
+libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
+[2K[INFO][2021-08-06 01:23:28]	Batch: [ 0/79] Head: [0/2] Epoch: [  0/350] Progress: [0:00:14/0:18:37] Time: 14.141 (14.141) Data: 2.867 (2.867) Loss: 2.5489 (2.5489)
+[2K[INFO][2021-08-06 01:25:31]	Batch: [50/79] Head: [0/2] Epoch: [  0/350] Progress: [0:02:17/0:03:32] Time: 2.399 (2.687) Data: 0.001 (0.057) Loss: 2.1382 (2.1559)
+[2K[INFO][2021-08-06 01:26:36]	train_head-------------
+[2K[INFO][2021-08-06 01:26:36]	5000
+[2K[INFO][2021-08-06 01:26:36]	5000
+[2K[INFO][2021-08-06 01:26:42]	Batch: [ 0/79] Head: [1/2] Epoch: [  0/350] Progress: [0:00:05/0:07:02] Time: 5.353 (5.353) Data: 3.050 (3.050) Loss: 2.0128 (2.0128)
+[2K[INFO][2021-08-06 01:28:37]	Batch: [50/79] Head: [1/2] Epoch: [  0/350] Progress: [0:02:00/0:03:07] Time: 2.296 (2.370) Data: 0.001 (0.061) Loss: 1.5258 (1.5896)
+[2K[INFO][2021-08-06 01:29:41]	Start to evaluate after 0 epoch of training
+[2K[INFO][2021-08-06 01:29:41]	len(loader.dataset)
+[2K[INFO][2021-08-06 01:29:41]	5000
+[2Kprocessing 0/79 batch
+[1A[2Kprocessing 10/79 batch
+[1A[2Kprocessing 20/79 batch
+[1A[2Kprocessing 30/79 batch
+[1A[2Kprocessing 40/79 batch
+[1A[2Kprocessing 50/79 batch
+[1A[2Kprocessing 60/79 batch
+[1A[2Kprocessing 70/79 batch
+[1A[2K[INFO][2021-08-06 01:29:51]	num_classes
+[2K[INFO][2021-08-06 01:29:51]	6
+[2K[INFO][2021-08-06 01:29:51]	[[ 283  370    0    0    0    0]
+ [ 143  200    0    0    0    0]
+ [  80  170    0    0    0    0]
+ [ 291  275    0    0    0    0]
+ [ 362  355    0    0    0    0]
+ [1341 1130    0    0    0    0]]
+[2K/opt/conda/lib/python3.6/site-packages/sklearn/metrics/cluster/supervised.py:844: FutureWarning: The behavior of NMI will change in version 0.22. To match the behavior of 'v_measure_score', NMI will use average_method='arithmetic' by default.
+  FutureWarning)
+[INFO][2021-08-06 01:29:51]	Evaluation results at epoch 0 are: ACC: 0.342, NMI: 0.007, ARI: 0.005
+[2K[INFO][2021-08-06 01:29:52]	Start to train at 1 epoch with learning rate 0.000010
+[2K[INFO][2021-08-06 01:29:52]	cfg.net_heads
+[2K[INFO][2021-08-06 01:29:52]	[9, 6]
+[2K[INFO][2021-08-06 01:29:52]	hidx, head
+[2K[INFO][2021-08-06 01:29:52]	0
+[2K[INFO][2021-08-06 01:29:52]	9
+[2K[INFO][2021-08-06 01:29:52]	hidx, head
+[2K[INFO][2021-08-06 01:29:52]	1
+[2K[INFO][2021-08-06 01:29:52]	6
+[2K[INFO][2021-08-06 01:29:52]	train_head-------------
+[2K[INFO][2021-08-06 01:29:52]	5000
+[2K[INFO][2021-08-06 01:29:52]	5000
+[2K[INFO][2021-08-06 01:29:57]	Batch: [ 0/79] Head: [0/2] Epoch: [  1/350] Progress: [0:00:05/0:07:03] Time: 5.361 (5.361) Data: 3.051 (3.051) Loss: 1.9655 (1.9655)
+[2K[INFO][2021-08-06 01:31:53]	Batch: [50/79] Head: [0/2] Epoch: [  1/350] Progress: [0:02:01/0:03:08] Time: 2.293 (2.383) Data: 0.001 (0.061) Loss: 1.9813 (1.8991)
+[2K[INFO][2021-08-06 01:32:58]	train_head-------------
+[2K[INFO][2021-08-06 01:32:58]	5000
+[2K[INFO][2021-08-06 01:32:58]	5000
+[2K[INFO][2021-08-06 01:33:03]	Batch: [ 0/79] Head: [1/2] Epoch: [  1/350] Progress: [0:00:05/0:07:03] Time: 5.365 (5.365) Data: 3.059 (3.059) Loss: 1.4922 (1.4922)
+[2K[INFO][2021-08-06 01:35:00]	Batch: [50/79] Head: [1/2] Epoch: [  1/350] Progress: [0:02:02/0:03:09] Time: 2.404 (2.402) Data: 0.001 (0.061) Loss: 1.4245 (1.4557)
+[2K[INFO][2021-08-06 01:36:05]	Start to evaluate after 1 epoch of training
+[2K[INFO][2021-08-06 01:36:05]	len(loader.dataset)
+[2K[INFO][2021-08-06 01:36:05]	5000
+[2Kprocessing 0/79 batch
+[1A[2Kprocessing 10/79 batch
+[1A[2Kprocessing 20/79 batch
+[1A[2Kprocessing 30/79 batch
+[1A[2Kprocessing 40/79 batch
+[1A[2Kprocessing 50/79 batch
+[1A[2Kprocessing 60/79 batch
+[1A[2Kprocessing 70/79 batch
+[1A[2K[INFO][2021-08-06 01:36:15]	num_classes
+[2K[INFO][2021-08-06 01:36:15]	6
+[2K[INFO][2021-08-06 01:36:15]	[[414 413   0   0   0   0]
+ [220 294   0   0   0   0]
+ [273 451   0   0   0   0]
+ [576 509   0   0   0   0]
+ [449 411   0   0   0   0]
+ [568 422   0   0   0   0]]
+[2K[INFO][2021-08-06 01:36:15]	Evaluation results at epoch 1 are: ACC: 0.215, NMI: 0.007, ARI: 0.005
+[2K[INFO][2021-08-06 01:36:16]	Start to train at 2 epoch with learning rate 0.000010
+[2K[INFO][2021-08-06 01:36:16]	cfg.net_heads
+[2K[INFO][2021-08-06 01:36:16]	[9, 6]
+[2K[INFO][2021-08-06 01:36:16]	hidx, head
+[2K[INFO][2021-08-06 01:36:16]	0
+[2K[INFO][2021-08-06 01:36:16]	9
+[2K[INFO][2021-08-06 01:36:16]	hidx, head
+[2K[INFO][2021-08-06 01:36:16]	1
+[2K[INFO][2021-08-06 01:36:16]	6
+[2K[INFO][2021-08-06 01:36:16]	train_head-------------
+[2K[INFO][2021-08-06 01:36:16]	5000
+[2K[INFO][2021-08-06 01:36:16]	5000
+[2K[INFO][2021-08-06 01:36:22]	Batch: [ 0/79] Head: [0/2] Epoch: [  2/350] Progress: [0:00:05/0:07:20] Time: 5.582 (5.582) Data: 3.163 (3.163) Loss: 1.8390 (1.8390)
+[2K[INFO][2021-08-06 01:38:19]	Batch: [50/79] Head: [0/2] Epoch: [  2/350] Progress: [0:02:03/0:03:10] Time: 2.404 (2.416) Data: 0.001 (0.063) Loss: 1.8171 (1.8499)
+[2K[INFO][2021-08-06 01:39:22]	train_head-------------
+[2K[INFO][2021-08-06 01:39:22]	5000
+[2K[INFO][2021-08-06 01:39:22]	5000
+[2K[INFO][2021-08-06 01:39:28]	Batch: [ 0/79] Head: [1/2] Epoch: [  2/350] Progress: [0:00:05/0:07:04] Time: 5.379 (5.379) Data: 2.959 (2.959) Loss: 1.4328 (1.4328)
+[2K[INFO][2021-08-06 01:41:26]	Batch: [50/79] Head: [1/2] Epoch: [  2/350] Progress: [0:02:03/0:03:11] Time: 2.402 (2.425) Data: 0.001 (0.059) Loss: 1.4569 (1.4240)
+[2K[INFO][2021-08-06 01:42:30]	Start to evaluate after 2 epoch of training
+[2K[INFO][2021-08-06 01:42:30]	len(loader.dataset)
+[2K[INFO][2021-08-06 01:42:30]	5000
+[2Kprocessing 0/79 batch
+[1A[2Kprocessing 10/79 batch
+[1A[2Kprocessing 20/79 batch
+[1A[2Kprocessing 30/79 batch
+[1A[2Kprocessing 40/79 batch
+[1A[2Kprocessing 50/79 batch
+[1A[2Kprocessing 60/79 batch
+[1A[2Kprocessing 70/79 batch
+[1A[2K[INFO][2021-08-06 01:42:40]	num_classes
+[2K[INFO][2021-08-06 01:42:40]	6
+[2K[INFO][2021-08-06 01:42:40]	[[292 308   0   0   0   0]
+ [223 320   0   0   0   0]
+ [186 341   0   0   0   0]
+ [534 485   0   0   0   0]
+ [427 409   0   0   0   0]
+ [838 637   0   0   0   0]]
+[2K[INFO][2021-08-06 01:42:40]	Evaluation results at epoch 2 are: ACC: 0.265, NMI: 0.009, ARI: 0.006
+[2K[INFO][2021-08-06 01:42:40]	Start to train at 3 epoch with learning rate 0.000010
+[2K[INFO][2021-08-06 01:42:40]	cfg.net_heads
+[2K[INFO][2021-08-06 01:42:40]	[9, 6]
+[2K[INFO][2021-08-06 01:42:40]	hidx, head
+[2K[INFO][2021-08-06 01:42:40]	0
+[2K[INFO][2021-08-06 01:42:40]	9
+[2K[INFO][2021-08-06 01:42:40]	hidx, head
+[2K[INFO][2021-08-06 01:42:40]	1
+[2K[INFO][2021-08-06 01:42:40]	6
+[2K[INFO][2021-08-06 01:42:40]	train_head-------------
+[2K[INFO][2021-08-06 01:42:40]	5000
+[2K[INFO][2021-08-06 01:42:40]	5000
+[2K[INFO][2021-08-06 01:42:46]	Batch: [ 0/79] Head: [0/2] Epoch: [  3/350] Progress: [0:00:05/0:07:10] Time: 5.450 (5.450) Data: 3.031 (3.031) Loss: 1.8341 (1.8341)
+[2K[INFO][2021-08-06 01:44:44]	Batch: [50/79] Head: [0/2] Epoch: [  3/350] Progress: [0:02:03/0:03:11] Time: 2.405 (2.425) Data: 0.001 (0.061) Loss: 1.8366 (1.8250)
+[2K[INFO][2021-08-06 01:45:47]	train_head-------------
+[2K[INFO][2021-08-06 01:45:47]	5000
+[2K[INFO][2021-08-06 01:45:47]	5000
+[2K[INFO][2021-08-06 01:45:52]	Batch: [ 0/79] Head: [1/2] Epoch: [  3/350] Progress: [0:00:05/0:07:23] Time: 5.613 (5.613) Data: 3.303 (3.303) Loss: 1.4221 (1.4221)
+[2K[INFO][2021-08-06 01:47:50]	Batch: [50/79] Head: [1/2] Epoch: [  3/350] Progress: [0:02:02/0:03:10] Time: 2.407 (2.408) Data: 0.001 (0.066) Loss: 1.3898 (1.4152)
+[2K[INFO][2021-08-06 01:48:53]	Start to evaluate after 3 epoch of training
+[2K[INFO][2021-08-06 01:48:53]	len(loader.dataset)
+[2K[INFO][2021-08-06 01:48:53]	5000
+[2Kprocessing 0/79 batch
+[1A[2Kprocessing 10/79 batch
+[1A[2Kprocessing 20/79 batch
+[1A[2Kprocessing 30/79 batch
+[1A[2Kprocessing 40/79 batch
+[1A[2Kprocessing 50/79 batch
+[1A[2Kprocessing 60/79 batch
+[1A[2Kprocessing 70/79 batch
+[1A[2K[INFO][2021-08-06 01:49:03]	num_classes
+[2K[INFO][2021-08-06 01:49:03]	6
+[2K[INFO][2021-08-06 01:49:03]	[[383 431   0   0   0   0]
+ [230 343   0   0   0   0]
+ [108 225   0   0   0   0]
+ [621 566   0   0   0   0]
+ [462 444   0   0   0   0]
+ [696 491   0   0   0   0]]
+[2K[INFO][2021-08-06 01:49:03]	Evaluation results at epoch 3 are: ACC: 0.252, NMI: 0.010, ARI: 0.006
+[2K[INFO][2021-08-06 01:49:04]	Start to train at 4 epoch with learning rate 0.000010
+[2K[INFO][2021-08-06 01:49:04]	cfg.net_heads
+[2K[INFO][2021-08-06 01:49:04]	[9, 6]
+[2K[INFO][2021-08-06 01:49:04]	hidx, head
+[2K[INFO][2021-08-06 01:49:04]	0
+[2K[INFO][2021-08-06 01:49:04]	9
+[2K[INFO][2021-08-06 01:49:04]	hidx, head
+[2K[INFO][2021-08-06 01:49:04]	1
+[2K[INFO][2021-08-06 01:49:04]	6
+[2K[INFO][2021-08-06 01:49:04]	train_head-------------
+[2K[INFO][2021-08-06 01:49:04]	5000
+[2K[INFO][2021-08-06 01:49:04]	5000
+[2K[INFO][2021-08-06 01:49:09]	Batch: [ 0/79] Head: [0/2] Epoch: [  4/350] Progress: [0:00:05/0:07:04] Time: 5.372 (5.372) Data: 3.068 (3.068) Loss: 1.7999 (1.7999)
+[2K[INFO][2021-08-06 01:51:08]	Batch: [50/79] Head: [0/2] Epoch: [  4/350] Progress: [0:02:03/0:03:11] Time: 2.399 (2.426) Data: 0.001 (0.061) Loss: 1.7732 (1.8077)
+[2K[INFO][2021-08-06 01:52:12]	train_head-------------
+[2K[INFO][2021-08-06 01:52:12]	5000
+[2K[INFO][2021-08-06 01:52:12]	5000
+[2K[INFO][2021-08-06 01:52:17]	Batch: [ 0/79] Head: [1/2] Epoch: [  4/350] Progress: [0:00:05/0:07:19] Time: 5.567 (5.567) Data: 3.152 (3.152) Loss: 1.3453 (1.3453)
+[2K[INFO][2021-08-06 01:54:13]	Batch: [50/79] Head: [1/2] Epoch: [  4/350] Progress: [0:02:01/0:03:08] Time: 2.404 (2.384) Data: 0.001 (0.063) Loss: 1.3713 (1.3968)
+[2K[INFO][2021-08-06 01:55:16]	Start to evaluate after 4 epoch of training
+[2K[INFO][2021-08-06 01:55:17]	len(loader.dataset)
+[2K[INFO][2021-08-06 01:55:17]	5000
+[2Kprocessing 0/79 batch
+[1A[2Kprocessing 10/79 batch
+[1A[2Kprocessing 20/79 batch
+[1A[2Kprocessing 30/79 batch
+[1A[2Kprocessing 40/79 batch
+[1A[2Kprocessing 50/79 batch
+[1A[2Kprocessing 60/79 batch
+[1A[2Kprocessing 70/79 batch
+[1A[2K[INFO][2021-08-06 01:55:26]	num_classes
+[2K[INFO][2021-08-06 01:55:26]	6
+[2K[INFO][2021-08-06 01:55:27]	[[348 380   0   0   0   0]
+ [230 339   0   0   0   0]
+ [171 315   0   0   0   0]
+ [605 545   0   0   0   0]
+ [413 409   0   0   0   0]
+ [733 512   0   0   0   0]]
+[2K[INFO][2021-08-06 01:55:27]	Evaluation results at epoch 4 are: ACC: 0.256, NMI: 0.010, ARI: 0.007
+[2K[INFO][2021-08-06 01:55:27]	Start to train at 5 epoch with learning rate 0.000010
+[2K[INFO][2021-08-06 01:55:27]	cfg.net_heads
+[2K[INFO][2021-08-06 01:55:27]	[9, 6]
+[2K[INFO][2021-08-06 01:55:27]	hidx, head
+[2K[INFO][2021-08-06 01:55:27]	0
+[2K[INFO][2021-08-06 01:55:27]	9
+[2K[INFO][2021-08-06 01:55:27]	hidx, head
+[2K[INFO][2021-08-06 01:55:27]	1
+[2K[INFO][2021-08-06 01:55:27]	6
+[2K[INFO][2021-08-06 01:55:27]	train_head-------------
+[2K[INFO][2021-08-06 01:55:27]	5000
+[2K[INFO][2021-08-06 01:55:27]	5000
+[2K[INFO][2021-08-06 01:55:32]	Batch: [ 0/79] Head: [0/2] Epoch: [  5/350] Progress: [0:00:05/0:06:51] Time: 5.209 (5.209) Data: 2.901 (2.901) Loss: 1.8199 (1.8199)
+[2K[INFO][2021-08-06 01:57:29]	Batch: [50/79] Head: [0/2] Epoch: [  5/350] Progress: [0:02:02/0:03:09] Time: 2.406 (2.399) Data: 0.001 (0.058) Loss: 1.7588 (1.7939)
+[2K[INFO][2021-08-06 01:58:33]	train_head-------------
+[2K[INFO][2021-08-06 01:58:33]	5000
+[2K[INFO][2021-08-06 01:58:33]	5000
+[2K[INFO][2021-08-06 01:58:39]	Batch: [ 0/79] Head: [1/2] Epoch: [  5/350] Progress: [0:00:05/0:07:38] Time: 5.798 (5.798) Data: 3.483 (3.483) Loss: 1.3711 (1.3711)
+[2K[INFO][2021-08-06 02:00:37]	Batch: [50/79] Head: [1/2] Epoch: [  5/350] Progress: [0:02:03/0:03:11] Time: 2.405 (2.424) Data: 0.001 (0.069) Loss: 1.3899 (1.3763)

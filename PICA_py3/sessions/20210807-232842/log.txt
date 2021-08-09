@@ -1,0 +1,34 @@
+[DEBUG][2021-08-07 23:28:42]	TFboard files will be stored in sessions/20210807-232842/tfboard if applicable
+[DEBUG][2021-08-07 23:28:42]	Provided arguments will be stored in sessions/20210807-232842/config.yaml
+[INFO][2021-08-07 23:28:42]	Start to declare training variable
+[INFO][2021-08-07 23:28:42]	Session will be ran in device: [cuda]
+[INFO][2021-08-07 23:28:42]	Start to prepare data
+[INFO][2021-08-07 23:28:42]	otrainset-------------
+[INFO][2021-08-07 23:28:43]	5000
+[INFO][2021-08-07 23:28:43]	ptrainset-------------
+[INFO][2021-08-07 23:28:43]	5000
+[INFO][2021-08-07 23:28:43]	testset-------------
+[INFO][2021-08-07 23:28:43]	5000
+[INFO][2021-08-07 23:28:43]	Start to build model
+[DEBUG][2021-08-07 23:28:43]	Backbone [resnet34] is declared with cin [1] and cout [1000] [with] sobel
+[DEBUG][2021-08-07 23:28:43]	Backbone will be created wit the following heads: [20, 6]
+[DEBUG][2021-08-07 23:28:43]	Number of trainable parameters is [112]
+[DEBUG][2021-08-07 23:28:43]	Number of frozen parameters is [2]
+[DEBUG][2021-08-07 23:28:43]	Name of frozen parameters are: dict_keys(['sobel.0.weight', 'sobel.0.bias'])
+[DEBUG][2021-08-07 23:28:43]	Going to use [Adam] optimizer for training with betas (0.9, 0.999), eps 0.000000, weight decay 0.000000 without amsgrad
+[DEBUG][2021-08-07 23:28:43]	Going to use [fixed] learning policy for optimization with base learning rate [0.00001]
+[INFO][2021-08-07 23:28:43]	Start to resume session for file: [sessions/0807binary/checkpoint/latest.ckpt]
+[DEBUG][2021-08-07 23:28:43]	Totally loaded [222] parameters
+[INFO][2021-08-07 23:28:43]	Data parallel will be used for acceleration purpose
+[INFO][2021-08-07 23:28:43]	Start to evaluate after 63 epoch of training
+[INFO][2021-08-07 23:28:43]	len(loader.dataset)
+[INFO][2021-08-07 23:28:43]	5000
+[INFO][2021-08-07 23:30:26]	num_classes
+[INFO][2021-08-07 23:30:26]	6
+[INFO][2021-08-07 23:30:26]	[[466 527   0   0   0   0]
+ [479 387   0   0   0   0]
+ [425 298   0   0   0   0]
+ [334 358   0   0   0   0]
+ [408 471   0   0   0   0]
+ [388 459   0   0   0   0]]
+[INFO][2021-08-07 23:30:26]	Evaluation results at epoch 63 are: ACC: 0.201, NMI: 0.004, ARI: 0.003

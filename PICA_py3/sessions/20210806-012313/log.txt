@@ -1,0 +1,194 @@
+[DEBUG][2021-08-06 01:23:13]	TFboard files will be stored in sessions/20210806-012313/tfboard if applicable
+[DEBUG][2021-08-06 01:23:13]	Provided arguments will be stored in sessions/20210806-012313/config.yaml
+[INFO][2021-08-06 01:23:13]	Start to declare training variable
+[INFO][2021-08-06 01:23:13]	Session will be ran in device: [cuda]
+[INFO][2021-08-06 01:23:13]	Start to prepare data
+[INFO][2021-08-06 01:23:13]	otrainset-------------
+[INFO][2021-08-06 01:23:14]	5000
+[INFO][2021-08-06 01:23:14]	ptrainset-------------
+[INFO][2021-08-06 01:23:14]	5000
+[INFO][2021-08-06 01:23:14]	testset-------------
+[INFO][2021-08-06 01:23:14]	5000
+[INFO][2021-08-06 01:23:14]	Start to build model
+[DEBUG][2021-08-06 01:23:14]	Backbone [resnet34] is declared with cin [1] and cout [1000] [with] sobel
+[DEBUG][2021-08-06 01:23:14]	Backbone will be created wit the following heads: [9, 6]
+[DEBUG][2021-08-06 01:23:14]	Number of trainable parameters is [112]
+[DEBUG][2021-08-06 01:23:14]	Number of frozen parameters is [2]
+[DEBUG][2021-08-06 01:23:14]	Name of frozen parameters are: dict_keys(['sobel.0.weight', 'sobel.0.bias'])
+[DEBUG][2021-08-06 01:23:14]	Going to use [Adam] optimizer for training with betas (0.9, 0.999), eps 0.000000, weight decay 0.000000 without amsgrad
+[DEBUG][2021-08-06 01:23:14]	Going to use [fixed] learning policy for optimization with base learning rate [0.00001]
+[INFO][2021-08-06 01:23:14]	Data parallel will be used for acceleration purpose
+[INFO][2021-08-06 01:23:14]	Start to train at 0 epoch with learning rate 0.000010
+[INFO][2021-08-06 01:23:14]	cfg.net_heads
+[INFO][2021-08-06 01:23:14]	[9, 6]
+[INFO][2021-08-06 01:23:14]	hidx, head
+[INFO][2021-08-06 01:23:14]	0
+[INFO][2021-08-06 01:23:14]	9
+[INFO][2021-08-06 01:23:14]	hidx, head
+[INFO][2021-08-06 01:23:14]	1
+[INFO][2021-08-06 01:23:14]	6
+[INFO][2021-08-06 01:23:14]	train_head-------------
+[INFO][2021-08-06 01:23:14]	5000
+[INFO][2021-08-06 01:23:14]	5000
+[INFO][2021-08-06 01:23:28]	Batch: [ 0/79] Head: [0/2] Epoch: [  0/350] Progress: [0:00:14/0:18:37] Time: 14.141 (14.141) Data: 2.867 (2.867) Loss: 2.5489 (2.5489)
+[INFO][2021-08-06 01:25:31]	Batch: [50/79] Head: [0/2] Epoch: [  0/350] Progress: [0:02:17/0:03:32] Time: 2.399 (2.687) Data: 0.001 (0.057) Loss: 2.1382 (2.1559)
+[INFO][2021-08-06 01:26:36]	train_head-------------
+[INFO][2021-08-06 01:26:36]	5000
+[INFO][2021-08-06 01:26:36]	5000
+[INFO][2021-08-06 01:26:42]	Batch: [ 0/79] Head: [1/2] Epoch: [  0/350] Progress: [0:00:05/0:07:02] Time: 5.353 (5.353) Data: 3.050 (3.050) Loss: 2.0128 (2.0128)
+[INFO][2021-08-06 01:28:37]	Batch: [50/79] Head: [1/2] Epoch: [  0/350] Progress: [0:02:00/0:03:07] Time: 2.296 (2.370) Data: 0.001 (0.061) Loss: 1.5258 (1.5896)
+[INFO][2021-08-06 01:29:41]	Start to evaluate after 0 epoch of training
+[INFO][2021-08-06 01:29:41]	len(loader.dataset)
+[INFO][2021-08-06 01:29:41]	5000
+[INFO][2021-08-06 01:29:51]	num_classes
+[INFO][2021-08-06 01:29:51]	6
+[INFO][2021-08-06 01:29:51]	[[ 283  370    0    0    0    0]
+ [ 143  200    0    0    0    0]
+ [  80  170    0    0    0    0]
+ [ 291  275    0    0    0    0]
+ [ 362  355    0    0    0    0]
+ [1341 1130    0    0    0    0]]
+[INFO][2021-08-06 01:29:51]	Evaluation results at epoch 0 are: ACC: 0.342, NMI: 0.007, ARI: 0.005
+[INFO][2021-08-06 01:29:52]	Start to train at 1 epoch with learning rate 0.000010
+[INFO][2021-08-06 01:29:52]	cfg.net_heads
+[INFO][2021-08-06 01:29:52]	[9, 6]
+[INFO][2021-08-06 01:29:52]	hidx, head
+[INFO][2021-08-06 01:29:52]	0
+[INFO][2021-08-06 01:29:52]	9
+[INFO][2021-08-06 01:29:52]	hidx, head
+[INFO][2021-08-06 01:29:52]	1
+[INFO][2021-08-06 01:29:52]	6
+[INFO][2021-08-06 01:29:52]	train_head-------------
+[INFO][2021-08-06 01:29:52]	5000
+[INFO][2021-08-06 01:29:52]	5000
+[INFO][2021-08-06 01:29:57]	Batch: [ 0/79] Head: [0/2] Epoch: [  1/350] Progress: [0:00:05/0:07:03] Time: 5.361 (5.361) Data: 3.051 (3.051) Loss: 1.9655 (1.9655)
+[INFO][2021-08-06 01:31:53]	Batch: [50/79] Head: [0/2] Epoch: [  1/350] Progress: [0:02:01/0:03:08] Time: 2.293 (2.383) Data: 0.001 (0.061) Loss: 1.9813 (1.8991)
+[INFO][2021-08-06 01:32:58]	train_head-------------
+[INFO][2021-08-06 01:32:58]	5000
+[INFO][2021-08-06 01:32:58]	5000
+[INFO][2021-08-06 01:33:03]	Batch: [ 0/79] Head: [1/2] Epoch: [  1/350] Progress: [0:00:05/0:07:03] Time: 5.365 (5.365) Data: 3.059 (3.059) Loss: 1.4922 (1.4922)
+[INFO][2021-08-06 01:35:00]	Batch: [50/79] Head: [1/2] Epoch: [  1/350] Progress: [0:02:02/0:03:09] Time: 2.404 (2.402) Data: 0.001 (0.061) Loss: 1.4245 (1.4557)
+[INFO][2021-08-06 01:36:05]	Start to evaluate after 1 epoch of training
+[INFO][2021-08-06 01:36:05]	len(loader.dataset)
+[INFO][2021-08-06 01:36:05]	5000
+[INFO][2021-08-06 01:36:15]	num_classes
+[INFO][2021-08-06 01:36:15]	6
+[INFO][2021-08-06 01:36:15]	[[414 413   0   0   0   0]
+ [220 294   0   0   0   0]
+ [273 451   0   0   0   0]
+ [576 509   0   0   0   0]
+ [449 411   0   0   0   0]
+ [568 422   0   0   0   0]]
+[INFO][2021-08-06 01:36:15]	Evaluation results at epoch 1 are: ACC: 0.215, NMI: 0.007, ARI: 0.005
+[INFO][2021-08-06 01:36:16]	Start to train at 2 epoch with learning rate 0.000010
+[INFO][2021-08-06 01:36:16]	cfg.net_heads
+[INFO][2021-08-06 01:36:16]	[9, 6]
+[INFO][2021-08-06 01:36:16]	hidx, head
+[INFO][2021-08-06 01:36:16]	0
+[INFO][2021-08-06 01:36:16]	9
+[INFO][2021-08-06 01:36:16]	hidx, head
+[INFO][2021-08-06 01:36:16]	1
+[INFO][2021-08-06 01:36:16]	6
+[INFO][2021-08-06 01:36:16]	train_head-------------
+[INFO][2021-08-06 01:36:16]	5000
+[INFO][2021-08-06 01:36:16]	5000
+[INFO][2021-08-06 01:36:22]	Batch: [ 0/79] Head: [0/2] Epoch: [  2/350] Progress: [0:00:05/0:07:20] Time: 5.582 (5.582) Data: 3.163 (3.163) Loss: 1.8390 (1.8390)
+[INFO][2021-08-06 01:38:19]	Batch: [50/79] Head: [0/2] Epoch: [  2/350] Progress: [0:02:03/0:03:10] Time: 2.404 (2.416) Data: 0.001 (0.063) Loss: 1.8171 (1.8499)
+[INFO][2021-08-06 01:39:22]	train_head-------------
+[INFO][2021-08-06 01:39:22]	5000
+[INFO][2021-08-06 01:39:22]	5000
+[INFO][2021-08-06 01:39:28]	Batch: [ 0/79] Head: [1/2] Epoch: [  2/350] Progress: [0:00:05/0:07:04] Time: 5.379 (5.379) Data: 2.959 (2.959) Loss: 1.4328 (1.4328)
+[INFO][2021-08-06 01:41:26]	Batch: [50/79] Head: [1/2] Epoch: [  2/350] Progress: [0:02:03/0:03:11] Time: 2.402 (2.425) Data: 0.001 (0.059) Loss: 1.4569 (1.4240)
+[INFO][2021-08-06 01:42:30]	Start to evaluate after 2 epoch of training
+[INFO][2021-08-06 01:42:30]	len(loader.dataset)
+[INFO][2021-08-06 01:42:30]	5000
+[INFO][2021-08-06 01:42:40]	num_classes
+[INFO][2021-08-06 01:42:40]	6
+[INFO][2021-08-06 01:42:40]	[[292 308   0   0   0   0]
+ [223 320   0   0   0   0]
+ [186 341   0   0   0   0]
+ [534 485   0   0   0   0]
+ [427 409   0   0   0   0]
+ [838 637   0   0   0   0]]
+[INFO][2021-08-06 01:42:40]	Evaluation results at epoch 2 are: ACC: 0.265, NMI: 0.009, ARI: 0.006
+[INFO][2021-08-06 01:42:40]	Start to train at 3 epoch with learning rate 0.000010
+[INFO][2021-08-06 01:42:40]	cfg.net_heads
+[INFO][2021-08-06 01:42:40]	[9, 6]
+[INFO][2021-08-06 01:42:40]	hidx, head
+[INFO][2021-08-06 01:42:40]	0
+[INFO][2021-08-06 01:42:40]	9
+[INFO][2021-08-06 01:42:40]	hidx, head
+[INFO][2021-08-06 01:42:40]	1
+[INFO][2021-08-06 01:42:40]	6
+[INFO][2021-08-06 01:42:40]	train_head-------------
+[INFO][2021-08-06 01:42:40]	5000
+[INFO][2021-08-06 01:42:40]	5000
+[INFO][2021-08-06 01:42:46]	Batch: [ 0/79] Head: [0/2] Epoch: [  3/350] Progress: [0:00:05/0:07:10] Time: 5.450 (5.450) Data: 3.031 (3.031) Loss: 1.8341 (1.8341)
+[INFO][2021-08-06 01:44:44]	Batch: [50/79] Head: [0/2] Epoch: [  3/350] Progress: [0:02:03/0:03:11] Time: 2.405 (2.425) Data: 0.001 (0.061) Loss: 1.8366 (1.8250)
+[INFO][2021-08-06 01:45:47]	train_head-------------
+[INFO][2021-08-06 01:45:47]	5000
+[INFO][2021-08-06 01:45:47]	5000
+[INFO][2021-08-06 01:45:52]	Batch: [ 0/79] Head: [1/2] Epoch: [  3/350] Progress: [0:00:05/0:07:23] Time: 5.613 (5.613) Data: 3.303 (3.303) Loss: 1.4221 (1.4221)
+[INFO][2021-08-06 01:47:50]	Batch: [50/79] Head: [1/2] Epoch: [  3/350] Progress: [0:02:02/0:03:10] Time: 2.407 (2.408) Data: 0.001 (0.066) Loss: 1.3898 (1.4152)
+[INFO][2021-08-06 01:48:53]	Start to evaluate after 3 epoch of training
+[INFO][2021-08-06 01:48:53]	len(loader.dataset)
+[INFO][2021-08-06 01:48:53]	5000
+[INFO][2021-08-06 01:49:03]	num_classes
+[INFO][2021-08-06 01:49:03]	6
+[INFO][2021-08-06 01:49:03]	[[383 431   0   0   0   0]
+ [230 343   0   0   0   0]
+ [108 225   0   0   0   0]
+ [621 566   0   0   0   0]
+ [462 444   0   0   0   0]
+ [696 491   0   0   0   0]]
+[INFO][2021-08-06 01:49:03]	Evaluation results at epoch 3 are: ACC: 0.252, NMI: 0.010, ARI: 0.006
+[INFO][2021-08-06 01:49:04]	Start to train at 4 epoch with learning rate 0.000010
+[INFO][2021-08-06 01:49:04]	cfg.net_heads
+[INFO][2021-08-06 01:49:04]	[9, 6]
+[INFO][2021-08-06 01:49:04]	hidx, head
+[INFO][2021-08-06 01:49:04]	0
+[INFO][2021-08-06 01:49:04]	9
+[INFO][2021-08-06 01:49:04]	hidx, head
+[INFO][2021-08-06 01:49:04]	1
+[INFO][2021-08-06 01:49:04]	6
+[INFO][2021-08-06 01:49:04]	train_head-------------
+[INFO][2021-08-06 01:49:04]	5000
+[INFO][2021-08-06 01:49:04]	5000
+[INFO][2021-08-06 01:49:09]	Batch: [ 0/79] Head: [0/2] Epoch: [  4/350] Progress: [0:00:05/0:07:04] Time: 5.372 (5.372) Data: 3.068 (3.068) Loss: 1.7999 (1.7999)
+[INFO][2021-08-06 01:51:08]	Batch: [50/79] Head: [0/2] Epoch: [  4/350] Progress: [0:02:03/0:03:11] Time: 2.399 (2.426) Data: 0.001 (0.061) Loss: 1.7732 (1.8077)
+[INFO][2021-08-06 01:52:12]	train_head-------------
+[INFO][2021-08-06 01:52:12]	5000
+[INFO][2021-08-06 01:52:12]	5000
+[INFO][2021-08-06 01:52:17]	Batch: [ 0/79] Head: [1/2] Epoch: [  4/350] Progress: [0:00:05/0:07:19] Time: 5.567 (5.567) Data: 3.152 (3.152) Loss: 1.3453 (1.3453)
+[INFO][2021-08-06 01:54:13]	Batch: [50/79] Head: [1/2] Epoch: [  4/350] Progress: [0:02:01/0:03:08] Time: 2.404 (2.384) Data: 0.001 (0.063) Loss: 1.3713 (1.3968)
+[INFO][2021-08-06 01:55:16]	Start to evaluate after 4 epoch of training
+[INFO][2021-08-06 01:55:17]	len(loader.dataset)
+[INFO][2021-08-06 01:55:17]	5000
+[INFO][2021-08-06 01:55:26]	num_classes
+[INFO][2021-08-06 01:55:26]	6
+[INFO][2021-08-06 01:55:27]	[[348 380   0   0   0   0]
+ [230 339   0   0   0   0]
+ [171 315   0   0   0   0]
+ [605 545   0   0   0   0]
+ [413 409   0   0   0   0]
+ [733 512   0   0   0   0]]
+[INFO][2021-08-06 01:55:27]	Evaluation results at epoch 4 are: ACC: 0.256, NMI: 0.010, ARI: 0.007
+[INFO][2021-08-06 01:55:27]	Start to train at 5 epoch with learning rate 0.000010
+[INFO][2021-08-06 01:55:27]	cfg.net_heads
+[INFO][2021-08-06 01:55:27]	[9, 6]
+[INFO][2021-08-06 01:55:27]	hidx, head
+[INFO][2021-08-06 01:55:27]	0
+[INFO][2021-08-06 01:55:27]	9
+[INFO][2021-08-06 01:55:27]	hidx, head
+[INFO][2021-08-06 01:55:27]	1
+[INFO][2021-08-06 01:55:27]	6
+[INFO][2021-08-06 01:55:27]	train_head-------------
+[INFO][2021-08-06 01:55:27]	5000
+[INFO][2021-08-06 01:55:27]	5000
+[INFO][2021-08-06 01:55:32]	Batch: [ 0/79] Head: [0/2] Epoch: [  5/350] Progress: [0:00:05/0:06:51] Time: 5.209 (5.209) Data: 2.901 (2.901) Loss: 1.8199 (1.8199)
+[INFO][2021-08-06 01:57:29]	Batch: [50/79] Head: [0/2] Epoch: [  5/350] Progress: [0:02:02/0:03:09] Time: 2.406 (2.399) Data: 0.001 (0.058) Loss: 1.7588 (1.7939)
+[INFO][2021-08-06 01:58:33]	train_head-------------
+[INFO][2021-08-06 01:58:33]	5000
+[INFO][2021-08-06 01:58:33]	5000
+[INFO][2021-08-06 01:58:39]	Batch: [ 0/79] Head: [1/2] Epoch: [  5/350] Progress: [0:00:05/0:07:38] Time: 5.798 (5.798) Data: 3.483 (3.483) Loss: 1.3711 (1.3711)
+[INFO][2021-08-06 02:00:37]	Batch: [50/79] Head: [1/2] Epoch: [  5/350] Progress: [0:02:03/0:03:11] Time: 2.405 (2.424) Data: 0.001 (0.069) Loss: 1.3899 (1.3763)

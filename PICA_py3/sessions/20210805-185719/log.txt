@@ -1,0 +1,22 @@
+[DEBUG][2021-08-05 18:57:20]	TFboard files will be stored in sessions/20210805-185719/tfboard if applicable
+[DEBUG][2021-08-05 18:57:20]	Provided arguments will be stored in sessions/20210805-185719/config.yaml
+[INFO][2021-08-05 18:57:20]	Start to declare training variable
+[INFO][2021-08-05 18:57:20]	Session will be ran in device: [cuda]
+[INFO][2021-08-05 18:57:20]	Start to prepare data
+[INFO][2021-08-05 18:57:20]	otrainset-------------
+[INFO][2021-08-05 18:57:20]	5000
+[INFO][2021-08-05 18:57:20]	ptrainset-------------
+[INFO][2021-08-05 18:57:20]	5000
+[INFO][2021-08-05 18:57:20]	testset-------------
+[INFO][2021-08-05 18:57:20]	5000
+[INFO][2021-08-05 18:57:20]	Start to build model
+[DEBUG][2021-08-05 18:57:20]	Backbone [resnet34] is declared with cin [1] and cout [1000] [with] sobel
+[DEBUG][2021-08-05 18:57:20]	Backbone will be created wit the following heads: [6]
+[DEBUG][2021-08-05 18:57:20]	Number of trainable parameters is [110]
+[DEBUG][2021-08-05 18:57:20]	Number of frozen parameters is [2]
+[DEBUG][2021-08-05 18:57:20]	Name of frozen parameters are: dict_keys(['sobel.0.weight', 'sobel.0.bias'])
+[DEBUG][2021-08-05 18:57:20]	Going to use [Adam] optimizer for training with betas (0.9, 0.999), eps 0.000000, weight decay 0.000000 without amsgrad
+[DEBUG][2021-08-05 18:57:20]	Going to use [fixed] learning policy for optimization with base learning rate [0.00001]
+[INFO][2021-08-05 18:57:21]	Start to resume session for file: [sessions/20210805-080537/checkpoint/latest.ckpt]
+[DEBUG][2021-08-05 18:57:21]	Totally loaded [220] parameters
+[INFO][2021-08-05 18:57:21]	Data parallel will be used for acceleration purpose

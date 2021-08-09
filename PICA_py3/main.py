@@ -57,31 +57,28 @@ def main():
     logger.info('Start to prepare data')
 
     # otrainset: original trainset
-    logger.info('otrainset-------------')
     otrainset = [NewDataSet()]
-    logger.info(len(otrainset[0]))
+    logger.info(f'otrainset----------------------: length {len(otrainset[0])}')
 
     # ptrainset: perturbed trainset
-    logger.info('ptrainset-------------')
     ptrainset = [NewDataSet()]
-    logger.info(len(ptrainset[0]))
+    logger.info(f'ptrainset----------------------: length {len(ptrainset[0])}')
 
     # testset
-    logger.info('testset-------------')
     testset = NewDataSet_test()
-    logger.info(len(testset))
+    logger.info(f'testset-------------: length {len(testset)}')
     # declare data loaders for testset only
     test_loader = DataLoader(testset, batch_size=cfg.batch_size, shuffle=False, 
                                 num_workers=cfg.num_workers)
     logger.info('Start to build model')
     net = networks.get()
     torchsummary.summary(net.cuda(), input_size=(1, 32, 32, 32))
+    print(net)
     criterion = PUILoss(cfg.pica_lamda)
     optimizer = optimizers.get(params=[val for _, val in net.trainable_parameters().items()])
     lr_handler = lr_policy.get()
 
     # load session if checkpoint is provided
-    #cfg.resume = 'sessions/20210802-231758/checkpoint/latest.ckpt'
     if cfg.resume:
         print("RESUME FOUND!!!!")
         assert os.path.exists(cfg.resume), "Resume file not found"
@@ -143,12 +140,9 @@ def main():
 def train(epoch, net, otrainset, ptrainset, optimizer, criterion, writer):
     """alternate the training of different heads
     """
-    logger.info('cfg.net_heads')
-    logger.info(cfg.net_heads)
+    logger.info('cfg.net_heads: {cfg.net_heads}')
     for hidx, head in enumerate(cfg.net_heads):
-        logger.info('hidx, head')
-        logger.info(hidx)
-        logger.info(head)
+        logger.info(f'hidx, head: {hidx}, {head}')
     for hidx, head in enumerate(cfg.net_heads):
         train_head(epoch, net, hidx, head, otrainset[min(len(otrainset) - 1, hidx)], 
             ptrainset[min(len(ptrainset) - 1, hidx)], optimizer, criterion, writer)
@@ -156,9 +150,7 @@ def train(epoch, net, otrainset, ptrainset, optimizer, criterion, writer):
 def train_head(epoch, net, hidx, head, otrainset, ptrainset, optimizer, criterion, writer):
     """trains one head for an epoch
     """
-    logger.info('train_head-------------')
-    logger.info(len(otrainset))
-    logger.info(len(ptrainset))
+    logger.info(f'train_head-------------: otrainset={len(otrainset)}, ptrainset={len(ptrainset)}')
     # declare dataloader
     random_sampler = RandomSampler(otrainset)
     batch_sampler = RepeatSampler(random_sampler, cfg.batch_size, nrepeat=cfg.data_nrepeat)
@@ -189,21 +181,22 @@ def train_head(epoch, net, hidx, head, otrainset, ptrainset, optimizer, criterio
                             pinputs.to(cfg.device, non_blocking=True))
         #oinputs = Variable(oinputs, requires_grad=True)
         #pinputs = Variable(pinputs, requires_grad=True)
-
+        #prev=time.time()
         # forward
         ologits, plogits = net(oinputs)[hidx], net(pinputs)[hidx]
         #ologits = Variable(ologits, requires_grad=True)
         #plogits = Variable(plogits, requires_grad=True)
-
+        #print(f'training: {time.time()-prev}')
+        #prev=time.time()
         loss = criterion(ologits.repeat(cfg.data_nrepeat, 1), plogits)
         # print(ologits.repeat(cfg.data_nrepeat, 1))
         # print(loss)
-
+        
         # backward
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-
+        #print(f'loss and optimization: {time.time()-prev}')
         train_loss.update(loss.item(), oinputs.size(0))
         batch_time.update(time.time() - end)
         end = time.time()
@@ -221,30 +214,28 @@ def evaluate(net, loader):
 
     net.eval()
     predicts = np.zeros(len(loader.dataset), dtype=np.int32)
-    print('length of predicts: ', len(predicts))
     logger.info('len(loader.dataset)')
     logger.info(len(loader.dataset))
     labels = np.zeros(len(loader.dataset), dtype=np.int32)
     with torch.no_grad():
         for batch_idx, (inputs, targets) in enumerate(loader):
-
-            logger.progress('processing %d/%d batch' % (batch_idx, len(loader)))
+            if(batch_idx % 10 == 0):
+                logger.progress('processing %d/%d batch' % (batch_idx, len(loader)))
             inputs = inputs.to(cfg.device, non_blocking=True)
             # assuming the last head is the main one
             # output dimension of the last head 
             # should be consistent with the ground-truth
             logits = net(inputs)[-1]
-            print(logits.shape)
             start = batch_idx * loader.batch_size
             end = start + loader.batch_size
             end = min(end, len(loader.dataset))
+            #prevTime = time.time()
             labels[start:end] = targets.cpu().numpy()
             predicts[start:end] = logits.max(1)[1].cpu().numpy()
 
 
-    print(f'predicts: {predicts}, labels: {labels}')
     # compute accuracy
-    num_classes = labels.max().item() + 1
+    num_classes = 6#labels.max().item() + 1
     logger.info('num_classes')
     logger.info(num_classes)
     count_matrix = np.zeros((num_classes, num_classes), dtype=np.int32)

@@ -1,11 +1,11 @@
-####################$
+###################$
 # cfgs for new dataset #
 ####################$
 
 # args for network
 net_avgpool_size: 3
 net_heads:
-  - 15
+  - 20
   - 6
 
 # args for dataset and dataloader

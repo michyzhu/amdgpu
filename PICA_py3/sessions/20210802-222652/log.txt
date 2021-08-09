@@ -1,6 +1,0 @@
-[DEBUG][2021-08-02 22:26:53]	TFboard files will be stored in sessions/20210802-222652/tfboard if applicable
-[DEBUG][2021-08-02 22:26:53]	Provided arguments will be stored in sessions/20210802-222652/config.yaml
-[INFO][2021-08-02 22:26:53]	Start to declare training variable
-[INFO][2021-08-02 22:26:53]	Session will be ran in device: [cpu]
-[INFO][2021-08-02 22:26:53]	Start to prepare data
-[INFO][2021-08-02 22:26:53]	otrainset-------------

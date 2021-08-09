@@ -12,8 +12,8 @@ import scipy
 import scipy.ndimage
 from lib.utils.multi import run_iterator
 
-datapath = '/home/myz/inf_10'
-classes = "6t3e,3gl1,1yg6,1f1b,2byu,4d4r"
+datapath = "/home/myz/binary" #'/home/myz/inf_10'
+classes = "1bxn,2h12" #"6t3e,3gl1,1yg6,1f1b,2byu,4d4r"
 class NewDataSet(Dataset):
     def __init__(self):
         #file = '/ldap_shared/shared/usr/xiangruz/clustering/test_30_003.pickle'
