@@ -13,6 +13,9 @@ from scipy.optimize import linear_sum_assignment
 from sklearn.metrics import normalized_mutual_info_score as NMI
 from sklearn.metrics import adjusted_rand_score as ARI
 from sklearn.manifold import TSNE
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
 
 import seaborn as sns
 from matplotlib import pyplot as plt
@@ -60,11 +63,77 @@ def get_activation(name):
         #print(out[0].shape) # check the size of our feature, which should just be 1024
     return hook
 
+def pickley(filename):
+    with open(filename, 'rb') as pickle_file:
+        return pickle.load(pickle_file, encoding='latin1')
+
+def pickled(o, path,protocol = -1):
+    with open(path, 'wb') as f:
+        pickle.dump(o, f, protocol=protocol)
+
 def tsne(myData, y):
+    scaler = StandardScaler()
+    scaler.fit(myData)
+    scaled_data = scaler.transform(myData)
+    myData = scaled_data
+
     tsne = TSNE()
     X_embedded = tsne.fit_transform(myData)
     sns_plot = sns.scatterplot(X_embedded[:,0], X_embedded[:,1], hue=y, legend='full')
-    plt.savefig('output.png')
+    plt.savefig('tsne.png')
+
+def pca(myData, y):
+    scaler = StandardScaler()
+    scaler.fit(myData)
+    scaled_data = scaler.transform(myData)
+    myData = scaled_data
+
+    pca = PCA(n_components=2)
+    principalComponents = pca.fit_transform(myData)
+    sns_plot = sns.scatterplot(principalComponents[:,0], principalComponents[:,1], hue=y, legend='full')
+    plt.savefig('pca.png')
+
+def getTopTwoCats(d):
+    m = (-1,0);
+    n = (-1,0);
+    for cluster in d:
+        if(d[cluster] >= m[1]):
+            n = m
+            m = (cluster, d[cluster])
+        elif(d[cluster] >= n[1]):
+            n = (cluster, d[cluster])
+    return m,n
+
+def kmeanscluster(num_classes,myData,y):
+    # kmeans clustering
+    kmeans = KMeans(num_classes)
+    clusters = kmeans.fit_predict(myData)
+    clusterCounts = {}
+    for i in range(num_classes):
+        clusterCounts[i] = {}
+    for i, c in enumerate(clusters):
+        #print(f'A: {y[i]}, C: {c}')
+        clusterCounts[y[i]][c] = clusterCounts[y[i]].get(c,0) + 1
+    for c in clusterCounts:
+        ((top,topC),(sec,secC)) = getTopTwoCats(clusterCounts[c])
+        print(f'{c}: {top}: {topC/2500.0}, {sec}:{secC/2500.0}')
+
+def tempcluster(myData,y,temps,tempLabels):
+    clusters = {}
+    #temps = torch.stack(temps).cpu().detach().numpy()
+    for i in range(2):
+        clusters[i] = []
+    for i, data in enumerate(myData):
+        pred = None
+        minDist = 0
+        for j, temp in enumerate(temps):
+            currDist = np.linalg.norm(temp - data)
+            if(pred == None or currDist < minDist):
+                pred = tempLabels[j]
+                minDist = currDist
+        clusters[pred.item()].append(y[i])
+    for i in clusters:
+        print(f'{i}: {clusters[i]}')
 
 def main():
 
@@ -76,36 +145,32 @@ def main():
 
     logger.info('Start to prepare data')
 
-    # otrainset: original trainset
-    logger.info('otrainset-------------')
-    otrainset = [NewDataSet()]
-    logger.info(len(otrainset[0]))
-
-    # ptrainset: perturbed trainset
-    logger.info('ptrainset-------------')
-    ptrainset = [NewDataSet()]
-    logger.info(len(ptrainset[0]))
-
     # testset
     logger.info('testset-------------')
-    testset = NewDataSet_test()
+    testset = NewDataSet_test("/home/myz/binary")
     logger.info(len(testset))
     # declare data loaders for testset only
     test_loader = DataLoader(testset, batch_size=1, shuffle=False, 
                                 num_workers=cfg.num_workers)
+    # testset
+    logger.info('tempset-------------')
+    tempset = NewDataSet_test("/home/myz/bintemp")
+    logger.info(len(tempset))
+    # declare data loaders for testset only
+    temp_loader = DataLoader(tempset, batch_size=1, shuffle=False, 
+                                num_workers=cfg.num_workers)
+    
     logger.info('Start to build model')
     net = networks.get()
     torchsummary.summary(net.cuda(), input_size=(1, 32, 32, 32))
     print(net)
-    
 
     # register hook
     net.heads[0][0].register_forward_hook(get_activation('fc'))
 
-
-    criterion = PUILoss(cfg.pica_lamda)
-    optimizer = optimizers.get(params=[val for _, val in net.trainable_parameters().items()])
-    lr_handler = lr_policy.get()
+    #criterion = PUILoss(cfg.pica_lamda)
+    #optimizer = optimizers.get(params=[val for _, val in net.trainable_parameters().items()])
+    #lr_handler = lr_policy.get()
 
     # load session if checkpoint is provided
     #cfg.resume = 'sessions/20210802-231758/checkpoint/latest.ckpt'
@@ -129,52 +194,103 @@ def main():
         logger.info('Data parallel will not be used for acceleration')
 
     # move modules to target device
-    net, criterion = net.to(cfg.device), criterion.to(cfg.device)
+    net = net.to(cfg.device)
+    #net, criterion = net.to(cfg.device), criterion.to(cfg.device)
 
     # tensorboard wrtier
     writer = SummaryWriter(cfg.debug, log_dir=cfg.tfb_dir)
     # start training
-    lr = cfg.base_lr
+    #lr = cfg.base_lr
     epoch = start_epoch
 
     logger.info('Start to evaluate after %d epoch of training' % epoch)
-    acc, nmi, ari = evaluate(net, test_loader)
+    acc, nmi, ari = evaluate(net, test_loader, temp_loader, testpath="fts.pickle") #'ftstemps.pickle'
     logger.info('Evaluation results at epoch %d are: '
         'ACC: %.3f, NMI: %.3f, ARI: %.3f' % (epoch, acc, nmi, ari))
     writer.add_scalar('Evaluate/ACC', acc, epoch)
     writer.add_scalar('Evaluate/NMI', nmi, epoch)
     writer.add_scalar('Evaluate/ARI', ari, epoch)
 
-def evaluate(net, loader):
+def evaluate(net, testloader, temploader, testpath = None, temppath = None):
     """evaluates on provided data
     """
-
-    net.eval()
-    predicts = np.zeros(len(loader.dataset), dtype=np.int32)
-    print('length of predicts: ', len(predicts))
-    logger.info('len(loader.dataset)')
-    logger.info(len(loader.dataset))
-    labels = np.zeros(len(loader.dataset), dtype=np.int32)
-  
-    myData = []
-    with torch.no_grad():
-        for batch_idx, (inputs, targets) in enumerate(loader):
-            logger.progress('processing %d/%d batch' % (batch_idx, len(loader)))
-            inputs = inputs.to(cfg.device, non_blocking=True)
-            # assuming the last head is the main one
-            # output dimension of the last head 
-            # should be consistent with the ground-truth
-            
-            logits = net(inputs)[-1]
-            ft = activation['fc']
-            myData.append(ft.cpu().detach())
-            start = batch_idx * loader.batch_size
-            end = start + loader.batch_size
-            end = min(end, len(loader.dataset))
-            labels[start:end] = targets.cpu().numpy()
-            predicts[start:end] = logits.max(1)[1].cpu().numpy()
-    myData = torch.cat(myData).numpy()
+    if(testpath == None):
+        net.eval()
+        predicts = np.zeros(len(testloader.dataset), dtype=np.int32)
+        print('length of predicts: ', len(predicts))
+        logger.info('len(testloader.dataset)')
+        logger.info(len(testloader.dataset))
+        labels = np.zeros(len(testloader.dataset), dtype=np.int32)
+      
+        myData = []
+        with torch.no_grad():
+            for batch_idx, (inputs, targets) in enumerate(testloader):
+                logger.progress('processing %d/%d batch' % (batch_idx, len(testloader)))
+                inputs = inputs.to(cfg.device, non_blocking=True)
+                # assuming the last head is the main one
+                # output dimension of the last head 
+                # should be consistent with the ground-truth
+                
+                logits = net(inputs)[-1]
+                ft = activation['fc']
+                myData.append(ft.cpu().detach())
+                start = batch_idx * testloader.batch_size
+                end = start + testloader.batch_size
+                end = min(end, len(testloader.dataset))
+                labels[start:end] = targets.cpu().numpy()
+                predicts[start:end] = logits.max(1)[1].cpu().numpy()
+        myData = torch.cat(myData).numpy()
+        
+        p = {'x': myData, 'y': labels}
+        pickled(p, 'fts.pickle')
+    
+    else: 
+        p = pickley(testpath)
+        myData = p['x']
+        labels = p['y']
     tsne(myData, labels) 
+    pca(myData, labels)
+    kmeanscluster(2,myData,labels)
+
+    if(temppath == None):
+        net.eval()
+        predicts = np.zeros(len(temploader.dataset), dtype=np.int32)
+        print('length of predicts: ', len(predicts))
+        logger.info('len(temploader.dataset)')
+        logger.info(len(temploader.dataset))
+        templabels = np.zeros(len(temploader.dataset), dtype=np.int32)
+
+        myTemps = []
+        with torch.no_grad():
+            for batch_idx, (inputs, targets) in enumerate(temploader):
+                logger.progress('processing %d/%d batch' % (batch_idx, len(temploader)))
+                inputs = inputs.to(cfg.device, non_blocking=True)
+                # assuming the last head is the main one
+                # output dimension of the last head 
+                # should be consistent with the ground-truth
+
+                logits = net(inputs)[-1]
+                ft = activation['fc']
+                myTemps.append(ft.cpu().detach())
+                start = batch_idx * temploader.batch_size
+                end = start + temploader.batch_size
+                end = min(end, len(temploader.dataset))
+                templabels[start:end] = targets.cpu().numpy()
+                predicts[start:end] = logits.max(1)[1].cpu().numpy()
+        myTemps = torch.cat(myTemps).numpy()
+
+        p = {'x': myTemps, 'y': labels}
+        pickled(p, 'ftstemps.pickle')
+
+    else:
+        #myTemps = pickley(temppath)
+        #templabels = [0 if x < 2500 else 1 for x in range(5000)]
+        p = pickley(temppath)
+        myTemps = p['x']
+        templabels = p['y']
+
+    tempcluster(myData,labels,myTemps,templabels) 
+
 
     #print(f'predicts: {predicts}, labels: {labels}')
     # compute accuracy

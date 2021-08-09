@@ -12,10 +12,10 @@ import scipy
 import scipy.ndimage
 from lib.utils.multi import run_iterator
 
-datapath = "/home/myz/binary" #'/home/myz/inf_10'
+#datapath = #"/home/myz/bintemp"#"/home/myz/binary" #'/home/myz/inf_10'
 classes = "1bxn,2h12" #"6t3e,3gl1,1yg6,1f1b,2byu,4d4r"
 class NewDataSet(Dataset):
-    def __init__(self):
+    def __init__(self,datapath):
         #file = '/ldap_shared/shared/usr/xiangruz/clustering/test_30_003.pickle'
 
         #with open(file, 'rb') as f:
@@ -136,7 +136,7 @@ def random_rotation_3d(image, max_angle):
 
 
 class NewDataSet_test(Dataset):
-    def __init__(self):
+    def __init__(self,datapath):
         root_dir = os.path.join(datapath, 'subtomogram_mrc')
         json_dir = os.path.join(datapath, 'json_label')
         self.root_dir = root_dir
