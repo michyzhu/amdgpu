@@ -1,0 +1,21 @@
+[DEBUG][2021-08-19 18:29:48]	TFboard files will be stored in sessions/20210819-182948/tfboard if applicable
+[DEBUG][2021-08-19 18:29:48]	Provided arguments will be stored in sessions/20210819-182948/config.yaml
+[INFO][2021-08-19 18:29:48]	Start to declare training variable
+[INFO][2021-08-19 18:29:48]	Session will be ran in device: [cuda]
+[INFO][2021-08-19 18:29:48]	Start to prepare data
+[INFO][2021-08-19 18:29:48]	testset-------------
+[INFO][2021-08-19 18:29:49]	4000
+[INFO][2021-08-19 18:29:49]	tempset-------------
+[INFO][2021-08-19 18:29:50]	4000
+[INFO][2021-08-19 18:29:50]	Start to build model
+[DEBUG][2021-08-19 18:29:50]	Backbone [resnet34] is declared with cin [1] and cout [1000] [with] sobel
+[DEBUG][2021-08-19 18:29:50]	Backbone will be created wit the following heads: [20, 6]
+[DEBUG][2021-08-19 18:29:50]	Number of trainable parameters is [112]
+[DEBUG][2021-08-19 18:29:50]	Number of frozen parameters is [2]
+[DEBUG][2021-08-19 18:29:50]	Name of frozen parameters are: dict_keys(['sobel.0.weight', 'sobel.0.bias'])
+[INFO][2021-08-19 18:29:50]	Start to resume session for file: [sessions/pickle/checkpoint/latest.ckpt]
+[DEBUG][2021-08-19 18:29:50]	Totally loaded [222] parameters
+[INFO][2021-08-19 18:29:50]	Data parallel will be used for acceleration purpose
+[INFO][2021-08-19 18:29:50]	Start to evaluate after 43 epoch of training
+[INFO][2021-08-19 18:30:21]	len(temploader.dataset)
+[INFO][2021-08-19 18:30:21]	4000

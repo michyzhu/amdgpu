@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 # -*- coding: utf-8 -*-
 # @Author  : Raymond Huang (jiabo.huang@qmul.ac.uk)
 # @Link    : github.com/Raymond-sci/PICA
@@ -9,6 +10,7 @@ sys.path.append('..')
 import time
 import itertools
 import numpy as np
+import random
 from scipy.optimize import linear_sum_assignment
 from sklearn.metrics import normalized_mutual_info_score as NMI
 from sklearn.metrics import adjusted_rand_score as ARI
@@ -37,7 +39,10 @@ from lib.utils.loggers import STDLogger as logger, TFBLogger as SummaryWriter
 
 from pica.utils import ConcatDataset, RepeatSampler, RandomSampler, get_reduced_transform
 from pica.losses import PUILoss
-from lib.datasets.new_dataset import NewDataSet, NewDataSet_test
+#from lib.datasets.new_dataset import NewDataSet, NewDataSet_test
+from lib.datasets.pickle_dataset import  NewDataSet_test as pickledata
+from lib.datasets.vis_dataset import  NewDataSet_test as visdata
+
 import torchsummary
 def require_args():
 
@@ -79,7 +84,7 @@ def tsne(myData, y):
 
     tsne = TSNE()
     X_embedded = tsne.fit_transform(myData)
-    sns_plot = sns.scatterplot(X_embedded[:,0], X_embedded[:,1], hue=y, legend='full')
+    sns_plot = sns.scatterplot(X_embedded[:,0], X_embedded[:,1], hue=y.astype(int), legend='full')
     plt.savefig('tsne.png')
 
 def pca(myData, y):
@@ -119,6 +124,8 @@ def kmeanscluster(num_classes,myData,y):
         print(f'{c}: {top}: {topC/2500.0}, {sec}:{secC/2500.0}')
 
 def tempcluster(myData,y,temps,tempLabels):
+    print("TEMP CLUSTERING")
+    print(tempLabels) 
     clusters = {}
     #temps = torch.stack(temps).cpu().detach().numpy()
     for i in range(2):
@@ -135,6 +142,39 @@ def tempcluster(myData,y,temps,tempLabels):
     for i in clusters:
         print(f'{i}: {clusters[i]}')
 
+def semicluster(myData,y):
+    print("SEMI CLUSTERING")
+    # just generate templates via random data selection
+    # y should be ordered! aka myData is ordered!
+    ival = myData.shape[0] / 2 # 2 = num classes
+    
+    iters = 5
+    avg = np.empty((2,iters))
+    for x in range(iters): 
+        print('----new iter----')
+        temps = np.array([myData[int(x*ival + random.randrange(0,ival))] for x in range(2)])
+        tempLabels = np.array([x for x in range(2)])
+        #print(f'temps: {temps}, tempLabels: {tempLabels}, y: {y}')
+        clusters = {}
+        for i in range(2):
+            clusters[i] = []
+        for i, data in enumerate(myData):
+            pred = None
+            minDist = 0
+            for j, temp in enumerate(temps):
+                currDist = np.linalg.norm(temp - data)
+                if(pred == None or currDist < minDist):
+                    pred = tempLabels[j]
+                    minDist = currDist
+            clusters[pred.item()].append(y[i])
+        for i in clusters:
+            arr = clusters[i]
+            b = np.bincount(arr)
+            print(f'{i}: total={len(arr)}, correct={b[i]}, or {b[i]/ len(arr)}')
+            avg[i][x] = b[i] / len(arr)
+            #print(f'{i}: {clusters[i]}')
+        print(f'average successes: {np.average(avg,axis=1)}')
+
 def main():
 
     logger.info('Start to declare training variable')
@@ -147,14 +187,14 @@ def main():
 
     # testset
     logger.info('testset-------------')
-    testset = NewDataSet_test("/home/myz/binary")
+    testset = pickledata() #NewDataSet_test()#"/home/myz/binary")
     logger.info(len(testset))
     # declare data loaders for testset only
     test_loader = DataLoader(testset, batch_size=1, shuffle=False, 
                                 num_workers=cfg.num_workers)
     # testset
     logger.info('tempset-------------')
-    tempset = NewDataSet_test("/home/myz/bintemp")
+    tempset = visdata('/home/myz/btemp') #NewDataSet_test()#"/home/myz/bintemp")
     logger.info(len(tempset))
     # declare data loaders for testset only
     temp_loader = DataLoader(tempset, batch_size=1, shuffle=False, 
@@ -168,14 +208,8 @@ def main():
     # register hook
     net.heads[0][0].register_forward_hook(get_activation('fc'))
 
-    #criterion = PUILoss(cfg.pica_lamda)
-    #optimizer = optimizers.get(params=[val for _, val in net.trainable_parameters().items()])
-    #lr_handler = lr_policy.get()
-
     # load session if checkpoint is provided
-    #cfg.resume = 'sessions/20210802-231758/checkpoint/latest.ckpt'
     if cfg.resume:
-        print("RESUME FOUND!!!!")
         assert os.path.exists(cfg.resume), "Resume file not found"
         ckpt = torch.load(cfg.resume)
         logger.info('Start to resume session for file: [%s]' % cfg.resume)
@@ -204,7 +238,7 @@ def main():
     epoch = start_epoch
 
     logger.info('Start to evaluate after %d epoch of training' % epoch)
-    acc, nmi, ari = evaluate(net, test_loader, temp_loader, testpath="fts.pickle") #'ftstemps.pickle'
+    acc, nmi, ari = evaluate(net, test_loader, temp_loader, testpath="fts.pickle", temppath='ftstemps.pickle')
     logger.info('Evaluation results at epoch %d are: '
         'ACC: %.3f, NMI: %.3f, ARI: %.3f' % (epoch, acc, nmi, ari))
     writer.add_scalar('Evaluate/ACC', acc, epoch)
@@ -243,19 +277,18 @@ def evaluate(net, testloader, temploader, testpath = None, temppath = None):
         
         p = {'x': myData, 'y': labels}
         pickled(p, 'fts.pickle')
-    
     else: 
         p = pickley(testpath)
         myData = p['x']
         labels = p['y']
-    tsne(myData, labels) 
+    #tsne(myData, labels) 
     pca(myData, labels)
     kmeanscluster(2,myData,labels)
 
     if(temppath == None):
         net.eval()
         predicts = np.zeros(len(temploader.dataset), dtype=np.int32)
-        print('length of predicts: ', len(predicts))
+        print('length of predicts,temploader: ', len(predicts))
         logger.info('len(temploader.dataset)')
         logger.info(len(temploader.dataset))
         templabels = np.zeros(len(temploader.dataset), dtype=np.int32)
@@ -279,7 +312,7 @@ def evaluate(net, testloader, temploader, testpath = None, temppath = None):
                 predicts[start:end] = logits.max(1)[1].cpu().numpy()
         myTemps = torch.cat(myTemps).numpy()
 
-        p = {'x': myTemps, 'y': labels}
+        p = {'x': myTemps, 'y': templabels}
         pickled(p, 'ftstemps.pickle')
 
     else:
@@ -288,9 +321,12 @@ def evaluate(net, testloader, temploader, testpath = None, temppath = None):
         p = pickley(temppath)
         myTemps = p['x']
         templabels = p['y']
-
-    tempcluster(myData,labels,myTemps,templabels) 
-
+    datWithTemps = np.vstack([myData, myTemps])
+    print(templabels)
+    labWithTemps = np.concatenate([labels, templabels-2])
+    tsne(datWithTemps,labWithTemps)
+    #tempcluster(myData,labels,myTemps,templabels) 
+    semicluster(myData,labels)
 
     #print(f'predicts: {predicts}, labels: {labels}')
     # compute accuracy

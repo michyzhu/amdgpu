@@ -27,7 +27,8 @@ from lib.utils.loggers import STDLogger as logger, TFBLogger as SummaryWriter
 
 from pica.utils import ConcatDataset, RepeatSampler, RandomSampler, get_reduced_transform
 from pica.losses import PUILoss
-from lib.datasets.new_dataset import NewDataSet, NewDataSet_test
+#from lib.datasets.new_dataset import NewDataSet, NewDataSet_test
+from lib.datasets.pickle_dataset import NewDataSet, NewDataSet_test
 import torchsummary
 def require_args():
 
@@ -235,7 +236,7 @@ def evaluate(net, loader):
 
 
     # compute accuracy
-    num_classes = 6#labels.max().item() + 1
+    num_classes = 10#labels.max().item() + 1
     logger.info('num_classes')
     logger.info(num_classes)
     count_matrix = np.zeros((num_classes, num_classes), dtype=np.int32)

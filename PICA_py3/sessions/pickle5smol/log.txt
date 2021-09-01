@@ -1,0 +1,79 @@
+[DEBUG][2021-09-01 20:27:25]	TFboard files will be stored in sessions/pickle5smol/tfboard if applicable
+[DEBUG][2021-09-01 20:27:25]	Provided arguments will be stored in sessions/pickle5smol/config.yaml
+[INFO][2021-09-01 20:27:25]	Start to declare training variable
+[INFO][2021-09-01 20:27:25]	Session will be ran in device: [cuda]
+[INFO][2021-09-01 20:27:25]	Start to prepare data
+[INFO][2021-09-01 20:27:25]	otrainset----------------------: length 7505
+[INFO][2021-09-01 20:27:26]	ptrainset----------------------: length 7505
+[INFO][2021-09-01 20:27:26]	testset-------------: length 2495
+[INFO][2021-09-01 20:27:26]	Start to build model
+[DEBUG][2021-09-01 20:27:26]	Backbone [resnet34] is declared with cin [1] and cout [1000] [with] sobel
+[DEBUG][2021-09-01 20:27:26]	Backbone will be created wit the following heads: [8, 5]
+[DEBUG][2021-09-01 20:27:26]	Number of trainable parameters is [112]
+[DEBUG][2021-09-01 20:27:26]	Number of frozen parameters is [2]
+[DEBUG][2021-09-01 20:27:26]	Name of frozen parameters are: dict_keys(['sobel.0.weight', 'sobel.0.bias'])
+[DEBUG][2021-09-01 20:27:27]	Going to use [Adam] optimizer for training with betas (0.9, 0.999), eps 0.000000, weight decay 0.000000 without amsgrad
+[DEBUG][2021-09-01 20:27:27]	Going to use [fixed] learning policy for optimization with base learning rate [0.00001]
+[INFO][2021-09-01 20:27:27]	Data parallel will be used for acceleration purpose
+[INFO][2021-09-01 20:27:27]	Start to train at 0 epoch with learning rate 0.000010
+[INFO][2021-09-01 20:27:27]	cfg.net_heads: {cfg.net_heads}
+[INFO][2021-09-01 20:27:27]	hidx, head: 0, 8
+[INFO][2021-09-01 20:27:27]	hidx, head: 1, 5
+[INFO][2021-09-01 20:27:27]	train_head-------------: otrainset=7505, ptrainset=7505
+[DEBUG][2021-09-01 20:27:59]	Provided arguments will be stored in sessions/pickle5smol/config.yaml
+[INFO][2021-09-01 20:27:59]	Start to declare training variable
+[INFO][2021-09-01 20:27:59]	Session will be ran in device: [cuda]
+[INFO][2021-09-01 20:27:59]	Start to prepare data
+[INFO][2021-09-01 20:28:00]	otrainset----------------------: length 7500
+[INFO][2021-09-01 20:28:00]	ptrainset----------------------: length 7500
+[INFO][2021-09-01 20:28:00]	testset-------------: length 2500
+[INFO][2021-09-01 20:28:00]	Start to build model
+[DEBUG][2021-09-01 20:28:00]	Backbone [resnet34] is declared with cin [1] and cout [1000] [with] sobel
+[DEBUG][2021-09-01 20:28:00]	Backbone will be created wit the following heads: [8, 5]
+[DEBUG][2021-09-01 20:28:01]	Number of trainable parameters is [112]
+[DEBUG][2021-09-01 20:28:01]	Number of frozen parameters is [2]
+[DEBUG][2021-09-01 20:28:01]	Name of frozen parameters are: dict_keys(['sobel.0.weight', 'sobel.0.bias'])
+[DEBUG][2021-09-01 20:28:01]	Going to use [Adam] optimizer for training with betas (0.9, 0.999), eps 0.000000, weight decay 0.000000 without amsgrad
+[DEBUG][2021-09-01 20:28:01]	Going to use [fixed] learning policy for optimization with base learning rate [0.00001]
+[INFO][2021-09-01 20:28:01]	Data parallel will be used for acceleration purpose
+[INFO][2021-09-01 20:28:01]	Start to train at 0 epoch with learning rate 0.000010
+[INFO][2021-09-01 20:28:01]	cfg.net_heads: {cfg.net_heads}
+[INFO][2021-09-01 20:28:01]	hidx, head: 0, 8
+[INFO][2021-09-01 20:28:01]	hidx, head: 1, 5
+[INFO][2021-09-01 20:28:01]	train_head-------------: otrainset=7500, ptrainset=7500
+[INFO][2021-09-01 20:28:27]	Batch: [  0/118] Head: [0/2] Epoch: [  0/350] Progress: [0:00:26/0:51:22] Time: 26.124 (26.124) Data: 17.035 (17.035) Loss: 2.2117 (2.2117)
+[INFO][2021-09-01 20:32:33]	Batch: [ 30/118] Head: [0/2] Epoch: [  0/350] Progress: [0:04:32/0:17:15] Time: 14.459 (8.780) Data: 12.167 (6.233) Loss: 1.6014 (1.7522)
+[INFO][2021-09-01 20:36:45]	Batch: [ 60/118] Head: [0/2] Epoch: [  0/350] Progress: [0:08:44/0:16:53] Time: 14.256 (8.592) Data: 11.965 (6.153) Loss: 1.5432 (1.6551)
+[INFO][2021-09-01 20:40:57]	Batch: [ 90/118] Head: [0/2] Epoch: [  0/350] Progress: [0:12:56/0:16:46] Time: 14.557 (8.530) Data: 12.265 (6.128) Loss: 1.6184 (1.6088)
+[INFO][2021-09-01 20:44:46]	train_head-------------: otrainset=7500, ptrainset=7500
+[INFO][2021-09-01 20:45:06]	Batch: [  0/118] Head: [1/2] Epoch: [  0/350] Progress: [0:00:19/0:38:16] Time: 19.460 (19.460) Data: 17.059 (17.059) Loss: 1.6369 (1.6369)
+[INFO][2021-09-01 20:49:17]	Batch: [ 30/118] Head: [1/2] Epoch: [  0/350] Progress: [0:04:31/0:17:12] Time: 14.777 (8.746) Data: 12.375 (6.390) Loss: 0.9995 (1.1888)
+[INFO][2021-09-01 20:53:30]	Batch: [ 60/118] Head: [1/2] Epoch: [  0/350] Progress: [0:08:43/0:16:53] Time: 14.606 (8.588) Data: 12.311 (6.226) Loss: 0.9525 (1.1004)
+[DEBUG][2021-09-01 20:57:16]	Provided arguments will be stored in sessions/pickle5smol/config.yaml
+[INFO][2021-09-01 20:57:16]	Start to declare training variable
+[INFO][2021-09-01 20:57:16]	Session will be ran in device: [cuda]
+[INFO][2021-09-01 20:57:16]	Start to prepare data
+[INFO][2021-09-01 20:57:16]	otrainset----------------------: length 7500
+[INFO][2021-09-01 20:57:17]	ptrainset----------------------: length 7500
+[INFO][2021-09-01 20:57:17]	testset-------------: length 2500
+[INFO][2021-09-01 20:57:17]	Start to build model
+[DEBUG][2021-09-01 20:57:17]	Backbone [resnet34] is declared with cin [1] and cout [1000] [with] sobel
+[DEBUG][2021-09-01 20:57:17]	Backbone will be created wit the following heads: [8, 5]
+[DEBUG][2021-09-01 20:57:17]	Number of trainable parameters is [112]
+[DEBUG][2021-09-01 20:57:17]	Number of frozen parameters is [2]
+[DEBUG][2021-09-01 20:57:17]	Name of frozen parameters are: dict_keys(['sobel.0.weight', 'sobel.0.bias'])
+[DEBUG][2021-09-01 20:57:18]	Going to use [Adam] optimizer for training with betas (0.9, 0.999), eps 0.000000, weight decay 0.000000 without amsgrad
+[DEBUG][2021-09-01 20:57:18]	Going to use [fixed] learning policy for optimization with base learning rate [0.00001]
+[INFO][2021-09-01 20:57:18]	Data parallel will be used for acceleration purpose
+[INFO][2021-09-01 20:57:18]	Start to train at 0 epoch with learning rate 0.000010
+[INFO][2021-09-01 20:57:18]	cfg.net_heads: {cfg.net_heads}
+[INFO][2021-09-01 20:57:18]	hidx, head: 0, 8
+[INFO][2021-09-01 20:57:18]	hidx, head: 1, 5
+[INFO][2021-09-01 20:57:18]	train_head-------------: otrainset=7500, ptrainset=7500
+[INFO][2021-09-01 20:57:44]	Batch: [  0/118] Head: [0/2] Epoch: [  0/350] Progress: [0:00:26/0:51:55] Time: 26.404 (26.404) Data: 16.538 (16.538) Loss: 2.1974 (2.1974)
+[INFO][2021-09-01 21:01:43]	Batch: [ 30/118] Head: [0/2] Epoch: [  0/350] Progress: [0:04:25/0:16:49] Time: 13.981 (8.553) Data: 11.581 (5.988) Loss: 1.5657 (1.7465)
+[INFO][2021-09-01 21:05:49]	Batch: [ 60/118] Head: [0/2] Epoch: [  0/350] Progress: [0:08:31/0:16:28] Time: 14.111 (8.379) Data: 11.714 (5.924) Loss: 1.4982 (1.6407)
+[INFO][2021-09-01 21:09:55]	Batch: [ 90/118] Head: [0/2] Epoch: [  0/350] Progress: [0:12:36/0:16:21] Time: 14.223 (8.316) Data: 11.822 (5.902) Loss: 1.5029 (1.5977)
+[INFO][2021-09-01 21:13:28]	train_head-------------: otrainset=7500, ptrainset=7500
+[INFO][2021-09-01 21:13:47]	Batch: [  0/118] Head: [1/2] Epoch: [  0/350] Progress: [0:00:19/0:37:24] Time: 19.025 (19.025) Data: 16.611 (16.611) Loss: 1.7023 (1.7023)
+[INFO][2021-09-01 21:17:53]	Batch: [ 30/118] Head: [1/2] Epoch: [  0/350] Progress: [0:04:24/0:16:46] Time: 14.030 (8.529) Data: 11.684 (6.204) Loss: 1.0005 (1.1411)

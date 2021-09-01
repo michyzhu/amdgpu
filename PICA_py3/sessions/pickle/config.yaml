@@ -1,0 +1,53 @@
+base_lr: 1.0e-05
+batch_size: 64
+brief: false
+cfgs:
+- configs/base.yaml
+- configs/new_dataset.yaml
+data_nrepeat: 3
+data_root: null
+dataset: null
+debug: false
+display_freq: 30
+gpus: 0,1
+log_file: true
+log_tfb: true
+lr_policy: fixed
+max_epochs: 350
+net_avgpool_size: 3
+net_cin: 1
+net_cout: 1000
+net_freeze: []
+net_heads:
+- 14
+- 5
+net_sobel: true
+network: resnet34
+num_workers: 2
+optim_amsgrad: false
+optim_beta:
+- 0.9
+- 0.999
+optim_eps: 1.0e-08
+optim_weight_decay: 0.0
+optimizer: adam
+pica_lamda: 2.0
+restart: false
+resume: sessions/pickle5/checkpoint/latest.ckpt
+seed: null
+session: pickle
+session_root: sessions
+tfm_colorjitter: null
+tfm_means: null
+tfm_random_grayscale: 0
+tfm_random_hflip: 0
+tfm_ratio:
+- 0.75
+- 1.3333333333333333
+tfm_resize: 40
+tfm_scale: null
+tfm_size:
+- 32
+- 32
+tfm_stds: null
+transform: default

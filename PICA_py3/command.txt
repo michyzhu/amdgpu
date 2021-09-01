@@ -1,0 +1,5 @@
+python main.py --cfgs configs/base.yaml configs/new_dataset.yaml --session=pickle5  --gpus 0,1
+
+python main10.py --cfgs configs/base10.yaml configs/data10.yaml --session=pickle10  --gpus 2,3
+
+python vis.py --cfgs configs/base.yaml configs/new_dataset.yaml --session=pickle  --gpus 0,1

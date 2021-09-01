@@ -21,7 +21,7 @@ lr_policy: fixed
 optimizer: adam
 optim_weight_decay: 0.
 
-resume: "sessions/0807binary/checkpoint/latest.ckpt"
+#resume: "sessions/pickle5/checkpoint/latest.ckpt"
 
 # args for loader
 num_workers: 2

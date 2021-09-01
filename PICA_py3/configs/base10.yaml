@@ -1,0 +1,31 @@
+#############
+# base cfgs #
+#############
+
+# args for training
+log_file: True
+log_tfb: True
+display_freq: 30
+
+# args for network
+network: resnet34
+net_sobel: True
+
+# args for transforms
+data_nrepeat: 3
+
+# args for lr policy
+base_lr: 1e-5
+lr_policy: fixed
+# args for optimizer
+optimizer: adam
+optim_weight_decay: 0.
+
+#resume: "sessions/pickle10/checkpoint/latest.ckpt"
+
+# args for loader
+num_workers: 2
+batch_size: 64
+
+# args for session
+session_root: "sessions"

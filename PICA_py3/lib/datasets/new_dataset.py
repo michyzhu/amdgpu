@@ -12,12 +12,12 @@ import scipy
 import scipy.ndimage
 from lib.utils.multi import run_iterator
 
-#datapath = #"/home/myz/bintemp"#"/home/myz/binary" #'/home/myz/inf_10'
+datapath = "/home/myz/bintemp"#"/home/myz/binary" #'/home/myz/inf_10'
 classes = "1bxn,2h12" #"6t3e,3gl1,1yg6,1f1b,2byu,4d4r"
 class NewDataSet(Dataset):
-    def __init__(self,datapath):
+    def __init__(self):
         #file = '/ldap_shared/shared/usr/xiangruz/clustering/test_30_003.pickle'
-
+        #file = '/home/myz/10_2000_30_01.pickle'
         #with open(file, 'rb') as f:
         #    x_train = pickle.load(f, encoding='latin1')
         #    x_train = np.expand_dims(np.array([x_train[_]['v'] for _ in range(0, 5000)]), 1)
@@ -74,7 +74,7 @@ class NewDataSet(Dataset):
         transformed_MRC_img = random_rotation_3d(MRC_img, 180)
 
         transformed_MRC_img = move(transformed_MRC_img)
-        
+        print(f'transform SHAPE: {transformed_MRC_img.shape}, type: {type(transformed_MRC_img)}')
         return transformed_MRC_img, target
         #return x, self.y_data[index]
 
@@ -136,7 +136,7 @@ def random_rotation_3d(image, max_angle):
 
 
 class NewDataSet_test(Dataset):
-    def __init__(self,datapath):
+    def __init__(self):
         root_dir = os.path.join(datapath, 'subtomogram_mrc')
         json_dir = os.path.join(datapath, 'json_label')
         self.root_dir = root_dir
@@ -168,6 +168,7 @@ class NewDataSet_test(Dataset):
             MRC_dict = json.load(f)
 
         target = self.label_to_target[MRC_dict['name']]
+        print(f'orig SHAPE: {MRC_img.shape}, type: {type(MRC_img)}')
         return MRC_img, target
 
     def __len__(self):
