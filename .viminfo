@@ -11,21 +11,23 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/semicluster
+~MSle0~/csv2rec
 
 # Last Substitute Search Pattern:
-~MSle0&self
+~MSle0&+50/myData/myTemps/cq
 
 # Last Substitute String:
-$templates
+$
 
 # Command Line History (newest to oldest):
 :wq
-|2,0,1630531262,,"wq"
-:q
-|2,0,1630531228,,"q"
+|2,0,1630779457,,"wq"
 :w
-|2,0,1630529806,,"w"
+|2,0,1630779452,,"w"
+:q
+|2,0,0,,"q"
+:s,+50/myData/myTemps/cq
+|2,0,0,,"s,+50/myData/myTemps/cq"
 :'<,'>wq
 |2,0,0,,"'<,'>wq"
 :WQ
@@ -74,46 +76,88 @@ $templates
 |2,0,0,,"%s/data/templates/c"
 
 # Search String History (newest to oldest):
+?/csv2rec
+|2,1,0,47,"csv2rec"
+?/read_listfile
+|2,1,0,47,"read_listfile"
+?/listname
+|2,1,0,47,"listname"
+?/dissimilarities(
+|2,1,0,47,"dissimilarities("
+?/predictions
+|2,1,0,47,"predictions"
+?/-p
+|2,1,0,47,"-p"
+?/predictionfile
+|2,1,0,47,"predictionfile"
+?/train(
+|2,1,0,47,"train("
+?/get_weights(
+|2,1,0,47,"get_weights("
+?/train
+|2,1,0,47,"train"
+?/compute_dissimilari
+|2,1,0,47,"compute_dissimilari"
+?/argsfile
+|2,1,0,47,"argsfile"
+?/method_table
+|2,1,0,47,"method_table"
+?/method
+|2,1,0,47,"method"
+? +50/myData/myTemps/cq
+|2,1,0,,"+50/myData/myTemps/cq"
+?/propagate_labels
+|2,1,0,47,"propagate_labels"
+?/_solve_binary
+|2,1,0,47,"_solve_binary"
+?/harmonic_function
+|2,1,0,47,"harmonic_function"
+?/compute_features
+|2,1,0,47,"compute_features"
+?/computer_features(
+|2,1,0,47,"computer_features("
+?/computerfeatures(
+|2,1,0,47,"computerfeatures("
 ?/semicluster
-|2,1,1630531235,47,"semicluster"
+|2,1,0,47,"semicluster"
 ?/__init
-|2,1,1630529808,47,"__init"
+|2,1,0,47,"__init"
 ?/1500
-|2,1,1630528073,47,"1500"
+|2,1,0,47,"1500"
 ?/< 100
-|2,1,1630528021,47,"< 100"
+|2,1,0,47,"< 100"
 ?/1000
-|2,1,1630528011,47,"1000"
+|2,1,0,47,"1000"
 ?/labels
-|2,1,1630526639,47,"labels"
+|2,1,0,47,"labels"
 ?/datWith
-|2,1,1630526568,47,"datWith"
+|2,1,0,47,"datWith"
 ?/datwithtemps
-|2,1,1630526565,47,"datwithtemps"
+|2,1,0,47,"datwithtemps"
 ?/visdata(
-|2,1,1630526092,47,"visdata("
+|2,1,0,47,"visdata("
 ?/pvisdata
-|2,1,1630526069,47,"pvisdata"
+|2,1,0,47,"pvisdata"
 ?/visdata
-|2,1,1630525979,47,"visdata"
+|2,1,0,47,"visdata"
 ?/pvis
-|2,1,1630525975,47,"pvis"
+|2,1,0,47,"pvis"
 ?/LENGTH
-|2,1,1630525849,47,"LENGTH"
+|2,1,0,47,"LENGTH"
 ?/LENG
-|2,1,1630525640,47,"LENG"
+|2,1,0,47,"LENG"
 ?/length
-|2,1,1630525609,47,"length"
+|2,1,0,47,"length"
 ?/pickledata
-|2,1,1630525417,47,"pickledata"
+|2,1,0,47,"pickledata"
 ?/pvisdata()
-|2,1,1630525346,47,"pvisdata()"
+|2,1,0,47,"pvisdata()"
 ?/evaluate(
-|2,1,1630525240,47,"evaluate("
+|2,1,0,47,"evaluate("
 ?/semicluster(
-|2,1,1630525175,47,"semicluster("
+|2,1,0,47,"semicluster("
 ?/x = 5
-|2,1,1630524700,47,"x = 5"
+|2,1,0,47,"x = 5"
 ?/print
 |2,1,0,47,"print"
 ?/print('-
@@ -132,48 +176,6 @@ $templates
 |2,1,0,47,"semiclu"
 ?/semiclu	
 |2,1,0,47,"semiclu	"
-?/count_non
-|2,1,0,47,"count_non"
-?/getTopTwo
-|2,1,0,47,"getTopTwo"
-?/tempcluster
-|2,1,0,47,"tempcluster"
-?/myData[
-|2,1,0,47,"myData["
-?/temps
-|2,1,0,47,"temps"
-?/cluster
-|2,1,0,47,"cluster"
-?/count_matrix
-|2,1,0,47,"count_matrix"
-?/NewDataSet
-|2,1,0,47,"NewDataSet"
-?/pickle_da
-|2,1,0,47,"pickle_da"
-?/hidx
-|2,1,0,47,"hidx"
-?/epoch 60 are
-|2,1,0,47,"epoch 60 are"
-?/ACC:
-|2,1,0,47,"ACC:"
-?/acc
-|2,1,0,47,"acc"
-?/tsne(
-|2,1,0,47,"tsne("
-?/-2
-|2,1,0,47,"-2"
-?/+2
-|2,1,0,47,"+2"
-?/templabels
-|2,1,0,47,"templabels"
-?/tempData
-|2,1,0,47,"tempData"
-?/vstack
-|2,1,0,47,"vstack"
-?/ftstemp
-|2,1,0,47,"ftstemp"
-?/ftstemps
-|2,1,0,47,"ftstemps"
 
 # Expression History (newest to oldest):
 
@@ -183,266 +185,369 @@ $templates
 
 # Registers:
 "0	CHAR	0
-	tsne(myData, labels) 
-	    p
-|3,0,0,0,2,0,0,"tsne(myData, labels) ","    p"
-"1	LINE	0
+	x_train = np.load('val_outputs.npy')
+	y_train = np.load('val_targets.npy')
 	
-|3,0,1,1,1,0,1630526009,""
-"2	LINE	0
-	        #gt = np.repeat(range(len(classes)), 2000)
-|3,0,2,1,1,0,1630525862,"        #gt = np.repeat(range(len(classes)), 2000)"
-"3	LINE	0
-	            print(f'LENGTH XTRAIN: {x_train.shape}')
-|3,0,3,1,1,0,1630525695,"            print(f'LENGTH XTRAIN: {x_train.shape}')"
+	
+|3,0,0,0,4,0,1630779196,"x_train = np.load('val_outputs.npy')","y_train = np.load('val_targets.npy')","",""
+""1	LINE	0
+	label_prop_model = LabelPropagation()
+|3,1,1,1,1,0,1630779347,"label_prop_model = LabelPropagation()"
+"2	CHAR	0
+	#x = d['x']
+	#y = d['y']
+	
+	
+|3,0,2,0,4,0,1630779178,"#x = d['x']","#y = d['y']","",""
+"3	CHAR	0
+	rng.rand(len(iris.target)) < 0.3
+	
+|3,0,3,0,2,0,1630779029,"rng.rand(len(iris.target)) < 0.3",""
 "4	LINE	0
-	            print(f'LENGTH XTRAIN: {x_train.shape}')
-|3,0,4,1,1,0,1630525624,"            print(f'LENGTH XTRAIN: {x_train.shape}')"
+	rng = np.random.RandomState(42)
+|3,0,4,1,1,0,1630779025,"rng = np.random.RandomState(42)"
 "5	LINE	0
-	            print(f'LENGTH XTRAIN: {x_train.shape}')
-|3,0,5,1,1,0,1630525620,"            print(f'LENGTH XTRAIN: {x_train.shape}')"
-"6	LINE	0
-	            x_train = np.array([x_train[_]['v'] for _ in range(0, 5000) if x_train[_]['id'] in classes])
-	            print(f'LENGTH XTRAIN: {x_train.shape}')
-|3,0,6,1,2,0,1630525617,"            x_train = np.array([x_train[_]['v'] for _ in range(0, 5000) if x_train[_]['id'] in classes])","            print(f'LENGTH XTRAIN: {x_train.shape}')"
-"7	LINE	0
-	        print(f'{x}')
-|3,0,7,1,1,0,1630524702,"        print(f'{x}')"
-"8	LINE	0
-	        x = 5
-|3,0,8,1,1,0,1630524701,"        x = 5"
-"9	LINE	0
 	
-|3,0,9,1,1,0,0,""
-""-	CHAR	0
-	range(0, 5000)
-|3,1,36,0,1,0,1630529774,"range(0, 5000)"
+|3,0,5,1,1,0,0,""
+"6	LINE	0
+	        #gt = np.repeat(range(len(classes)), 2000)
+|3,0,6,1,1,0,0,"        #gt = np.repeat(range(len(classes)), 2000)"
+"7	LINE	0
+	            print(f'LENGTH XTRAIN: {x_train.shape}')
+|3,0,7,1,1,0,0,"            print(f'LENGTH XTRAIN: {x_train.shape}')"
+"8	LINE	0
+	            print(f'LENGTH XTRAIN: {x_train.shape}')
+|3,0,8,1,1,0,0,"            print(f'LENGTH XTRAIN: {x_train.shape}')"
+"9	LINE	0
+	            print(f'LENGTH XTRAIN: {x_train.shape}')
+|3,0,9,1,1,0,0,"            print(f'LENGTH XTRAIN: {x_train.shape}')"
+"-	CHAR	0
+	train =
+|3,0,36,0,1,0,1630779199,"train ="
 
 # File marks:
-'0  177  4  ~/PICA_py3/pvis.py
-|4,48,177,4,1630531262,"~/PICA_py3/pvis.py"
-'1  1  0  ~/PICA_py3/main.py
-|4,49,1,0,1630531228,"~/PICA_py3/main.py"
-'2  1  0  ~/PICA_py3/command.txt
-|4,50,1,0,1630530904,"~/PICA_py3/command.txt"
-'3  247  4  ~/PICA_py3/pvis.py
-|4,51,247,4,1630530889,"~/PICA_py3/pvis.py"
-'4  247  4  ~/PICA_py3/pvis.py
-|4,52,247,4,1630530889,"~/PICA_py3/pvis.py"
-'5  161  4  ~/PICA_py3/vis.py
-|4,53,161,4,1630530395,"~/PICA_py3/vis.py"
-'6  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,54,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
-'7  136  45  ~/PICA_py3/lib/datasets/pickle10_dataset.py
-|4,55,136,45,1630529789,"~/PICA_py3/lib/datasets/pickle10_dataset.py"
-'8  24  0  ~/PICA_py3/configs/base10.yaml
-|4,56,24,0,1630529716,"~/PICA_py3/configs/base10.yaml"
-'9  15  0  ~/PICA_py3/configs/data10.yaml
-|4,57,15,0,1630529708,"~/PICA_py3/configs/data10.yaml"
+'0  15  27  ~/sp.py
+|4,48,15,27,1630779457,"~/sp.py"
+'1  1  0  ~/stage-propagation/data/013456.csv
+|4,49,1,0,0,"~/stage-propagation/data/013456.csv"
+'2  1  0  ~/stage-propagation/data/rect.csv
+|4,50,1,0,0,"~/stage-propagation/data/rect.csv"
+'3  38  4  ~/stage-propagation/utils.py
+|4,51,38,4,0,"~/stage-propagation/utils.py"
+'4  1  0  ~/stage-propagation/data/013456-top10.csv
+|4,52,1,0,0,"~/stage-propagation/data/013456-top10.csv"
+'5  1  0  ~/Moco_Test.py
+|4,53,1,0,0,"~/Moco_Test.py"
+'6  67  4  ~/stage-propagation/utils.py
+|4,54,67,4,0,"~/stage-propagation/utils.py"
+'7  68  11  ~/stage-propagation/utils.py
+|4,55,68,11,0,"~/stage-propagation/utils.py"
+'8  9  18  ~/stage-propagation/dissimilarities.py
+|4,56,9,18,0,"~/stage-propagation/dissimilarities.py"
+'9  1  0  ~/stage-propagation/data/generate.args
+|4,57,1,0,0,"~/stage-propagation/data/generate.args"
 
 # Jumplist (newest first):
+-'  15  27  ~/sp.py
+|4,39,15,27,1630779457,"~/sp.py"
+-'  1  0  ~/sp.py
+|4,39,1,0,1630778709,"~/sp.py"
+-'  1  0  ~/stage-propagation/data/013456.csv
+|4,39,1,0,0,"~/stage-propagation/data/013456.csv"
+-'  1  0  ~/stage-propagation/data/rect.csv
+|4,39,1,0,0,"~/stage-propagation/data/rect.csv"
+-'  38  4  ~/stage-propagation/utils.py
+|4,39,38,4,0,"~/stage-propagation/utils.py"
+-'  67  4  ~/stage-propagation/utils.py
+|4,39,67,4,0,"~/stage-propagation/utils.py"
+-'  1  0  ~/stage-propagation/data/013456-top10.csv
+|4,39,1,0,0,"~/stage-propagation/data/013456-top10.csv"
+-'  1  0  ~/Moco_Test.py
+|4,39,1,0,0,"~/Moco_Test.py"
+-'  68  4  ~/stage-propagation/utils.py
+|4,39,68,4,0,"~/stage-propagation/utils.py"
+-'  2  29  ~/stage-propagation/utils.py
+|4,39,2,29,0,"~/stage-propagation/utils.py"
+-'  1  0  ~/stage-propagation/utils.py
+|4,39,1,0,0,"~/stage-propagation/utils.py"
+-'  9  18  ~/stage-propagation/dissimilarities.py
+|4,39,9,18,0,"~/stage-propagation/dissimilarities.py"
+-'  70  31  ~/stage-propagation/dissimilarities.py
+|4,39,70,31,0,"~/stage-propagation/dissimilarities.py"
+-'  68  7  ~/stage-propagation/dissimilarities.py
+|4,39,68,7,0,"~/stage-propagation/dissimilarities.py"
+-'  67  50  ~/stage-propagation/dissimilarities.py
+|4,39,67,50,0,"~/stage-propagation/dissimilarities.py"
+-'  61  32  ~/stage-propagation/dissimilarities.py
+|4,39,61,32,0,"~/stage-propagation/dissimilarities.py"
+-'  71  4  ~/stage-propagation/dissimilarities.py
+|4,39,71,4,0,"~/stage-propagation/dissimilarities.py"
+-'  91  8  ~/stage-propagation/dissimilarities.py
+|4,39,91,8,0,"~/stage-propagation/dissimilarities.py"
+-'  30  8  ~/stage-propagation/dissimilarities.py
+|4,39,30,8,0,"~/stage-propagation/dissimilarities.py"
+-'  1  0  ~/stage-propagation/data/generate.args
+|4,39,1,0,0,"~/stage-propagation/data/generate.args"
+-'  18  55  ~/stage-propagation/propagate_predict.py
+|4,39,18,55,0,"~/stage-propagation/propagate_predict.py"
+-'  12  40  ~/stage-propagation/propagate_predict.py
+|4,39,12,40,0,"~/stage-propagation/propagate_predict.py"
+-'  57  52  ~/stage-propagation/propagate_predict.py
+|4,39,57,52,0,"~/stage-propagation/propagate_predict.py"
+-'  54  53  ~/stage-propagation/propagate_predict.py
+|4,39,54,53,0,"~/stage-propagation/propagate_predict.py"
+-'  10  0  ~/stage-propagation/propagate_predict.py
+|4,39,10,0,0,"~/stage-propagation/propagate_predict.py"
+-'  140  5  ~/stage-propagation/propagate_train.py
+|4,39,140,5,0,"~/stage-propagation/propagate_train.py"
+-'  75  14  ~/stage-propagation/propagate_train.py
+|4,39,75,14,0,"~/stage-propagation/propagate_train.py"
+-'  64  4  ~/stage-propagation/propagate_train.py
+|4,39,64,4,0,"~/stage-propagation/propagate_train.py"
+-'  15  0  ~/stage-propagation/propagate_train.py
+|4,39,15,0,0,"~/stage-propagation/propagate_train.py"
+-'  1  0  ~/stage-propagation/propagate_train.py
+|4,39,1,0,0,"~/stage-propagation/propagate_train.py"
+-'  14  0  ~/stage-propagation/propagate_predict.py
+|4,39,14,0,0,"~/stage-propagation/propagate_predict.py"
+-'  1  0  ~/stage-propagation/propagate_predict.py
+|4,39,1,0,0,"~/stage-propagation/propagate_predict.py"
+-'  74  14  ~/stage-propagation/dissimilarities.py
+|4,39,74,14,0,"~/stage-propagation/dissimilarities.py"
+-'  73  25  ~/stage-propagation/dissimilarities.py
+|4,39,73,25,0,"~/stage-propagation/dissimilarities.py"
+-'  19  0  ~/stage-propagation/dissimilarities.py
+|4,39,19,0,0,"~/stage-propagation/dissimilarities.py"
+-'  85  96  ~/stage-propagation/dissimilarities.py
+|4,39,85,96,0,"~/stage-propagation/dissimilarities.py"
+-'  1  0  ~/stage-propagation/dissimilarities.py
+|4,39,1,0,0,"~/stage-propagation/dissimilarities.py"
+-'  1  0  ~/stage-propagation/dissimilarities
+|4,39,1,0,0,"~/stage-propagation/dissimilarities"
+-'  1  4  ~/stage-propagation/semisupervised.py
+|4,39,1,4,0,"~/stage-propagation/semisupervised.py"
+-'  82  4  ~/stage-propagation/semisupervised.py
+|4,39,82,4,0,"~/stage-propagation/semisupervised.py"
+-'  97  26  ~/stage-propagation/semisupervised.py
+|4,39,97,26,0,"~/stage-propagation/semisupervised.py"
+-'  93  27  ~/stage-propagation/semisupervised.py
+|4,39,93,27,0,"~/stage-propagation/semisupervised.py"
+-'  64  0  ~/stage-propagation/semisupervised.py
+|4,39,64,0,0,"~/stage-propagation/semisupervised.py"
+-'  79  4  ~/stage-propagation/semisupervised.py
+|4,39,79,4,0,"~/stage-propagation/semisupervised.py"
+-'  55  19  ~/stage-propagation/semisupervised.py
+|4,39,55,19,0,"~/stage-propagation/semisupervised.py"
+-'  53  18  ~/stage-propagation/semisupervised.py
+|4,39,53,18,0,"~/stage-propagation/semisupervised.py"
+-'  7  0  ~/stage-propagation/semisupervised.py
+|4,39,7,0,0,"~/stage-propagation/semisupervised.py"
+-'  1  4  ~/stage-propagation/harmonic_function.py
+|4,39,1,4,0,"~/stage-propagation/harmonic_function.py"
+-'  34  4  ~/stage-propagation/harmonic_function.py
+|4,39,34,4,0,"~/stage-propagation/harmonic_function.py"
+-'  42  26  ~/stage-propagation/features.py
+|4,39,42,26,0,"~/stage-propagation/features.py"
+-'  30  4  ~/stage-propagation/features.py
+|4,39,30,4,0,"~/stage-propagation/features.py"
+-'  22  0  ~/stage-propagation/features.py
+|4,39,22,0,0,"~/stage-propagation/features.py"
+-'  11  0  ~/stage-propagation/features.py
+|4,39,11,0,0,"~/stage-propagation/features.py"
+-'  72  96  ~/stage-propagation/features.py
+|4,39,72,96,0,"~/stage-propagation/features.py"
+-'  63  4  ~/stage-propagation/features.py
+|4,39,63,4,0,"~/stage-propagation/features.py"
+-'  97  25  ~/stage-propagation/features.py
+|4,39,97,25,0,"~/stage-propagation/features.py"
+-'  94  0  ~/stage-propagation/features.py
+|4,39,94,0,0,"~/stage-propagation/features.py"
+-'  1  0  ~/stage-propagation/features.py
+|4,39,1,0,0,"~/stage-propagation/features.py"
+-'  1  0  ~/stage-propagation/features
+|4,39,1,0,0,"~/stage-propagation/features"
+-'  1  33  ~/.git/COMMIT_EDITMSG
+|4,39,1,33,0,"~/.git/COMMIT_EDITMSG"
 -'  177  4  ~/PICA_py3/pvis.py
-|4,39,177,4,1630531262,"~/PICA_py3/pvis.py"
+|4,39,177,4,0,"~/PICA_py3/pvis.py"
+-'  177  4  ~/PICA_py3/pvis.py
+|4,39,177,4,0,"~/PICA_py3/pvis.py"
 -'  1  0  ~/PICA_py3/pvis.py
-|4,39,1,0,1630531235,"~/PICA_py3/pvis.py"
+|4,39,1,0,0,"~/PICA_py3/pvis.py"
+-'  1  0  ~/PICA_py3/pvis.py
+|4,39,1,0,0,"~/PICA_py3/pvis.py"
 -'  1  0  ~/PICA_py3/main.py
-|4,39,1,0,1630531228,"~/PICA_py3/main.py"
+|4,39,1,0,0,"~/PICA_py3/main.py"
 -'  1  0  ~/PICA_py3/main.py
-|4,39,1,0,1630531228,"~/PICA_py3/main.py"
+|4,39,1,0,0,"~/PICA_py3/main.py"
+-'  1  0  ~/PICA_py3/main.py
+|4,39,1,0,0,"~/PICA_py3/main.py"
+-'  1  0  ~/PICA_py3/main.py
+|4,39,1,0,0,"~/PICA_py3/main.py"
 -'  1  0  ~/PICA_py3/command.txt
-|4,39,1,0,1630530904,"~/PICA_py3/command.txt"
+|4,39,1,0,0,"~/PICA_py3/command.txt"
 -'  1  0  ~/PICA_py3/command.txt
-|4,39,1,0,1630530904,"~/PICA_py3/command.txt"
+|4,39,1,0,0,"~/PICA_py3/command.txt"
 -'  1  0  ~/PICA_py3/command.txt
-|4,39,1,0,1630530904,"~/PICA_py3/command.txt"
+|4,39,1,0,0,"~/PICA_py3/command.txt"
 -'  1  0  ~/PICA_py3/command.txt
-|4,39,1,0,1630530904,"~/PICA_py3/command.txt"
+|4,39,1,0,0,"~/PICA_py3/command.txt"
+-'  1  0  ~/PICA_py3/command.txt
+|4,39,1,0,0,"~/PICA_py3/command.txt"
+-'  1  0  ~/PICA_py3/command.txt
+|4,39,1,0,0,"~/PICA_py3/command.txt"
+-'  1  0  ~/PICA_py3/command.txt
+|4,39,1,0,0,"~/PICA_py3/command.txt"
+-'  1  0  ~/PICA_py3/command.txt
+|4,39,1,0,0,"~/PICA_py3/command.txt"
 -'  247  4  ~/PICA_py3/pvis.py
-|4,39,247,4,1630530889,"~/PICA_py3/pvis.py"
+|4,39,247,4,0,"~/PICA_py3/pvis.py"
 -'  247  4  ~/PICA_py3/pvis.py
-|4,39,247,4,1630530889,"~/PICA_py3/pvis.py"
+|4,39,247,4,0,"~/PICA_py3/pvis.py"
 -'  247  4  ~/PICA_py3/pvis.py
-|4,39,247,4,1630530889,"~/PICA_py3/pvis.py"
+|4,39,247,4,0,"~/PICA_py3/pvis.py"
 -'  247  4  ~/PICA_py3/pvis.py
-|4,39,247,4,1630530889,"~/PICA_py3/pvis.py"
+|4,39,247,4,0,"~/PICA_py3/pvis.py"
 -'  247  4  ~/PICA_py3/pvis.py
-|4,39,247,4,1630530889,"~/PICA_py3/pvis.py"
+|4,39,247,4,0,"~/PICA_py3/pvis.py"
+-'  247  4  ~/PICA_py3/pvis.py
+|4,39,247,4,0,"~/PICA_py3/pvis.py"
+-'  247  4  ~/PICA_py3/pvis.py
+|4,39,247,4,0,"~/PICA_py3/pvis.py"
+-'  247  4  ~/PICA_py3/pvis.py
+|4,39,247,4,0,"~/PICA_py3/pvis.py"
+-'  247  4  ~/PICA_py3/pvis.py
+|4,39,247,4,0,"~/PICA_py3/pvis.py"
+-'  247  4  ~/PICA_py3/pvis.py
+|4,39,247,4,0,"~/PICA_py3/pvis.py"
 -'  1  0  ~/PICA_py3/pvis.py
-|4,39,1,0,1630530398,"~/PICA_py3/pvis.py"
+|4,39,1,0,0,"~/PICA_py3/pvis.py"
 -'  1  0  ~/PICA_py3/pvis.py
-|4,39,1,0,1630530398,"~/PICA_py3/pvis.py"
+|4,39,1,0,0,"~/PICA_py3/pvis.py"
 -'  1  0  ~/PICA_py3/pvis.py
-|4,39,1,0,1630530398,"~/PICA_py3/pvis.py"
+|4,39,1,0,0,"~/PICA_py3/pvis.py"
 -'  1  0  ~/PICA_py3/pvis.py
-|4,39,1,0,1630530398,"~/PICA_py3/pvis.py"
+|4,39,1,0,0,"~/PICA_py3/pvis.py"
+-'  1  0  ~/PICA_py3/pvis.py
+|4,39,1,0,0,"~/PICA_py3/pvis.py"
+-'  1  0  ~/PICA_py3/pvis.py
+|4,39,1,0,0,"~/PICA_py3/pvis.py"
+-'  1  0  ~/PICA_py3/pvis.py
+|4,39,1,0,0,"~/PICA_py3/pvis.py"
+-'  1  0  ~/PICA_py3/pvis.py
+|4,39,1,0,0,"~/PICA_py3/pvis.py"
 -'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
+|4,39,161,4,0,"~/PICA_py3/vis.py"
 -'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
+|4,39,161,4,0,"~/PICA_py3/vis.py"
 -'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
+|4,39,161,4,0,"~/PICA_py3/vis.py"
 -'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
+|4,39,161,4,0,"~/PICA_py3/vis.py"
 -'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
--'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
--'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
--'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
--'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
--'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
--'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
--'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
--'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
--'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
--'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
--'  161  4  ~/PICA_py3/vis.py
-|4,39,161,4,1630530395,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  1  0  ~/PICA_py3/vis.py
-|4,39,1,0,1630530379,"~/PICA_py3/vis.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  136  44  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,136,44,1630529821,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
--'  33  45  ~/PICA_py3/lib/datasets/pickle_dataset.py
-|4,39,33,45,1630529808,"~/PICA_py3/lib/datasets/pickle_dataset.py"
+|4,39,161,4,0,"~/PICA_py3/vis.py"
 
 # History of marks within files (newest to oldest):
+
+> ~/sp.py
+	*	1630779454	0
+	"	15	27
+	^	28	28
+	.	28	27
+	+	11	34
+	+	12	0
+	+	16	0
+	+	12	0
+	+	16	10
+	+	17	10
+	+	16	28
+	+	28	24
+	+	17	10
+	+	28	29
+	+	24	10
+	+	25	33
+	+	24	7
+	+	25	57
+	+	25	26
+	+	27	0
+	+	25	62
+	+	25	0
+	+	17	0
+	+	5	12
+	+	4	40
+	+	26	35
+	+	31	25
+	+	11	0
+	+	17	0
+	+	20	0
+	+	12	0
+	+	16	0
+	+	15	1
+	+	16	4
+	+	17	7
+	+	18	4
+	+	7	0
+	+	21	0
+	+	22	0
+	+	20	35
+	+	23	34
+	+	25	66
+	+	4	51
+	+	30	11
+	+	31	39
+	+	24	23
+	+	25	66
+	+	28	27
+
+> ~/Moco_Test.py
+	"	1	0
+
+> ~/stage-propagation/propagate_train.py
+	"	105	4
+
+> ~/stage-propagation/data/013456.csv
+	"	1	0
+
+> ~/stage-propagation/data/rect.csv
+	"	1	0
+
+> ~/stage-propagation/utils.py
+	"	38	4
+
+> ~/stage-propagation/data/013456-top10.csv
+	"	1	0
+
+> ~/stage-propagation/dissimilarities.py
+	"	9	18
+
+> ~/stage-propagation/data/generate.args
+	"	1	0
+
+> ~/stage-propagation/propagate_predict.py
+	"	18	55
+
+> ~/stage-propagation/dissimilarities
+	"	1	0
+
+> ~/stage-propagation/semisupervised.py
+	"	1	4
+
+> ~/stage-propagation/harmonic_function.py
+	"	1	4
+
+> ~/stage-propagation/features.py
+	"	42	26
+
+> ~/stage-propagation/features
+	"	1	0
+
+> ~/.git/COMMIT_EDITMSG
+	*	1630531313	0
+	"	1	33
+	^	1	34
+	.	1	40
+	+	3	78
+	+	1	40
 
 > ~/PICA_py3/pvis.py
 	*	1630531245	0
@@ -788,288 +893,3 @@ $templates
 	+	128	125
 	+	33	45
 	+	136	44
-
-> ~/PICA_py3/lib/datasets/pickle10_dataset.py
-	*	1630529788	0
-	"	136	45
-	^	136	46
-	.	136	45
-	+	11	48
-	+	26	0
-	+	26	131
-	+	33	45
-	+	128	119
-	+	136	45
-
-> ~/PICA_py3/configs/base10.yaml
-	*	1630529716	0
-	"	24	0
-	^	24	1
-	.	24	0
-	+	24	0
-
-> ~/PICA_py3/configs/data10.yaml
-	*	1630529707	0
-	"	15	0
-
-> ~/PICA_py3/configs/new_dataset.yaml
-	*	1630527902	0
-	"	8	4
-	^	8	5
-	.	8	4
-	+	8	4
-	+	8	5
-	+	2	0
-	+	8	4
-	+	10	0
-	+	8	2
-	+	9	3
-	+	8	3
-	+	9	2
-	+	8	5
-	+	9	4
-	+	8	5
-	+	9	5
-	+	8	6
-	+	11	0
-	+	9	4
-	+	8	5
-	+	9	4
-	+	8	5
-	+	9	4
-	+	8	5
-	+	9	5
-	+	8	5
-	+	9	4
-	+	8	4
-
-> ~/PICA_py3/configs/base.yaml
-	*	1630527892	0
-	"	24	0
-	^	24	1
-	.	24	0
-	+	24	18
-	+	31	23
-	+	24	33
-	+	27	13
-	+	24	0
-	+	28	13
-	+	27	13
-	+	8	15
-	+	27	13
-	+	24	0
-
-> ~/PICA_py3/configs/base
-	*	1630527752	0
-	"	1	0
-
-> ~/PICA_py3/lib/datasets/pickle
-	*	1630527447	0
-	"	1	0
-
-> ~/PICA_py3/lib/datasets/pvis_dataset.py
-	*	1630526425	0
-	"	142	8
-	^	138	45
-	.	138	44
-	+	27	48
-	+	131	0
-	+	130	0
-	+	131	0
-	+	128	48
-	+	27	0
-	+	129	102
-	+	129	11
-	+	130	12
-	+	133	8
-	+	133	7
-	+	133	8
-	+	133	0
-	+	26	113
-	+	129	131
-	+	138	44
-
-> ~/com
-	*	1630524718	0
-	"	1	0
-
-> ~/PICA_py3/main10.py
-	*	1630353135	0
-	"	31	25
-	^	31	26
-	.	31	25
-	+	31	25
-
-> ~/PICA_py3/co
-	*	1630352984	0
-	"	1	0
-
-> ~/PICA_py3/lib/datasets/new_dataset.py
-	*	1630293604	0
-	"	1	0
-	^	77	93
-	.	77	93
-	+	76	57
-	+	38	59
-	+	39	53
-	+	36	35
-	+	4	8
-	+	42	0
-	+	7	5
-	+	9	13
-	+	7	10
-	+	76	54
-	+	154	28
-	+	36	8
-	+	37	7
-	+	38	7
-	+	38	35
-	+	49	8
-	+	50	12
-	+	49	33
-	+	48	58
-	+	49	62
-	+	15	28
-	+	38	0
-	+	16	41
-	+	18	0
-	+	17	0
-	+	49	39
-	+	151	40
-	+	140	0
-	+	15	29
-	+	16	21
-	+	15	0
-	+	18	29
-	+	139	29
-	+	20	45
-	+	21	8
-	+	22	8
-	+	23	8
-	+	25	8
-	+	27	8
-	+	28	8
-	+	29	8
-	+	30	8
-	+	31	8
-	+	32	8
-	+	33	8
-	+	34	8
-	+	35	8
-	+	38	8
-	+	39	8
-	+	40	8
-	+	41	8
-	+	42	8
-	+	43	8
-	+	44	8
-	+	45	8
-	+	46	8
-	+	47	8
-	+	48	8
-	+	49	8
-	+	50	8
-	+	51	8
-	+	20	8
-	+	21	8
-	+	22	8
-	+	23	8
-	+	25	8
-	+	27	8
-	+	28	8
-	+	29	8
-	+	30	8
-	+	31	8
-	+	32	8
-	+	33	8
-	+	34	8
-	+	35	8
-	+	37	8
-	+	38	8
-	+	39	8
-	+	40	8
-	+	41	8
-	+	42	8
-	+	43	8
-	+	44	8
-	+	45	8
-	+	46	8
-	+	47	8
-	+	48	8
-	+	49	8
-	+	50	8
-	+	51	8
-	+	15	11
-	+	18	21
-	+	139	21
-	+	77	88
-	+	171	8
-	+	172	0
-	+	171	59
-	+	77	25
-	+	171	20
-	+	77	93
-
-> ~/PICA_py3/sessions/pickle/log.txt
-	*	1629935550	0
-	"	1291	13
-
-> ~/PICA_py3/lib/datasets/vis_dataset.py
-	*	1629850733	0
-	"	16	19
-	^	16	20
-	.	16	19
-	+	15	23
-	+	16	19
-
-> ~/.vimrc
-	*	1629667643	0
-	"	1	0
-
-> ~/PICA_py3/lib/datasets/pickle_datas
-	*	1629227858	0
-	"	1	0
-
-> ~/PICA_py3/lib/datasets/pci
-	*	1629227635	0
-	"	1	0
-
-> ~/PICA_py3/lib/datasets/new_dataset.pyc
-	*	1629146698	0
-	"	1	0
-
-> ~/t.py
-	*	1629146569	0
-	"	4	0
-	^	21	33
-	.	21	32
-	+	10	0
-	+	2	0
-	+	1	13
-	+	2	0
-	+	18	3
-	+	16	22
-	+	18	39
-	+	19	155
-	+	19	3
-	+	18	10
-	+	20	39
-	+	2	17
-	+	17	29
-	+	17	44
-	+	19	119
-	+	17	30
-	+	14	44
-	+	3	13
-	+	21	32
-
-> ~/.git/COMMIT_EDITMSG
-	*	1628553167	0
-	"	1	17
-	^	1	18
-	.	1	16
-	+	3	78
-	+	1	16
-
-> ~/SSL_MacroMolecule_Real/downstream.py
-	"	13	8
